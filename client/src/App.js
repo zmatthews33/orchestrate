@@ -11,6 +11,7 @@ import Bands from "./Pages/Bands";
 import Band from "./Pages/Band";
 import Profile from "./Pages/Profile";
 import Venues from "./Pages/Venues";
+import Calendar from './Pages/Calendar'
 
 import "./Styles/index.scss";
 
@@ -31,6 +32,7 @@ function App() {
               <Route path="/events/:eventId?" component={Events} />
               <Route path="/profile" component={Profile} />
               <Route path="/venues" component={Venues} />
+              <Route path="/calendar" component={Calendar} />
               <Route path="/" component={Home} />
             </Switch>
           ) : (
