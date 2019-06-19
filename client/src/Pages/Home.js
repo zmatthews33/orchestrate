@@ -1,9 +1,7 @@
-import React from 'react'
-
+import React from "react";
+import Todos from "../Components/Todos/Todos";
 function Home() {
-  return (
-    <h1>Home</h1>
-  )
+    return <Todos />;
 }
 
-export default Home
+export default Home;
