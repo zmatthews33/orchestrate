@@ -1,9 +1,13 @@
-import React from 'react'
-
+import React from "react";
+import Container from "../Components/Container/Container";
+import BandList from "../Components/BandList/BandList";
+import "./Bands.scss";
 function Bands() {
-  return (
-    <h1>Bands</h1>
-  )
+    return (
+        <Container>
+            <BandList />
+        </Container>
+    );
 }
 
-export default Bands
+export default Bands;
