@@ -4,7 +4,8 @@ import React, { Component } from "react";
 export class Todos extends Component {
     state = {
         todos: [],
-        userInput: ""
+        userInput: "",
+        pastTodos: []
     };
 
     handleInputChange(value) {
@@ -27,6 +28,7 @@ export class Todos extends Component {
     }
 
     markCompleted(id) {
+        // mark a todo as completed
         this.setState({
             todos: this.state.todos.map(todo => {
                 if (todo.id === id) {
@@ -35,14 +37,16 @@ export class Todos extends Component {
                 return todo;
             })
         });
-
+        // deletes todo after one second and moves it to the pastTodos list
         setTimeout(() => {
             this.setState({
-                todos: [...this.state.todos.filter(todo => todo.id !== id)]
+                todos: [...this.state.todos.filter(todo => todo.id !== id)],
+                pastTodos: [...this.state.todos.filter(todo => todo.completed)]
             });
         }, 1000);
     }
     render() {
+        const { todos } = this.state;
         return (
             <div className="todos">
                 <div className="todos-form">
@@ -61,10 +65,11 @@ export class Todos extends Component {
                     </button>
                 </div>
                 <ul className="todos-list-group">
-                    {this.state.todos.map(todo => {
+                    {todos.map(todo => {
                         if (todo.completed) {
                             return (
                                 <li
+                                    style={{ textDecoration: "line-through" }}
                                     className="todos-list-group-item"
                                     key={todo.id}
                                 >
