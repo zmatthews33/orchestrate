@@ -1,0 +1,26 @@
+.todos {
+    border: solid black 1px;
+    padding: 1rem;
+    width: 40vw;
+    height: 20vh;
+    margin: 0 55vw;
+
+    &-form {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        input {
+            width: 25rem;
+        }
+
+        button {
+            width: 5rem;
+        }
+    }
+
+    &-list-group-item {
+        padding: 0 2rem;
+        margin-top: 15px;
+        
+    }
+}
