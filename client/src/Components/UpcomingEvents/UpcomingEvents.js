@@ -12,7 +12,7 @@ export class Events extends Component {
                 date: "11/11/2019"
             },
             {
-                location: "Mercy Lounge",
+                location: "Mercy Lounge, Nashville, TN",
                 date: "07/02/2019"
             }
         ]
@@ -20,7 +20,7 @@ export class Events extends Component {
     render() {
         const { events } = this.state;
         return (
-            <div className="mock">
+            <div className="upcoming-events">
                 <ul>
                     {events.map(event => (
                         <li>
@@ -28,6 +28,7 @@ export class Events extends Component {
                         </li>
                     ))}
                 </ul>
+                <button className="upcoming-events-btn">Events...</button>
             </div>
         );
     }
