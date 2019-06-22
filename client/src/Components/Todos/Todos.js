@@ -38,7 +38,7 @@ export class Todos extends Component {
 
         setTimeout(() => {
             this.setState({
-                todos: this.state.todos.filter(todo => todo.id !== id)
+                todos: [...this.state.todos.filter(todo => todo.id !== id)]
             });
         }, 1000);
     }
