@@ -4,9 +4,6 @@ const artistRoutes = require("./artistRoute");
 const eventRoutes = require("./eventRoute");
 const peopleRoutes = require("./peopleRoute");
 
-
-
-
 // Venue routes
 router.use("/venue", venueRoutes);
 
@@ -17,9 +14,6 @@ router.use("/artist", artistRoutes);
 router.use("/event", eventRoutes);
 
 // People routes
-router.use("/people", peopleRoutes);
-
-
-
+router.use("/contacts", peopleRoutes);
 
 module.exports = router;

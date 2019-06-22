@@ -1,14 +1,20 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect
+} from "react-router-dom";
 import useLoggedIn from "./Utils/useLoggedIn";
 
 import TopNavigation from "./Components/Navigation/TopNavigation";
 import Login from "./Pages/Login";
-import SignUp from "./Pages/SignUp"
+import SignUp from "./Pages/SignUp";
 import Home from "./Pages/Home";
 import Events from "./Pages/Events";
 import Bands from "./Pages/Bands";
 import Band from "./Pages/Band";
+import ContactsList from "./Pages/Contacts";
 import Profile from "./Pages/Profile";
 import Venues from "./Pages/Venues";
 
@@ -26,6 +32,7 @@ function App() {
           <TopNavigation loggedIn={loggedIn} />
           {loggedIn ? (
             <Switch>
+              <Route path="/contacts" component={ContactsList} />
               <Route path="/bands" component={Bands} />
               <Route path="/band" component={Band} />
               <Route path="/events/:eventId?" component={Events} />
@@ -38,7 +45,7 @@ function App() {
               <Route path="/login" exact component={Login} />
               <Route path="/signup" exact component={SignUp} />
               <Route path="/" exact component={Home} />
-              <Route render={props => (<Redirect to="/" />)}/>
+              <Route render={props => <Redirect to="/" />} />
             </Switch>
           )}
         </Router>
