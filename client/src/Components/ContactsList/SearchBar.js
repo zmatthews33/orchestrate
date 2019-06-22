@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function SearchBar() {
+export default function SearchBar(props) {
   return (
     <form>
       <input
@@ -8,7 +8,7 @@ export default function SearchBar() {
         type="text"
         placeholder="Search..."
         value={this.props.filterText}
-        onChange={this.handleFilterTextInputChange}
+        onChange={this.props.handleFilterTextInputChange}
       />
     </form>
   );

@@ -1,7 +1,7 @@
 import React from "react";
 import ContactRow from "./ContactRow";
 
-export default function ContactTable() {
+export default function ContactTable(props) {
   var rows = [];
   this.props.contacts.forEach(contact => {
     if (contact.name.indexOf(this.props.filterText) === -1) {
