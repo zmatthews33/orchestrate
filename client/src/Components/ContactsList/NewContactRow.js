@@ -1,8 +1,11 @@
-import React from 'react'
+import React from "react";
 
 export default function NewContactRow(props) {
-    return (
-        <form className="form-inline" onSubmit={this.props.handleSubmit}>
+  return (
+    <form
+      className="form-inline"
+      //onSubmit={this.props.handleSubmit}
+    >
       <div className="form-group row">
         <div className="col-md-3">
           <input
@@ -66,5 +69,5 @@ export default function NewContactRow(props) {
         </div>
       </div>
     </form>
-    )
+  );
 }
