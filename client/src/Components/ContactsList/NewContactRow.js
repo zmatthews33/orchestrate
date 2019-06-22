@@ -5,7 +5,17 @@ export class NewContactRow extends React.Component {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-
+  handleFilterTextInput(filterText) {
+    this.setState({
+      filterText: filterText
+    });
+  }
+  addContact(contact) {
+    var timestamp = new Date().getTime();
+    contact["key"] = timestamp;
+    this.state.contacts.push(contact);
+    this.setState({ contacts: this.state.contacts });
+  }
   handleSubmit(event) {
     event.preventDefault();
     const target = event.target;
@@ -26,7 +36,9 @@ export class NewContactRow extends React.Component {
     };
     this.props.addContact(contact);
   }
-
+  this.handleFilterTextInput = this.handleFilterTextInput.bind(this);
+  this.addContact = this.addContact.bind(this);
+}
   render() {
     return (
       <form className="form-inline" onSubmit={this.handleSubmit}>
