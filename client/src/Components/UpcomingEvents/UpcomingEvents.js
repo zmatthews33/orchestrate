@@ -28,7 +28,7 @@ export class Events extends Component {
                         </li>
                     ))}
                 </ul>
-                <button className="upcoming-events-btn">Events...</button>
+                <button className="upcoming-events-btn">All events...</button>
             </div>
         );
     }
