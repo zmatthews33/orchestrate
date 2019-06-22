@@ -1,16 +1,16 @@
 .todos {
     border: solid black 1px;
     padding: 1rem;
-    width: 40vw;
-    height: 20vh;
-    margin: 0 55vw;
+    width: auto;
+    height: 175px;
+    
 
     &-form {
         display: flex;
         flex-direction: row;
         justify-content: space-evenly;
         input {
-            width: 25rem;
+            width: 10rem;
         }
 
         button {
