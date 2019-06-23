@@ -2,7 +2,9 @@ import React from 'react'
 
 function Band() {
   return (
-    <h1>Band</h1>
+    <div className="pageContainer">
+      <h1>Band</h1>
+    </div>
   )
 }
 

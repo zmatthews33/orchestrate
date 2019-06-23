@@ -1,17 +1,21 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect
+} from "react-router-dom";
 import useLoggedIn from "./Utils/useLoggedIn";
 
-import TopNavigation from "./Components/Navigation/TopNavigation";
+import SideNavigation from "./Components/Navigation/SideNavigation";
 import Login from "./Pages/Login";
-import SignUp from "./Pages/SignUp"
+import SignUp from "./Pages/SignUp";
 import Home from "./Pages/Home";
 import Events from "./Pages/Events";
 import Bands from "./Pages/Bands";
 import Band from "./Pages/Band";
 import Profile from "./Pages/Profile";
 import Venues from "./Pages/Venues";
-import Calendar from './Pages/Calendar'
 
 import "./Styles/index.scss";
 
@@ -24,7 +28,7 @@ function App() {
     <AppContext.Provider>
       <div className="appContainer">
         <Router>
-          <TopNavigation loggedIn={loggedIn} />
+          <SideNavigation loggedIn={loggedIn} />
           {loggedIn ? (
             <Switch>
               <Route path="/bands" component={Bands} />
@@ -32,7 +36,6 @@ function App() {
               <Route path="/events/:eventId?" component={Events} />
               <Route path="/profile" component={Profile} />
               <Route path="/venues" component={Venues} />
-              <Route path="/calendar" component={Calendar} />
               <Route path="/" component={Home} />
             </Switch>
           ) : (
@@ -40,7 +43,7 @@ function App() {
               <Route path="/login" exact component={Login} />
               <Route path="/signup" exact component={SignUp} />
               <Route path="/" exact component={Home} />
-              <Route render={props => (<Redirect to="/" />)}/>
+              <Route render={props => <Redirect to="/" />} />
             </Switch>
           )}
         </Router>
