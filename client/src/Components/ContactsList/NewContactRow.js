@@ -2,10 +2,7 @@ import React from "react";
 
 export default function NewContactRow(props) {
   return (
-    <form
-      className="form-inline"
-      //onSubmit={this.props.handleSubmit}
-    >
+    <form className="form-inline" onSubmit={props.handleSubmit}>
       <div className="form-group row">
         <div className="col-md-3">
           <input

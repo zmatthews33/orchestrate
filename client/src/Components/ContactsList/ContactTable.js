@@ -1,5 +1,4 @@
 import React from "react";
-import ContactRow from "./ContactRow";
 
 export default function ContactTable(props) {
   return (
