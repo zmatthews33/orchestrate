@@ -1,10 +1,11 @@
 import React from 'react'
+import {Page} from '../Components/Containers/LayoutsElements'
 
 function Profile() {
   return (
-    <div className="pageContainer">
+    <Page>
       <h1>Profile...</h1>
-    </div>
+    </Page>
   )
 }
 

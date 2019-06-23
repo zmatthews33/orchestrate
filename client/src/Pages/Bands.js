@@ -1,11 +1,15 @@
-import React from 'react'
+import React from "react";
+import BandList from "../Components/BandList/BandList";
+import "../Styles/Bands.scss";
+import {Page} from '../Components/Containers/LayoutsElements'
+
 
 function Bands() {
   return (
-    <div className="pageContainer">
-      <h1>Bands</h1>
-    </div>
+    <Page>
+      <BandList />
+    </Page>
   )
 }
 
-export default Bands
+export default Bands;

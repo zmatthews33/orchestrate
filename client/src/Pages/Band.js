@@ -1,10 +1,11 @@
 import React from 'react'
+import {Page} from '../Components/Containers/LayoutsElements'
 
 function Band() {
   return (
-    <div className="pageContainer">
+    <Page>
       <h1>Band</h1>
-    </div>
+    </Page>
   )
 }
 

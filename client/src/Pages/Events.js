@@ -1,9 +1,10 @@
 import React from "react";
 import CalendarLarge from "../Components/Calendar/CalendarLarge";
+import { Page } from "../Components/Containers/LayoutsElements";
 
 function Events() {
   return (
-    <div className="pageContainer">
+    <Page>
       <div
         style={{
           height: "60vh",
@@ -16,7 +17,7 @@ function Events() {
       >
         <CalendarLarge />
       </div>
-    </div>
+    </Page>
   );
 }
 

@@ -1,10 +1,11 @@
 import React from 'react'
+import {Page} from '../Components/Containers/LayoutsElements'
 
 function Venues() {
   return (
-    <div className="pageContainer">
+    <Page>
       <h1>Venues</h1>
-    </div>
+    </Page>
   )
 }
 

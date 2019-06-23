@@ -14,8 +14,10 @@ import Home from "./Pages/Home";
 import Events from "./Pages/Events";
 import Bands from "./Pages/Bands";
 import Band from "./Pages/Band";
+import Todos from "./Pages/Todos";
 import Profile from "./Pages/Profile";
 import Venues from "./Pages/Venues";
+import Contacts from "./Pages/Contacts";
 
 import "./Styles/index.scss";
 
@@ -35,7 +37,9 @@ function App() {
               <Route path="/band" component={Band} />
               <Route path="/events/:eventId?" component={Events} />
               <Route path="/profile" component={Profile} />
+              <Route path="/todos" component={Todos} />
               <Route path="/venues" component={Venues} />
+              <Route path="/contacts" component={Contacts} />
               <Route path="/" component={Home} />
             </Switch>
           ) : (
