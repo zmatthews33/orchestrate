@@ -2,13 +2,6 @@ import React from "react";
 import ContactRow from "./ContactRow";
 
 export default function ContactTable(props) {
-    var rows = [];
-    props.contacts.forEach(contact => {
-      if (contact.name.indexOf(props.filterText) === -1) {
-        return;
-      }
-      rows.push(<ContactRow key={contact.key} contact={contact} />);
-    });
   return (
     <table className="table table-hover">
       <thead>
@@ -39,7 +32,7 @@ export default function ContactTable(props) {
           </th>
         </tr>
       </thead>
-      <tbody>{rows}</tbody>
+      <tbody>{props.children}</tbody>
     </table>
   );
 }
