@@ -1,13 +1,15 @@
 import React from "react";
-import Container from "../Components/Container/Container";
 import BandList from "../Components/BandList/BandList";
-import "./Bands.scss";
+import "../Styles/Bands.scss";
+import {Page} from '../Components/Containers/LayoutsElements'
+
+
 function Bands() {
-    return (
-        <Container>
-            <BandList />
-        </Container>
-    );
+  return (
+    <Page>
+      <BandList />
+    </Page>
+  )
 }
 
 export default Bands;

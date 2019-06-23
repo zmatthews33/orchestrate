@@ -1,12 +1,12 @@
 import React from 'react'
 import {Page} from '../Components/Containers/LayoutsElements'
 
-function Profile() {
+function Contacts() {
   return (
     <Page>
-      <h1>Profile...</h1>
+      <h1>Contacts</h1>
     </Page>
   )
 }
 
-export default Profile
+export default Contacts

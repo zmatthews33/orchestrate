@@ -1,19 +1,20 @@
 import React from "react";
-import Container from "../Components/Container/Container";
-import Todos from "../Components/Todos/Todos";
+import { Page } from "../Components/Containers/LayoutsElements";
+import TodoList from "../Components/TodoList/TodoList";
 import UpcomingEvents from "../Components/UpcomingEvents/UpcomingEvents";
 import Finances from "../Components/Finances/Finances";
-import "./Home.scss";
-import DashBtn from "../Components/DashBtn/DashBtn";
+import "../Styles/Home.scss";
+
 function Home() {
-    return (
-        <Container>
-            <UpcomingEvents />
-            <Todos />
-            <Finances />
-            <DashBtn/>
-        </Container>
-    );
+  return (
+    <Page>
+      <div className="Feature">
+        <UpcomingEvents />
+      </div>
+      <TodoList />
+      <Finances />
+    </Page>
+  );
 }
 
 export default Home;

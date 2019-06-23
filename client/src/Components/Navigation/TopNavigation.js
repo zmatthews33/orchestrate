@@ -11,6 +11,7 @@ const TopNavigation = ({ loggedIn, userType }) => (
       <div className="navLinks">
         <NavLink to="/events">Events</NavLink>
         <NavLink to="/bands">Bands</NavLink>
+        <NavLink to="/calendar">Calendar</NavLink>
         <NavLink to="/login">Log Out</NavLink>
       </div>
     ) : (
