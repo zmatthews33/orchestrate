@@ -7,8 +7,8 @@ export default function SearchBar(props) {
         className="form-control"
         type="text"
         placeholder="Search..."
-        value={this.props.filterText}
-        onChange={this.props.handleFilterTextInputChange}
+        value={props.filterText}
+        onChange={props.handleFilterTextInputChange}
       />
     </form>
   );

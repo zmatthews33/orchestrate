@@ -42,11 +42,12 @@ export class ContactsList extends Component {
       filterText: filterText
     });
   }
-  addContact(contact) {
-    this.state.contacts.push(contact);
-    this.setState({ contacts: this.state.contacts });
+  addContact(newContact) {
+    this.setState({
+        contacts: [...this.state.contacts.push(newContact)]
+    });
   }
-  handleSubmit(event) {
+  handleSubmit = (event) => {
     event.preventDefault();
     const { name, phone, venue, address, email, notes } = event.target;
     const newContact = {
@@ -57,7 +58,7 @@ export class ContactsList extends Component {
       email: email,
       notes: notes
     };
-    this.props.addContact(newContact);
+    this.addContact(newContact);
   }
 
   handleFilterTextInputChange(input) {
