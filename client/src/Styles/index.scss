@@ -1,4 +1,6 @@
 @import './reset';
+@import './colors';
+@import './fonts';
 
 html {
   width: 100%;
@@ -6,7 +8,8 @@ html {
 }
 
 body {
-  background: gray;
+  background: $darkPrimary;
+  color: $white;
 }
 
 
@@ -29,6 +32,6 @@ a {
 
 .pageContainer {
   flex: 5;
-  background: white;
+  background: $primary;
   //border-radius: 40px 0 0 0;
 }
