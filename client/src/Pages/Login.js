@@ -2,17 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Page } from "../Components/Containers/LayoutsElements";
 import "../Styles/Login.scss";
-const style = {
-    border: "solid black 2px",
-    padding: "1rem",
-    width: "400px",
-    height: "400px",
-    margin: "0 auto",
-    position: "relative",
-    top: "35vh",
-    display: "flex",
-    flexDirection: "column"
-};
+
 function Login({ login }) {
     const [input, setInput] = useState("");
     const [password, setPassword] = useState("");
