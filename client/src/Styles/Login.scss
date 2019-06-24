@@ -1,0 +1,46 @@
+.login-form {
+    border: solid orange 2px;
+    padding: 1rem;
+    height: 25rem;
+    width: 20rem;
+    // center element
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 45%;
+    left: 55%;
+
+    &-group {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        label {
+            padding: 1rem;
+            width: 100px;
+        }
+
+        input {
+            padding: 0.5rem;
+            border-radius: 50px;
+            width: 65%;
+        }
+    }
+
+    &-action {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: 1rem;
+        text-align: center;
+
+        button {
+            margin: 0 auto;
+            padding: 5px;
+            width: 25%;
+        }
+
+        .signup-now {
+            margin: 1rem;
+        }
+    }
+}
