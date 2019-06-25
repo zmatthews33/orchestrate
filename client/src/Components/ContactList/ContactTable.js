@@ -22,7 +22,7 @@ export default function ContactTable({contacts}) {
                     venue={contact.venue}
                     address={contact.address}
                     email={contact.email}
-                    notes={contact.email}
+                    notes={contact.notes}
                 />
             ))}
         </tbody>

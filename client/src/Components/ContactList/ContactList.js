@@ -29,12 +29,12 @@ function ContactList() {
         },
         {
             key: 3,
-            name: "Lemmy",
-            phone: "666-666-6666",
+            name: "Sherlock",
+            phone: "212-232-3234",
             venue: "n/a",
             address: "Everywhere",
-            email: "lemmyisgod123@gmail.com",
-            notes: "Lemmy is God"
+            email: "holmes@sherlock.com",
+            notes: "pretty smart"
         }
     ]);
     

@@ -10,66 +10,32 @@ export default function AddContact({
     handleContactSubmit,
     ...props
 }) {
-    
-
-    const [userInput, setUserInput] = useReducer((state, newState) => ({...state, ...newState}), {name: '', phone: '', venue: '', })
-
     return (
         <div id="add-new-contact">
             <form onSubmit={handleContactSubmit}>
-                <div class="name-container">
+                <div className="name-container">
                     <label>Name:</label>
-                    <input
-                        type="text"
-                        placeholder="Sherlock Holmes"
-                        value={form.name}
-                        onChange={handleInputChange}
-                    />
+                    <input type="text" placeholder="Sherlock Holmes" />
                 </div>
-                <div class="phone-container">
+                <div className="phone-container">
                     <label>Phone:</label>
-                    <input
-                        type="number"
-                        placeholder="###-###-####"
-                        value={form.phone}
-                        onChange={e => setForm({})}
-                    />
+                    <input type="number" placeholder="###-###-####" />
                 </div>
-                <div class="venue-container">
+                <div className="venue-container">
                     <label>Venue:</label>
-                    <input
-                        type="text"
-                        placeholder="the showdown club"
-                        value={form.venue}
-                        onChange={e => setForm({})}
-                    />
+                    <input type="text" placeholder="the showdown club" />
                 </div>
-                <div class="address-container">
+                <div className="address-container">
                     <label>Address:</label>
-                    <input
-                        type="text"
-                        placeholder="21 Baker Street"
-                        value={form.address}
-                        onChange={e => setForm({})}
-                    />
+                    <input type="text" placeholder="21 Baker Street" />
                 </div>
-                <div class="email-container">
+                <div className="email-container">
                     <label>Email:</label>
-                    <input
-                        type="email"
-                        placeholder="email@email.com"
-                        value={form.email}
-                        onChange={e => setForm({})}
-                    />
+                    <input type="email" placeholder="email@email.com" />
                 </div>
-                <div class="notes-container">
+                <div className="notes-container">
                     <label>Notes:</label>
-                    <input
-                        type="text"
-                        placeholder="add a note"
-                        value={form.notes}
-                        onChange={e => setForm({})}
-                    />
+                    <input type="text" placeholder="add a note" />
                 </div>
                 <div className="btn-container">
                     <button>Submit</button>
