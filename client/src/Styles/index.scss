@@ -1,6 +1,10 @@
 @import './reset';
 @import './variables';
 
+* {
+  box-sizing: border-box;
+}
+
 html {
   width: 100%;
   height: 100%;
@@ -22,8 +26,6 @@ a {
 }
 
 
-
-
 .appContainer {
   display: flex;
   width: 100%;
@@ -32,6 +34,7 @@ a {
 
 .pageContainer {
   flex: 5;
-  background: $primary;
+  background: $darkPrimary;
+  padding: 20px 50px;
   //border-radius: 40px 0 0 0;
 }
