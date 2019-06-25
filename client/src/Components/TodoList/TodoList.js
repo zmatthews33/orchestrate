@@ -10,7 +10,7 @@ function TodoList() {
     e.preventDefault()
 
     const newTodo = {
-      id: todos.length ? todos.length : 1,
+      id: Math.random() + 1,
       value: userInput,
       completed: false
     };
