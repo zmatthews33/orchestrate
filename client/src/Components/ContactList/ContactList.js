@@ -1,6 +1,10 @@
 import React, { useState } from "react";
+
+// ADD NEW CONTACT COMPONENT
+import AddContact from "./AddContact";
+// LOAD TABLE
+import ContactTable from "./ContactTable";
 import "./ContactList.scss";
-import ContactRow from "./ContactRow";
 
 function ContactList() {
     // initial state
@@ -33,34 +37,14 @@ function ContactList() {
             notes: "Lemmy is God"
         }
     ]);
+    
     console.log("All contacts", contacts);
     return (
         <div className="contact-list">
-            <table id="contacts">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Phone</th>
-                        <th>Venue</th>
-                        <th>Address</th>
-                        <th>Email</th>
-                        <th>Notes</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {contacts.map(contact => (
-                        <ContactRow
-                            key={contact.key}
-                            name={contact.name}
-                            phone={contact.phone}
-                            venue={contact.venue}
-                            address={contact.address}
-                            email={contact.email}
-                            notes={contact.email}
-                        />
-                    ))}
-                </tbody>
-            </table>
+            {/* adding new contacts */}
+            <AddContact />
+            {/* Reading from state */}
+            <ContactTable contacts={contacts} />
         </div>
     );
 }
