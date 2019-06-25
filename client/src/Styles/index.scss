@@ -1,4 +1,9 @@
 @import './reset';
+@import './variables';
+
+* {
+  box-sizing: border-box;
+}
 
 html {
   width: 100%;
@@ -6,7 +11,8 @@ html {
 }
 
 body {
-  background: gray;
+  background: $darkPrimary;
+  color: $white;
 }
 
 
@@ -16,9 +22,8 @@ body {
 // links
 a {
   text-decoration: none;
+  color: $primary;
 }
-
-
 
 
 .appContainer {
@@ -29,6 +34,9 @@ a {
 
 .pageContainer {
   flex: 5;
-  background: white;
+  background: $darkPrimary;
+  padding: 20px 50px;
   //border-radius: 40px 0 0 0;
 }
+
+// different types of containers...
