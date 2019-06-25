@@ -40,13 +40,14 @@ function ContactList() {
 
     const handleContactSubmit = (e, newContact) => {
         // insert api call to add a new contact to personal list
+        // ask in class how to handle a form submit collecting all the data in react
     };
 
     console.log("All contacts", contacts);
     return (
         <div className="contact-list">
             {/* adding new contacts */}
-            <AddContact />
+            <AddContact handleContactSubmit={handleContactSubmit} />
             {/* Reading from state */}
             <ContactTable contacts={contacts} />
         </div>
