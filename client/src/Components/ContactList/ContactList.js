@@ -37,7 +37,11 @@ function ContactList() {
             notes: "pretty smart"
         }
     ]);
-    
+
+    const handleContactSubmit = (e, newContact) => {
+        // insert api call to add a new contact to personal list
+    };
+
     console.log("All contacts", contacts);
     return (
         <div className="contact-list">
