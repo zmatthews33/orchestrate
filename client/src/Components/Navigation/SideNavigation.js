@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import {Link, NavLink} from 'react-router-dom'
+import {Logo} from '../../Assets/Logo';
 
 import './SideNav.scss'
 
@@ -10,7 +11,7 @@ function SideNavigation({loggedIn, userType}) {
   return (
     <div className={Expanded ? 'sideNav expanded' : 'sideNav'}>
       <div className="logo">
-        <Link to="/">Logo</Link>
+        <Link to="/"><Logo /></Link>
       </div>
       {loggedIn ? (
         <ul className="navLinks">
