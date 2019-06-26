@@ -20,7 +20,7 @@ import Venues from "./Pages/Venues";
 import Contacts from "./Pages/Contacts";
 
 import "./Styles/index.scss";
-import AddArtist from "./Pages/AddArtist";
+import NewArtistPage from "./Pages/NewArtistPage";
 
 const AppContext = React.createContext();
 
@@ -36,7 +36,7 @@ function App() {
             <Switch>
               <Route path="/bands" component={Bands} />
               <Route path="/band" component={Band} />
-              <Route path="/addartist" component={AddArtist} />
+              <Route path="/addartist" component={NewArtistPage} />
               <Route path="/events/:eventId?" component={Events} />
               <Route path="/profile" component={Profile} />
               <Route path="/todos" component={Todos} />
