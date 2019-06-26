@@ -7,13 +7,13 @@ function AddArtist() {
       <h1>Add Artist</h1>
       <div className="radio">
         <label for="artist">
-          <input type="radio" name="option1" value="Artist" />
+          <input type="radio" name="artist_type" value="Artist" />
           Solo Artist
         </label>
       </div>
       <div className="radio">
         <label for="band">
-          <input type="radio" name="option1" value="Band" />
+          <input type="radio" name="artist_type" value="Band" />
           Band
         </label>
       </div>
@@ -24,7 +24,17 @@ function AddArtist() {
         </div>
         <div className="artist-form-group">
           <label for="bandmembers">Band Members (if applicable):</label>
+          <br />
           <input type="text" placeholder="Add a Member" name="bandmembers" />
+          <br />
+          <input type="text" placeholder="Add a Member" name="bandmembers" />
+          <br />
+          <input type="text" placeholder="Add a Member" name="bandmembers" />
+          <br />
+          <input type="text" placeholder="Add a Member" name="bandmembers" />
+          <br />
+          <input type="text" placeholder="Add a Member" name="bandmembers" />
+          <br />
         </div>
         <div className="artist-form-group">
           <label for="email">Email(s):</label>
@@ -37,12 +47,14 @@ function AddArtist() {
         <div className="artist-form-group">
           <label for="bio">Bio:</label>
           <input type="text" placeholder="Bio" name="bio" />
-          <label for="bio"> or </label>
-          <input type="file" placeholder="photos" name="photos" />
         </div>
         <div className="artist-form-group">
           <label for="socials">Social Links:</label>
-          <input type="url" placeholder="Links" name="socials" />
+          <br />
+          <input type="url" placeholder="Facebook" name="socials" /> <br />
+          <input type="url" placeholder="Twitter" name="socials" />
+          <br />
+          <input type="url" placeholder="Instagram" name="socials" />
         </div>
         <div className="artist-form-group">
           <label for="photos">Photos:</label>
