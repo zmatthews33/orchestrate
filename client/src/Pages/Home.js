@@ -1,5 +1,5 @@
 import React from "react";
-import { Page } from "../Components/Containers/LayoutsElements";
+import Page from "../Components/Containers/PageContainer";
 import TodoList from "../Components/TodoList/TodoList";
 import UpcomingEvents from "../Components/UpcomingEvents/UpcomingEvents";
 import Finances from "../Components/Finances/Finances";

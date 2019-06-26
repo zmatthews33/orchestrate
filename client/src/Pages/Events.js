@@ -1,6 +1,6 @@
 import React from "react";
 import CalendarLarge from "../Components/Calendar/CalendarLarge";
-import { Page } from "../Components/Containers/LayoutsElements";
+import Page from "../Components/Containers/PageContainer";
 
 function Events() {
   return (

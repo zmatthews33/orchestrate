@@ -4,9 +4,6 @@ import "./TopNav.scss";
 
 const TopNavigation = ({ loggedIn, userType }) => (
   <nav className="topNav">
-    <h1>
-      <NavLink to="/">Orchestra</NavLink>
-    </h1>
     {loggedIn ? (
       <div className="navLinks">
         <NavLink to="/events">Events</NavLink>

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Page } from "../Components/Containers/LayoutsElements";
+import Page from "../Components/Containers/PageContainer";
 import "../Styles/Login.scss";
 const style = {
     border: "solid black 2px",

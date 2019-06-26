@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {Page} from '../Components/Containers/LayoutsElements'
+import Page from '../Components/Containers/PageContainer'
 
 function SignUp() {
   return (
