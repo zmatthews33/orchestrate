@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import "./NewArtist.scss";
 import AddArtist from "./AddArtist";
-import BandList from "../BandList/BandList";
+//import BandList from "../BandList/BandList";
 
 function NewArtist() {
   const [artist, setArtist] = useState({});
@@ -45,7 +45,6 @@ function NewArtist() {
       {/* adding new artist */}
       <AddArtist handleArtistSubmit={handleArtistSubmit} />
       {/* Reading from state */}
-      <BandList artist={artist} />
     </div>
   );
 }

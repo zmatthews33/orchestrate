@@ -10,7 +10,7 @@ export default function AddArtist({
   bio,
   socials,
   photos,
-  handleContactSubmit,
+  handleArtistSubmit,
   ...props
 }) {
   const [userInput, setUserInput] = useReducer(
