@@ -3,6 +3,8 @@ const venueRoutes = require("./venueRoute");
 const artistRoutes = require("./artistRoute");
 const eventRoutes = require("./eventRoute");
 const peopleRoutes = require("./peopleRoute");
+const userRoutes = require("./userRoute");
+
 
 
 
@@ -18,6 +20,10 @@ router.use("/event", eventRoutes);
 
 // People routes
 router.use("/people", peopleRoutes);
+
+// User routes
+router.use("/user", userRoutes);
+
 
 
 
