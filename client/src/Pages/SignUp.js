@@ -16,7 +16,7 @@ function SignUp() {
         </div>
         <div className="signup-form-group">
           <label for="email">Email:</label>
-          <input type="text" placeholder="johndoe@ie.com" name="email" />
+          <input type="email" placeholder="johndoe@ie.com" name="email" />
         </div>
         <div className="signup-form-group">
           <label for="password">Password:</label>

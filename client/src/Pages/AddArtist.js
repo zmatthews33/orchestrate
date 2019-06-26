@@ -6,14 +6,14 @@ function AddArtist() {
     <Page>
       <h1>Add Artist</h1>
       <div className="radio">
-        <label>
-          <input type="radio" value="option1" checked={true} />
+        <label for="artist">
+          <input type="radio" name="option1" value="Artist" />
           Solo Artist
         </label>
       </div>
       <div className="radio">
-        <label>
-          <input type="radio" value="option2" checked={true} />
+        <label for="band">
+          <input type="radio" name="option1" value="Band" />
           Band
         </label>
       </div>
@@ -28,11 +28,25 @@ function AddArtist() {
         </div>
         <div className="artist-form-group">
           <label for="email">Email(s):</label>
-          <input type="text" placeholder="johndoe@ie.com" name="email" />
+          <input type="email" placeholder="johndoe@ie.com" name="email" />
         </div>
         <div className="artist-form-group">
-          <label for="password">Genre:</label>
-          <input type="password" placeholder="Enter Password" name="password" />
+          <label for="genre">Genre(s):</label>
+          <input type="text" placeholder="Genre" name="genre" />
+        </div>
+        <div className="artist-form-group">
+          <label for="bio">Bio:</label>
+          <input type="text" placeholder="Bio" name="bio" />
+          <label for="bio"> or </label>
+          <input type="file" placeholder="photos" name="photos" />
+        </div>
+        <div className="artist-form-group">
+          <label for="socials">Social Links:</label>
+          <input type="url" placeholder="Links" name="socials" />
+        </div>
+        <div className="artist-form-group">
+          <label for="photos">Photos:</label>
+          <input type="file" placeholder="photos" name="photos" />
         </div>
         <div className="artist-form-action">
           <button className="btn-submit" type="submit">
