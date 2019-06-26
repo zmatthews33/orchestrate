@@ -1,11 +1,12 @@
 import React from 'react'
 import {Page} from '../Components/Containers/LayoutsElements'
+import SearchVenue from '../Components/Venues/SearchVenue';
 
 function Venues() {
  
   return (
     <Page>
-      <h1>Venues</h1>
+      <SearchVenue/>
     </Page>
   )
 }
