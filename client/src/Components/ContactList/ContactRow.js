@@ -6,7 +6,7 @@ export default function ContactRow({
   venue,
   address,
   email,
-  notes
+  note
 }) {
   return (
     <tr>
@@ -15,7 +15,7 @@ export default function ContactRow({
       <td>{venue}</td>
       <td>{address}</td>
       <td>{email}</td>
-      <td>{notes}</td>
+      <td>{note}</td>
     </tr>
   );
 }

@@ -6,7 +6,7 @@ export default function AddContact({
     venue,
     address,
     email,
-    notes,
+    note,
     handleContactSubmit,
     ...props
 }) {
@@ -25,7 +25,6 @@ export default function AddContact({
     const handleInputChange = e => {
         const { value, name } = e.target;
         setUserInput({ [name]: value });
-        console.log(userInput);
     };
     return (
         <div id="add-new-contact">
@@ -37,6 +36,7 @@ export default function AddContact({
                         type="text"
                         placeholder="Sherlock Holmes"
                         onChange={handleInputChange}
+                        value={userInput.name}
                     />
                 </div>
                 <div className="phone-container">
@@ -46,6 +46,7 @@ export default function AddContact({
                         type="text"
                         placeholder="###-###-####"
                         onChange={handleInputChange}
+                        value={userInput.phone}
                     />
                 </div>
                 <div className="venue-container">
@@ -55,6 +56,7 @@ export default function AddContact({
                         type="text"
                         placeholder="the showdown club"
                         onChange={handleInputChange}
+                        value={userInput.venue}
                     />
                 </div>
                 <div className="address-container">
@@ -64,6 +66,7 @@ export default function AddContact({
                         type="text"
                         placeholder="21 Baker Street"
                         onChange={handleInputChange}
+                        value={userInput.address}
                     />
                 </div>
                 <div className="email-container">
@@ -73,15 +76,17 @@ export default function AddContact({
                         type="email"
                         placeholder="email@email.com"
                         onChange={handleInputChange}
+                        value={userInput.email}
                     />
                 </div>
                 <div className="notes-container">
                     <label>Notes:</label>
                     <input
-                        name="notes"
+                        name="note"
                         type="text"
                         placeholder="add a note"
                         onChange={handleInputChange}
+                        value={userInput.note}
                     />
                 </div>
                 <div className="btn-container">

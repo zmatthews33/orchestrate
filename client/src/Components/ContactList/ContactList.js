@@ -16,7 +16,7 @@ function ContactList() {
             venue: "Exit/In",
             address: "2208 Elliston Pl, Nashville, TN 37203",
             email: "janedoe@gmail.com",
-            notes: "She's cool"
+            note: "She's cool"
         },
         {
             key: 2,
@@ -25,7 +25,7 @@ function ContactList() {
             venue: "The East Room",
             address: "2412 Gallatin Ave, Nashville, TN 37206",
             email: "tom@gmail.com",
-            notes: "Tom has a bday the night before our show"
+            note: "Tom has a bday the night before our show"
         },
         {
             key: 3,
@@ -34,11 +34,25 @@ function ContactList() {
             venue: "n/a",
             address: "Everywhere",
             email: "holmes@sherlock.com",
-            notes: "pretty smart"
+            note: "pretty smart"
         }
     ]);
 
-    const handleContactSubmit = (e, newContact) => {
+    const handleContactSubmit = e => {
+        e.preventDefault();
+        const { name, phone, venue, address, email, note } = e.target;
+
+        const newContact = {
+            id: Math.random() + 1,
+            name: name.value,
+            phone: phone.value,
+            venue: venue.value,
+            address: address.value,
+            email: email.value,
+            note: note.value
+        };
+        console.log(newContact);
+        setContacts([newContact, ...contacts]);
         // insert api call to add a new contact to personal list
         // ask in class how to handle a form submit collecting all the data in react
     };
