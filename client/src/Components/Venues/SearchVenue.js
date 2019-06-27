@@ -3,7 +3,8 @@ import React, { useState, useCallback, useEffect } from "react";
 import axios from "axios";
 const style = {
     border: "solid yellow 2px",
-    display: "inline-block"
+    display: "inline-block",
+    margin: "5px"
 };
 
 export default function SearchVenue() {
@@ -19,7 +20,7 @@ export default function SearchVenue() {
             .get(
                 "https://api.songkick.com/api/3.0/search/venues.json?query=" +
                     query +
-                    "&apikey=avCCBGwqkhYMC132&per_page=3"
+                    "&apikey=avCCBGwqkhYMC132&per_page=1"
             )
             .then(res => {
                 // destructuring that massive response object
@@ -41,26 +42,10 @@ export default function SearchVenue() {
         sendRequest(searchInput.value);
     };
 
-    // const searchForVenue = query => {
-    //     // SongKickAPI
-    //     // .getVenues(query)
-    //     //     .then(res => setResponse(res.data))
-    //     //     .then(()=>console.log(response))
-    //     //     .catch(error => console.log(error));
-
-    //     axios.get(
-    //         `https://api.songkick.com/api/3.0/search/venues.json?query=${query}&apikey=avCCBGwqkhYMC132&per_page=3`
-    //     )
-    //     .then(res => setResponse(res.data))
-    //     .then(() => console.log(response))
-    //     .catch(err => console.log(err));
-
-    // };
-
     return (
-        <div style={style}>
+        <div>
             <h1>Search for venues</h1>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} style={style}>
                 <input
                     onChange={e => setSearch(e.target.value)}
                     value={search}
@@ -69,6 +54,35 @@ export default function SearchVenue() {
                 />
                 <button type="submit">SendRequest</button>
             </form>
+
+            <ul style={style}>
+                {response.map(venue => {
+                    const {
+                        id,
+                        displayName,
+                        website,
+                        city,
+                        zip,
+                        phone,
+                        description,
+                        street
+                    } = venue;
+
+                    return (
+                        <ul>
+                            <li>{displayName}</li>
+                            <li>{website}</li>
+                            <li>{city.displayName}</li>
+                            <li>{city.state.displayName}</li>
+                            <li>{city.country.displayName}</li>
+                            <li>{zip}</li>
+                            <li>{phone}</li>
+                            <li>{description}</li>
+                            <li>{street}</li>
+                        </ul>
+                    );
+                })}
+            </ul>
         </div>
     );
 }
