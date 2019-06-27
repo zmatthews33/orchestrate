@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 // import SongKickAPI from "./SongKickAPI";
 import axios from "axios";
 const style = {
@@ -7,23 +7,39 @@ const style = {
 };
 
 export default function SearchVenue() {
-    const [isSending, setIsSending] = useState(false);
-    const [response, setResponse] = useState({});
+    const [response, setResponse] = useState([]);
     const [search, setSearch] = useState("");
 
-    const sendRequest = useCallback(async (query) => {
-        if (isSending) return;
+    useEffect(() => {
+        console.log(response);
+    }, [response]);
 
-        setIsSending(true);
-
+    const sendRequest = useCallback(async query => {
         await axios
             .get(
-                "https://api.songkick.com/api/3.0/search/venues.json?query="+query+"&apikey=avCCBGwqkhYMC132&per_page=3"
+                "https://api.songkick.com/api/3.0/search/venues.json?query=" +
+                    query +
+                    "&apikey=avCCBGwqkhYMC132&per_page=3"
             )
-            .then(res => console.log(res.data.resultsPage))
-            .then(() => setIsSending)
+            .then(res => {
+                // destructuring that massive response object
+                const {
+                    data: {
+                        resultsPage: {
+                            results: { venue }
+                        }
+                    }
+                } = res;
+                setResponse(venue);
+            })
+            .catch(err => console.log(err));
+    }, []);
 
-    }, [isSending]);
+    const handleSubmit = e => {
+        e.preventDefault();
+        const { searchInput } = e.target;
+        sendRequest(searchInput.value);
+    };
 
     // const searchForVenue = query => {
     //     // SongKickAPI
@@ -41,12 +57,10 @@ export default function SearchVenue() {
 
     // };
 
-    
-
     return (
         <div style={style}>
             <h1>Search for venues</h1>
-            <form onSubmit={(e) => {e.preventDefault(); sendRequest(e.target.searchInput.value);}}>
+            <form onSubmit={handleSubmit}>
                 <input
                     onChange={e => setSearch(e.target.value)}
                     value={search}
@@ -55,7 +69,6 @@ export default function SearchVenue() {
                 />
                 <button type="submit">SendRequest</button>
             </form>
-            
         </div>
     );
 }
