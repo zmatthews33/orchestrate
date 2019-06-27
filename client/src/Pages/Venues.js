@@ -7,7 +7,9 @@ function Venues() {
  
   return (
     <Page>
-      <SearchVenue/>
+      
+          <SearchVenue/>
+      
     </Page>
   )
 }

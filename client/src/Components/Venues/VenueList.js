@@ -1,6 +1,7 @@
 import React from 'react'
 
 export default function VenueList({venue, btnType, handleClick}) {
+    console.log(venue);
     return (
         <div className="venueList_">
             <ul className="venueList_item">

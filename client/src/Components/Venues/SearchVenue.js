@@ -41,23 +41,24 @@ export default function SearchVenue() {
         sendRequest(searchInput.value);
     };
 
-    const addVenue = () => {
+    const addVenue = index => {
         const {
             id,
             displayName,
             website,
             city,
+            metroArea,
             phone,
             street,
             zip
-        } = response[0];
+        } = response[index];
 
         const newVenueObj = {
             id: id.toString(),
             name: displayName,
-            address: `${street}, ${city.displayName}, ${
-                city.state.displayName
-            }, ${zip}`,
+            address: `${street}, ${city.displayName}, ${zip}, ${
+                metroArea.country.displayName
+            }`,
             phone: phone,
             website: website
         };
@@ -67,25 +68,27 @@ export default function SearchVenue() {
         // setResponse([]);
     };
 
-    const deleteVenue = id => {
-        const updatedList = venueList.filter(venue => venue.id !== id);
-        setVenueList([updatedList]);
+    const deleteVenue = value => {
+        console.log('deleting this venue', value);
+        setVenueList([venueList.filter(venue => venue.id !== value)]);
     };
 
-    return (
+    return [
         <div className="searchVenue_wrapper">
-            <h1>Search for venues</h1>
-            <form onSubmit={handleSubmit}>
-                <input
-                    onChange={e => setSearch(e.target.value)}
-                    value={search}
-                    name="searchInput"
-                    type="text"
-                />
-                <button type="submit">SendRequest</button>
-            </form>
+            <div className="searchComponent">
+                <h1>Search for venues</h1>
+                <form onSubmit={handleSubmit}>
+                    <input
+                        onChange={e => setSearch(e.target.value)}
+                        value={search}
+                        name="searchInput"
+                        type="text"
+                    />
+                    <button type="submit">SendRequest</button>
+                </form>
+            </div>
             {/* output search result */}
-            {response.map(venue => {
+            {response.map((venue, index) => {
                 const {
                     displayName,
                     website,
@@ -97,29 +100,38 @@ export default function SearchVenue() {
                 } = venue;
                 const venueResult = {
                     name: displayName,
-                    address: `${street}, ${city.displayName}, ${zip}, ${metroArea.country.displayName}`,
-                    // address: `${street}, ${!city.displayName}, ${
-                    //     city.state.displayName
-                    // }, ${zip}, ${city.country.displayName}`,
+                    address: `${street}, ${city.displayName}, ${zip}, ${
+                        metroArea.country.displayName
+                    }`,
                     phone: phone,
                     website: website
                 };
                 return (
                     <SearchResultCard
+                        key={index}
                         venue={venueResult}
                         btnType={"Add"}
-                        handleClick={addVenue}
+                        handleClick={() => addVenue(index)}
                     />
                 );
             })}
+        </div>,
+        <div className="venueList_wrapper">
+            <header>
+                <h1>Venue List:</h1>
+            </header>
             {/* output my venue list */}
-            {venueList.map(venue => (
-                <VenueList
-                    venue={venue}
-                    btnType="Delete"
-                    handleClick={deleteVenue}
-                />
-            ))}
+            <div className="all_venues">
+                {venueList.map((venue, index) => (
+                    <VenueList
+                        key={index}
+                        id={venue.id}
+                        venue={venue}
+                        btnType="Delete"
+                        handleClick={e => deleteVenue(e.target.value)}
+                    />
+                ))}
+            </div>
         </div>
-    );
+    ];
 }
