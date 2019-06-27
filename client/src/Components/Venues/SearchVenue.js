@@ -4,12 +4,18 @@ import axios from "axios";
 const style = {
     border: "solid yellow 2px",
     display: "inline-block",
-    margin: "5px"
+    margin: "5px",
+    lineHeight: "1.5",
+    height: "400px",
+    width: "400px",
+    padding: "1rem",
+    overflow: "auto"
 };
 
 export default function SearchVenue() {
     const [response, setResponse] = useState([]);
     const [search, setSearch] = useState("");
+    const [venueList, setVenueList] = useState([]);
 
     useEffect(() => {
         console.log(response);
@@ -42,10 +48,20 @@ export default function SearchVenue() {
         sendRequest(searchInput.value);
     };
 
+    const addVenue = () => {
+        // name: response.venue.displayName,
+        // address: response.venue.street,
+        // city: response.venue.city.displayName,
+        // state: response.venue.city.state,
+        // zip_code: response.venue.zip
+        const newVenueObj = response;
+        setVenueList([newVenueObj, ...venueList]);
+    };
+
     return (
         <div>
             <h1>Search for venues</h1>
-            <form onSubmit={handleSubmit} style={style}>
+            <form onSubmit={handleSubmit}>
                 <input
                     onChange={e => setSearch(e.target.value)}
                     value={search}
@@ -54,35 +70,74 @@ export default function SearchVenue() {
                 />
                 <button type="submit">SendRequest</button>
             </form>
+            {/* output search result */}
+            {response.map(venue => {
+                const {
+                    id,
+                    displayName,
+                    website,
+                    city,
+                    zip,
+                    phone,
+                    description,
+                    street
+                } = venue;
 
-            <ul style={style}>
-                {response.map(venue => {
-                    const {
-                        id,
-                        displayName,
-                        website,
-                        city,
-                        zip,
-                        phone,
-                        description,
-                        street
-                    } = venue;
-
-                    return (
+                return (
+                    <div style={style}>
                         <ul>
-                            <li>{displayName}</li>
-                            <li>{website}</li>
-                            <li>{city.displayName}</li>
-                            <li>{city.state.displayName}</li>
-                            <li>{city.country.displayName}</li>
-                            <li>{zip}</li>
-                            <li>{phone}</li>
-                            <li>{description}</li>
-                            <li>{street}</li>
+                            <li>Venue: {displayName}</li>
+                            <li>Website: {website}</li>
+                            <li>City: {city.displayName}</li>
+                            <li>State: {city.state.displayName}</li>
+                            <li>Country: {city.country.displayName}</li>
+                            <li>Zip: {zip}</li>
+                            <li>Phone: {phone}</li>
+                            <li>
+                                Description:{" "}
+                                {!description ? "N/A" : description}
+                            </li>
+                            <li>Street: {street}</li>
                         </ul>
-                    );
-                })}
-            </ul>
+                        <button onClick={() => addVenue()}>Add</button>
+                    </div>
+                );
+            })}
+            {/* output current list */}
+            {venueList.map(venue => {
+                console.log(venue);
+
+const {
+    id,
+    displayName,
+    website,
+    city,
+    zip,
+    phone,
+    description,
+    street
+} = venue;
+
+return (
+    <div style={style}>
+        <ul>
+            <li>Venue: {displayName}</li>
+            <li>Website: {website}</li>
+            {/* <li>City: {city.displayName}</li> */}
+            {/* <li>State: {city.state.displayName}</li> */}
+            {/* <li>Country: {city.country.displayName}</li> */}
+            <li>Zip: {zip}</li>
+            <li>Phone: {phone}</li>
+            <li>
+                Description:{" "}
+                {!description ? "N/A" : description}
+            </li>
+            <li>Street: {street}</li>
+        </ul>
+        <button>Delete</button>
+    </div>
+);
+            })}
         </div>
     );
 }
