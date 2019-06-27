@@ -18,8 +18,8 @@ export default function SearchVenue() {
     const [venueList, setVenueList] = useState([]);
 
     useEffect(() => {
-        console.log(response);
-    }, [response]);
+        console.log(venueList);
+    }, [venueList]);
 
     const sendRequest = useCallback(async query => {
         await axios
@@ -54,8 +54,35 @@ export default function SearchVenue() {
         // city: response.venue.city.displayName,
         // state: response.venue.city.state,
         // zip_code: response.venue.zip
-        const newVenueObj = response;
+        // const newVenueObj = response;
+        // setVenueList([newVenueObj, ...venueList]);
+        const {
+            id,
+            displayName,
+            website,
+            city,
+            phone,
+            street,
+            zip
+        } = response[0];
+        // console.log(displayName, website, city, phone, street, zip);
+
+        const newVenueObj = {
+            id: id.toString(),
+            name: displayName,
+            address: `${street}, ${city.displayName}, ${
+                city.state.displayName
+            }, ${zip}`,
+            phone: phone,
+            website: website
+        };
+        // add validation for when user tries to add multiple venues
         setVenueList([newVenueObj, ...venueList]);
+    };
+
+    const deleteVenue = id => {
+        const updatedList = venueList.filter(venue => venue.id !== id);
+        setVenueList([updatedList]);
     };
 
     return (
@@ -104,40 +131,31 @@ export default function SearchVenue() {
                 );
             })}
             {/* output current list */}
-            {venueList.map(venue => {
-                console.log(venue);
+            {venueList.length ? (
+                venueList.map(venue => {
+                    const { id, name, address, phone, website } = venue;
 
-const {
-    id,
-    displayName,
-    website,
-    city,
-    zip,
-    phone,
-    description,
-    street
-} = venue;
+                    return (
+                        <div style={style}>
+                            <ul>
+                                <li>Venue: {name}</li>
+                                <li>Address: {address}</li>
 
-return (
-    <div style={style}>
-        <ul>
-            <li>Venue: {displayName}</li>
-            <li>Website: {website}</li>
-            {/* <li>City: {city.displayName}</li> */}
-            {/* <li>State: {city.state.displayName}</li> */}
-            {/* <li>Country: {city.country.displayName}</li> */}
-            <li>Zip: {zip}</li>
-            <li>Phone: {phone}</li>
-            <li>
-                Description:{" "}
-                {!description ? "N/A" : description}
-            </li>
-            <li>Street: {street}</li>
-        </ul>
-        <button>Delete</button>
-    </div>
-);
-            })}
+                                <li>Phone: {phone}</li>
+                                <li>Website {!website ? "N/A" : website}</li>
+                            </ul>
+                            <button
+                                value={id}
+                                onClick={e => deleteVenue(e.target.value)}
+                            >
+                                Delete
+                            </button>
+                        </div>
+                    );
+                })
+            ) : (
+                <p>add venues to your list</p>
+            )}
         </div>
     );
 }
