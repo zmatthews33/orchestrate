@@ -14,5 +14,4 @@ router
     .put(artistController.update)
     .delete(artistController.remove);
 
-
 module.exports = router;
