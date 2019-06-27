@@ -2,8 +2,8 @@ import React, { useState, useCallback, useEffect } from "react";
 
 // import SongKickAPI from "./SongKickAPI";
 import axios from "axios";
-import VenueCard from "./VenueCard";
-import "./SearchVenue.scss";
+import SearchResultCard from "./SearchResultCard";
+import VenueList from "./VenueList";
 
 export default function SearchVenue() {
     const [response, setResponse] = useState([]);
@@ -11,15 +11,15 @@ export default function SearchVenue() {
     const [venueList, setVenueList] = useState([]);
 
     useEffect(() => {
-        console.log(venueList);
-    }, [venueList]);
+        console.log(response);
+    }, [response]);
 
     const sendRequest = useCallback(async query => {
         await axios
             .get(
                 "https://api.songkick.com/api/3.0/search/venues.json?query=" +
                     query +
-                    "&apikey=avCCBGwqkhYMC132&per_page=1"
+                    "&page=1&apikey=avCCBGwqkhYMC132&per_page=5"
             )
             .then(res => {
                 // destructuring that massive response object
@@ -85,35 +85,41 @@ export default function SearchVenue() {
                 <button type="submit">SendRequest</button>
             </form>
             {/* output search result */}
-            {response.map(venue => (
-                <VenueCard
-                    id={venue.id}
-                    name={venue.displayName}
-                    address={`${venue.street}, ${venue.city.displayName}, ${
-                        venue.city.state.displayName
-                    }, ${venue.zip}`}
-                    phone={venue.phone}
-                    website={venue.website}
-                    btnType={"Add"}
-                    btnFunction={addVenue}
+            {response.map(venue => {
+                const {
+                    displayName,
+                    website,
+                    city,
+                    metroArea,
+                    zip,
+                    street,
+                    phone
+                } = venue;
+                const venueResult = {
+                    name: displayName,
+                    address: `${street}, ${city.displayName}, ${zip}, ${metroArea.country.displayName}`,
+                    // address: `${street}, ${!city.displayName}, ${
+                    //     city.state.displayName
+                    // }, ${zip}, ${city.country.displayName}`,
+                    phone: phone,
+                    website: website
+                };
+                return (
+                    <SearchResultCard
+                        venue={venueResult}
+                        btnType={"Add"}
+                        handleClick={addVenue}
+                    />
+                );
+            })}
+            {/* output my venue list */}
+            {venueList.map(venue => (
+                <VenueList
+                    venue={venue}
+                    btnType="Delete"
+                    handleClick={deleteVenue}
                 />
             ))}
-            {/* output current list */}
-            {venueList.length ? (
-                venueList.map(venue => (
-                    <VenueCard
-                        id={venue.id}
-                        name={venue.name}
-                        address={venue.address}
-                        phone={venue.phone}
-                        website={venue.website}
-                        btnType={venue.length ? "Delete" : null}
-                        btnFunction={deleteVenue}
-                    />
-                ))
-            ) : (
-                <p>Add some bands to your list</p>
-            )}
         </div>
     );
 }
