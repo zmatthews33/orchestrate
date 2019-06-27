@@ -6,9 +6,6 @@ const TopNavigation = ({ loggedIn, userType }) => (
   <nav className="topNav">
     {loggedIn ? (
       <div className="navLinks">
-        <NavLink to="/events">Events</NavLink>
-        <NavLink to="/bands">Bands</NavLink>
-        <NavLink to="/calendar">Calendar</NavLink>
         <NavLink to="/login">Log Out</NavLink>
       </div>
     ) : (

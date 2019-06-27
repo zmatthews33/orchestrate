@@ -25,12 +25,16 @@ const AppContext = React.createContext();
 
 function App() {
   const loggedIn = useLoggedIn();
-
+ 
   return (
     <AppContext.Provider>
       <div className="appContainer">
         <Router>
           <SideNavigation loggedIn={loggedIn} />
+          <div className="content">
+          
+          
+           </div>
           {loggedIn ? (
             <Switch>
               <Route path="/bands" component={Bands} />
