@@ -1,20 +1,13 @@
 import React, { useState, useCallback, useEffect } from "react";
+
 // import SongKickAPI from "./SongKickAPI";
 import axios from "axios";
-const style = {
-    border: "solid yellow 2px",
-    display: "inline-block",
-    margin: "5px",
-    lineHeight: "1.5",
-    height: "400px",
-    width: "400px",
-    padding: "1rem",
-    overflow: "auto"
-};
+import VenueCard from "./VenueCard";
+import "./SearchVenue.scss";
 
 export default function SearchVenue() {
     const [response, setResponse] = useState([]);
-    const [search, setSearch] = useState("");
+    const [search, setSearch] = useState("basement");
     const [venueList, setVenueList] = useState([]);
 
     useEffect(() => {
@@ -49,13 +42,6 @@ export default function SearchVenue() {
     };
 
     const addVenue = () => {
-        // name: response.venue.displayName,
-        // address: response.venue.street,
-        // city: response.venue.city.displayName,
-        // state: response.venue.city.state,
-        // zip_code: response.venue.zip
-        // const newVenueObj = response;
-        // setVenueList([newVenueObj, ...venueList]);
         const {
             id,
             displayName,
@@ -65,7 +51,6 @@ export default function SearchVenue() {
             street,
             zip
         } = response[0];
-        // console.log(displayName, website, city, phone, street, zip);
 
         const newVenueObj = {
             id: id.toString(),
@@ -78,6 +63,8 @@ export default function SearchVenue() {
         };
         // add validation for when user tries to add multiple venues
         setVenueList([newVenueObj, ...venueList]);
+        setSearch("");
+        // setResponse([]);
     };
 
     const deleteVenue = id => {
@@ -86,7 +73,7 @@ export default function SearchVenue() {
     };
 
     return (
-        <div>
+        <div className="searchVenue_wrapper">
             <h1>Search for venues</h1>
             <form onSubmit={handleSubmit}>
                 <input
@@ -98,63 +85,34 @@ export default function SearchVenue() {
                 <button type="submit">SendRequest</button>
             </form>
             {/* output search result */}
-            {response.map(venue => {
-                const {
-                    id,
-                    displayName,
-                    website,
-                    city,
-                    zip,
-                    phone,
-                    description,
-                    street
-                } = venue;
-
-                return (
-                    <div style={style}>
-                        <ul>
-                            <li>Venue: {displayName}</li>
-                            <li>Website: {website}</li>
-                            <li>City: {city.displayName}</li>
-                            <li>State: {city.state.displayName}</li>
-                            <li>Country: {city.country.displayName}</li>
-                            <li>Zip: {zip}</li>
-                            <li>Phone: {phone}</li>
-                            <li>
-                                Description:{" "}
-                                {!description ? "N/A" : description}
-                            </li>
-                            <li>Street: {street}</li>
-                        </ul>
-                        <button onClick={() => addVenue()}>Add</button>
-                    </div>
-                );
-            })}
+            {response.map(venue => (
+                <VenueCard
+                    id={venue.id}
+                    name={venue.displayName}
+                    address={`${venue.street}, ${venue.city.displayName}, ${
+                        venue.city.state.displayName
+                    }, ${venue.zip}`}
+                    phone={venue.phone}
+                    website={venue.website}
+                    btnType={"Add"}
+                    btnFunction={addVenue}
+                />
+            ))}
             {/* output current list */}
             {venueList.length ? (
-                venueList.map(venue => {
-                    const { id, name, address, phone, website } = venue;
-
-                    return (
-                        <div style={style}>
-                            <ul>
-                                <li>Venue: {name}</li>
-                                <li>Address: {address}</li>
-
-                                <li>Phone: {phone}</li>
-                                <li>Website {!website ? "N/A" : website}</li>
-                            </ul>
-                            <button
-                                value={id}
-                                onClick={e => deleteVenue(e.target.value)}
-                            >
-                                Delete
-                            </button>
-                        </div>
-                    );
-                })
+                venueList.map(venue => (
+                    <VenueCard
+                        id={venue.id}
+                        name={venue.name}
+                        address={venue.address}
+                        phone={venue.phone}
+                        website={venue.website}
+                        btnType={venue.length ? "Delete" : null}
+                        btnFunction={deleteVenue}
+                    />
+                ))
             ) : (
-                <p>add venues to your list</p>
+                <p>Add some bands to your list</p>
             )}
         </div>
     );
