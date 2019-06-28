@@ -24,13 +24,19 @@ a {
 
 .appContainer {
   display: flex;
-  width: 100%;
+  width: 100vw;
   min-height: 100vh;
 }
 
-.pageContainer {
+.contentContainer {
   flex: 5;
   background: $darkPrimary;
+  display: flex;
+  flex-direction: column;
+}
+
+.pageContainer {
+  flex: 1;
   padding: 20px 50px;
   //border-radius: 40px 0 0 0;
 }

@@ -8,6 +8,7 @@ import {
 import useLoggedIn from "./Utils/useLoggedIn";
 
 import SideNavigation from "./Components/Navigation/SideNavigation";
+import TopNavigation from './Components/Navigation/TopNavigation'
 import Login from "./Pages/Login";
 import SignUp from "./Pages/SignUp";
 import Home from "./Pages/Home";
@@ -31,10 +32,8 @@ function App() {
       <div className="appContainer">
         <Router>
           <SideNavigation loggedIn={loggedIn} />
-          <div className="content">
-          
-          
-           </div>
+          <div className="contentContainer">
+          <TopNavigation loggedIn={loggedIn} />
           {loggedIn ? (
             <Switch>
               <Route path="/bands" component={Bands} />
@@ -54,6 +53,7 @@ function App() {
               <Route render={props => <Redirect to="/" />} />
             </Switch>
           )}
+          </div>
         </Router>
       </div>
     </AppContext.Provider>

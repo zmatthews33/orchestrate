@@ -11,10 +11,27 @@
   border-right: solid 1px darken($darkPrimary, 3);
 
   .logo {
-    padding: 20px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background: darken($darkPrimary, 4);
     border-bottom: solid 1px darken($darkPrimary, 3);
     margin-bottom: 20px;
+
+    a {
+      padding: 5px;
+      width: calc(100% - 10px);
+      height: calc(100% - 10px);
+
+      svg {
+        margin: 0 auto;
+        max-height: 100%;
+        max-width: 100%;
+      }
+    }
+
+    
   }
 
   .navLinks {
