@@ -1,8 +1,10 @@
+@import '../../Styles//variables';
+
 .cardView {
   flex: 1;
   border-radius: 20px;
   padding: 40px 20px;
-  background: black;
+  background: darken($darkPrimary, 5);
   display: flex;
   justify-content: center;
 }

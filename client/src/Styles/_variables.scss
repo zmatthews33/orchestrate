@@ -1,4 +1,5 @@
 
+
 // Colors
 
 
@@ -13,6 +14,7 @@ $white: #FFFFFF;
 // Fonts 
 @import url('https://fonts.googleapis.com/css?family=Montserrat|Roboto:300,300i,400,400i&display=swap');
 
+@import '~modularscale-sass/stylesheets/modularscale';
 
 $headerFontFamily: 'Montserrat', sans-serif;
 $bodyFontFamily: 'Roboto', sans-serif;
@@ -23,6 +25,37 @@ h1, h2, h3, h4 {
 
 body {
   font-family: $bodyFontFamily;
+  background: $darkPrimary;
+  color: $white;
+  font-size: ms(0);
 }
+
+h1 {
+  font-size: ms(3);
+}
+
+h2 {
+  font-size: ms(2);
+}
+
+h3, h4 {
+  font-size: ms(1);
+}
+
+// links
+a {
+  text-decoration: none;
+  color: $primary;
+
+  &:hover {
+    color: $lightPrimary;
+  }
+
+  &:active {
+    color: $darkPrimary;
+  }
+}
+
+
 
 // forms

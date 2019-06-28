@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import TodoList from '../Components/TodoList/TodoList'
-import Page from '../Components/Containers/PageContainer'
+import { Page } from "../Components/Containers";
 
 function Todos() {
 

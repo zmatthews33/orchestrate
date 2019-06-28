@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import Page from '../Components/Containers/PageContainer'
+import { Page } from "../Components/Containers";
 
 function SignUp() {
   return (

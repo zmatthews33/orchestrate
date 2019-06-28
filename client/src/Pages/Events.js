@@ -1,7 +1,7 @@
 import React from "react";
 import CalendarLarge from "../Components/Calendar/CalendarLarge";
-import Page from "../Components/Containers/PageContainer";
-import CardView from "../Components/Containers/CardView";
+import { Page } from "../Components/Containers";
+import { CardView } from "../Components/Containers";
 
 function Events() {
   return (

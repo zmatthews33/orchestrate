@@ -1,24 +1,19 @@
 @import './reset';
 @import './variables';
 
+
 * {
   box-sizing: border-box;
 }
 
+$modularscale: (
+  base: 1em,
+  ratio: 1.5
+);
+
 html {
   width: 100%;
   height: 100%;
-}
-
-body {
-  background: $darkPrimary;
-  color: $white;
-}
-
-// links
-a {
-  text-decoration: none;
-  color: $primary;
 }
 
 
