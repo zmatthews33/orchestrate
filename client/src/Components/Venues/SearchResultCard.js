@@ -2,10 +2,10 @@ import React from "react";
 export default function SearchResultCard({ venue, btnType, handleClick }) {
     return (
         <div
+            style={{ display: venue ? "block" : "none" }}
             key={venue.id}
             className="searchResult_"
         >
-            
             <ul className="searchResult_list">
                 <li className="searchResult_list_item">{venue.name}</li>
                 <li className="searchResult_list_item">{venue.address}</li>

@@ -71,7 +71,7 @@ export default function SearchVenue() {
 
     const deleteVenue = value => {
         console.log("deleting this venue", value);
-        setVenueList([venueList.filter(venue => venue.id !== value)]);
+        setVenueList([...venueList.filter(venue => venue.id !== value)]);
     };
 
     return [
