@@ -11,8 +11,8 @@ export default function SearchVenue() {
     const [venueList, setVenueList] = useState([]);
 
     useEffect(() => {
-        console.log(response);
-    }, [response]);
+        console.log(venueList);
+    }, [venueList]);
 
     const sendRequest = useCallback(async query => {
         await axios
@@ -42,6 +42,7 @@ export default function SearchVenue() {
     };
 
     const addVenue = index => {
+        // remember to insert our api call to the database
         const {
             id,
             displayName,
@@ -69,7 +70,7 @@ export default function SearchVenue() {
     };
 
     const deleteVenue = value => {
-        console.log('deleting this venue', value);
+        console.log("deleting this venue", value);
         setVenueList([venueList.filter(venue => venue.id !== value)]);
     };
 
