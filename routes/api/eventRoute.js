@@ -13,4 +13,7 @@ router
     .put(eventController.update)
     .delete(eventController.remove);
 
+router
+    .route("/artist/:artistID")
+    .get(eventController.findByArtist);
 module.exports = router;

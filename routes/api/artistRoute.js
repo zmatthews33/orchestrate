@@ -2,7 +2,8 @@ const router = require("express").Router();
 const artistController = require("../../controllers/artistController");
 
 // Matches with "/api/artist"
-router.route("/")
+router
+    .route("/")
     .get(artistController.findAll)
     .post(artistController.create);
 

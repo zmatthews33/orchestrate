@@ -23,9 +23,7 @@ const personSchema = new Schema({
         instagram: String
     },
     isUser: Boolean,
-    password: String,
     lastLogin: Date,
-    role: String,
     position: String,
     profile_img: String
 });
