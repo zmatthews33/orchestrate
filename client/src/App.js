@@ -18,9 +18,8 @@ import Todos from "./Pages/Todos";
 import Profile from "./Pages/Profile";
 import Venues from "./Pages/Venues";
 import Contacts from "./Pages/Contacts";
-
-import "./Styles/index.scss";
 import NewArtistPage from "./Pages/NewArtistPage";
+import "./Styles/index.scss";
 
 const AppContext = React.createContext();
 

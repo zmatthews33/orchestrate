@@ -42,7 +42,6 @@ export default function AddArtist({
             name="artist_type"
             value="Artist"
             onChange={handleInputChange}
-            value={userInput.artist_type}
           />
           Solo Artist
         </label>
@@ -54,7 +53,6 @@ export default function AddArtist({
             name="artist_type"
             value="Band"
             onChange={handleInputChange}
-            value={userInput.artist_type}
           />
           Band
         </label>
@@ -78,7 +76,6 @@ export default function AddArtist({
             placeholder="Add a Member"
             name="band_members"
             onChange={handleInputChange}
-            value={userInput.band_members}
           />
           <br />
           <input
@@ -86,7 +83,6 @@ export default function AddArtist({
             placeholder="Add a Member"
             name="band_members"
             onChange={handleInputChange}
-            value={userInput.band_members}
           />
           <br />
           <input
@@ -94,7 +90,6 @@ export default function AddArtist({
             placeholder="Add a Member"
             name="band_members"
             onChange={handleInputChange}
-            value={userInput.band_members}
           />
           <br />
           <input
@@ -102,7 +97,6 @@ export default function AddArtist({
             placeholder="Add a Member"
             name="band_members"
             onChange={handleInputChange}
-            value={userInput.band_members}
           />
           <br />
           <input
@@ -110,7 +104,6 @@ export default function AddArtist({
             placeholder="Add a Member"
             name="band_members"
             onChange={handleInputChange}
-            value={userInput.band_members}
           />
           <br />
         </div>

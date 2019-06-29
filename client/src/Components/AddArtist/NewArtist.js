@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import "./NewArtist.scss";
 import AddArtist from "./AddArtist";
 //import BandList from "../BandList/BandList";
 
 function NewArtist() {
-  const [artist, setArtist] = useState({});
+  const [artist, setArtist] = useState([]);
+  useEffect(() => {
+    console.log(artist);
+  }, [artist]);
   const handleArtistSubmit = e => {
     e.preventDefault();
     const {
