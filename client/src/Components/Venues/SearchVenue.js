@@ -7,7 +7,7 @@ import VenueList from "./VenueList";
 
 export default function SearchVenue() {
     const [response, setResponse] = useState([]);
-    const [search, setSearch] = useState("basement");
+    const [search, setSearch] = useState("");
     const [venueList, setVenueList] = useState([]);
 
     useEffect(() => {
@@ -38,7 +38,16 @@ export default function SearchVenue() {
     const handleSubmit = e => {
         e.preventDefault();
         const { searchInput } = e.target;
-        sendRequest(searchInput.value);
+        const letters = /^[A-Za-z]+$/;
+
+        if (searchInput.value.match(letters)) {
+            sendRequest(searchInput.value);
+            setSearch("");
+            return;
+        } else {
+            alert("Please insert only letters");
+            setSearch("");
+        }
     };
 
     const addVenue = index => {
