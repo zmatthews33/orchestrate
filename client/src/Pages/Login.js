@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Page } from "../Components/Containers/LayoutsElements";
+import axios from "axios";
 import "../Styles/Login.scss";
 const style = {
     border: "solid black 2px",
@@ -14,7 +15,7 @@ const style = {
     flexDirection: "column"
 };
 function Login({ login }) {
-    const [user, setUser] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
     const submitLogin = () => {
@@ -27,7 +28,7 @@ function Login({ login }) {
         // console.log(name, value);
 
         if (name === "email") {
-            setUser(value);
+            setEmail(value);
         } else if (name === "password") {
             setPassword(value);
         } else {
@@ -40,12 +41,16 @@ function Login({ login }) {
         const { email, password } = e.target;
 
         const logUser = {
-            user: email.value,
+            email: email.value,
             password: password.value
         };
 
         console.log(logUser);
         // API CALL POST USER OBJECT
+        axios
+            .post("/", logUser)
+            .then(res => console.log("logged in"))
+            .catch(err => console.log(err));
     };
 
     return (
@@ -58,7 +63,7 @@ function Login({ login }) {
                         type="text"
                         placeholder="johndoe@ie.com"
                         name="email"
-                        value={user}
+                        value={email}
                     />
                 </div>
                 <div className="login-form-group">
