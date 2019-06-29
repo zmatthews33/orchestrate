@@ -6,6 +6,7 @@ import {Page} from "../Components/Containers";
 function Bands() {
   return (
     <Page>
+      <h1>Bands</h1>
       <BandList />
     </Page>
   );
