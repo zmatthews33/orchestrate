@@ -38,7 +38,7 @@ export default function SearchVenue() {
     const handleSubmit = e => {
         e.preventDefault();
         const { searchInput } = e.target;
-        const letters = /^[A-Za-z]+$/;
+        const letters = /^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]*$/;
 
         if (searchInput.value.match(letters)) {
             sendRequest(searchInput.value);
