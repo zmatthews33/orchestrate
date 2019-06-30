@@ -1,7 +1,8 @@
 import React, { useState, useReducer } from "react";
-import { Page } from "../Components/Containers/LayoutsElements";
 import axios from "axios";
 import useAPI from "../Utils/useAPI";
+import { Page } from "../Components/Containers";
+
 function SignUp() {
     const [userInput, setUserInput] = useReducer(
         (state, newState) => ({ ...state, ...newState }),

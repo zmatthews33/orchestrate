@@ -1,27 +1,27 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Page } from "../Components/Containers/LayoutsElements";
 import axios from "axios";
+import { Page } from "../Components/Containers";
 import "../Styles/Login.scss";
 const style = {
-    border: "solid black 2px",
-    padding: "1rem",
-    width: "400px",
-    height: "400px",
-    margin: "0 auto",
-    position: "relative",
-    top: "35vh",
-    display: "flex",
-    flexDirection: "column"
+  border: "solid black 2px",
+  padding: "1rem",
+  width: "400px",
+  height: "400px",
+  margin: "0 auto",
+  position: "relative",
+  top: "35vh",
+  display: "flex",
+  flexDirection: "column"
 };
 function Login({ login }) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const submitLogin = () => {
-        // add axios api call...
-        console.log("submitted...");
-    };
+  const submitLogin = () => {
+    // add axios api call...
+    console.log("submitted...");
+  };
 
     const handleChange = event => {
         const { name, value } = event;
