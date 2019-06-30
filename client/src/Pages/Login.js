@@ -47,10 +47,7 @@ function Login({ login }) {
 
         console.log(logUser);
         // API CALL POST USER OBJECT
-        axios
-            .post("/user", logUser)
-            .then(res => console.log("logged in"))
-            .catch(err => console.log(err));
+        
     };
 
     return (

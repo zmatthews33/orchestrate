@@ -7,6 +7,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 require("dotenv").config();
 const morgan = require("morgan");
+const passport = require("passport");
 // Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -14,15 +15,15 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //sessions
 app.use(
     session({
-      secret: 'fraggle-rock', //pick a random string to make the hash that is generated secure
-      resave: false, //required
-      saveUninitialized: false //required
+        secret: "fraggle-rock", //pick a random string to make the hash that is generated secure
+        resave: false, //required
+        saveUninitialized: false //required
     })
-    )
+);
 
-app.use( (req, res, next) => {
-  console.log('req.session', req.session);
-  return next();
+app.use((req, res, next) => {
+    console.log("req.session", req.session);
+    return next();
 });
 // MORGAN HTTP LOGGER
 morgan("tiny");
@@ -41,11 +42,15 @@ db.once("open", function() {
 const routes = require("./routes");
 app.use("/", routes);
 
-app.post('/user', (req, res) => {
-    console.log('user signup');
+app.post("/user", (req, res) => {
+    console.log("user signup");
     req.session.username = req.body.username;
-    res.end()
-  })
+    res.end();
+});
+
+// Passport
+app.use(passport.initialize());
+app.use(passport.session()); // calls serializeUser and deserializeUser
 
 app.listen(PORT, function() {
     console.log(`🌎 ==> API server now on port ${PORT}!`);
