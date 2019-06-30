@@ -8,13 +8,15 @@ import "../Styles/Home.scss";
 function Home() {
   return (
     <Page>
-      <div className="Feature">
-        <UpcomingEvents />
-      </div>
-      <TodoList />
-      <Finances />
+      
     </Page>
   );
 }
 
 export default Home;
+
+// <div className="Feature">
+//         <UpcomingEvents />
+//       </div>
+//       <TodoList />
+//       <Finances />

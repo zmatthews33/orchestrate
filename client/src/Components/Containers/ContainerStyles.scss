@@ -1,4 +1,11 @@
-@import '../../Styles//variables';
+@import '../../Styles/variables';
+
+.pageContainer {
+  flex: 1;
+  padding: 20px 50px;
+  flex-direction: column;
+}
+
 
 .cardView {
   flex: 1;

@@ -24,16 +24,26 @@ html {
 }
 
 .contentContainer {
-  flex: 5;
+  flex: 4;
   background: $darkPrimary;
   display: flex;
   flex-direction: column;
+  overflow-x: hidden;
+
+  &.smallScreen {
+    width: 100vw;
+    position: relative;
+    left: 0vw;
+    transition: left .25s ease-in-out;
+    box-shadow: 0px 0px 10px darken($darkPrimary, 8);
+
+    &.navShown {
+      left: 70vw;
+    }
+  }
+ 
 }
 
-.pageContainer {
-  flex: 1;
-  padding: 20px 50px;
-  //border-radius: 40px 0 0 0;
-}
+
 
 // different types of containers...

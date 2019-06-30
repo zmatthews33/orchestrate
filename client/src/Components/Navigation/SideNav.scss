@@ -92,4 +92,41 @@
 
   }
 
+  &.smallScreen {
+    position: absolute;
+    min-height: 100vh;
+    overflow-y: auto;
+    top: 0;
+    z-index: 0;
+    max-width: 100vw;
+    min-width: 100vw;
+
+    .navLinks {
+      padding-top: 80px;
+
+      li {
+        text-align: left;
+
+        a {
+
+          &::after {
+            left: -105%;
+            border-radius: 0 32px 32px 0;
+          }
+
+          &.active {
+            &::after {
+              left: 0%;
+            }
+          }
+
+        }
+
+        
+      }
+
+    }
+
+  }
+
 }
