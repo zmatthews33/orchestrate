@@ -8,7 +8,9 @@ const keys = require("../config/keys");
 const validateRegisterInput = require("../validation/register");
 const validateLoginInput = require("../validation/login");
 
-const User = require("../models/userModel");
+const db = require("../models");
+
+const User = db.User;
 
 router.post("/register", (req, res) => {
   const { errors, isValid } = validateRegisterInput(req.body);
@@ -21,21 +23,20 @@ router.post("/register", (req, res) => {
     if (user) {
       return res.status(400).json({ email: "Email already exists " });
     } else {
-      const newUser = new User({
-        name: req.body.name,
+      let newUser = new User({
+        first_name: req.body.first_name,
+        last_name: req.body.last_name,
         email: req.body.email,
         password: req.body.password
       });
 
-      bcrypt.genSalt(10, (err, salt) => {
-        bcrypt.hash(newUser.password, salt, (err, hash) => {
-          if (err) throw err;
-          newUser.password = hash;
-          newUser
-            .save()
-            .then(user => res.json(user))
-            .catch(err => console.log(err));
-        });
+      bcrypt.hash(newUser.password, 10, (err, hash) => {
+        if (err) throw err;
+        newUser.password = hash;
+        newUser
+          .save()
+          .then(user => res.json(user))
+          .catch(err => console.log(err));
       });
     }
   });
@@ -56,7 +57,11 @@ router.post("/login", (req, res) => {
       return res.status(404).json({ emailnotfound: "Email not found" });
     }
 
+    console.log(password);
+    console.log(user.password)
+
     bcrypt.compare(password, user.password).then(isMatch => {
+      console.log(isMatch)
       if (isMatch) {
         const payload = {
           id: user.id,

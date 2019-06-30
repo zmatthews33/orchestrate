@@ -13,13 +13,7 @@ const userSchema = new Schema({
     state: String,
     zip_code: String
   },
-  email: [
-    {
-      email_type: String,
-      email: { type: String, required: true },
-      isPrimary: Boolean
-    }
-  ],
+  email: { type: String, required: true },
   phone: [{ phone_type: String, phone_num: String, isPrimary: Boolean }],
   time_zone: String,
   gender: String,
@@ -36,27 +30,27 @@ const userSchema = new Schema({
   profile_img: String
 });
 
-userSchema.pre("save", function(next) {
-  if (!this.password) {
-    console.log("models/userModel.js =========NO PASSWORD PROVIDED");
+// userSchema.pre("save", function(next) {
+//   if (!this.password) {
+//     console.log("models/userModel.js =========NO PASSWORD PROVIDED");
 
-    next();
-  } else {
-    console.log("models/userModel.js hashPassword in pre save");
-    this.password = this.hashPassword(this.password);
+//     next();
+//   } else {
+//     console.log("models/userModel.js hashPassword in pre save");
+//     this.password = this.hashPassword(this.password);
 
-    next();
-  }
-});
+//     next();
+//   }
+// });
 
-userSchema.methods = {
-  checkPassword: function(inputPassword) {
-    return bcrypt.compareSync(inputPassword, this.password);
-  },
-  hashPassword: plainTextPassword => {
-    return bcrypt.hashSync(plainTextPassword, 10);
-  }
-};
+// userSchema.methods = {
+//   checkPassword: function(inputPassword) {
+//     return bcrypt.compareSync(inputPassword, this.password);
+//   },
+//   hashPassword: plainTextPassword => {
+//     return bcrypt.hashSync(plainTextPassword, 10);
+//   }
+// };
 
 const User = mongoose.model("User", userSchema);
 
