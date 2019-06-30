@@ -1,5 +1,5 @@
-import React, { useState, useReducer } from "react";
-import { Page } from "../Components/Containers/LayoutsElements";
+import React, { useReducer } from "react";
+import { Page } from "../Components/Containers";
 
 function SignUp() {
     const [userInput, setUserInput] = useReducer(

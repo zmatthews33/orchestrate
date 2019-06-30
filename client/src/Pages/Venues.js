@@ -1,5 +1,5 @@
 import React from 'react'
-import {Page} from '../Components/Containers/LayoutsElements'
+import { Page } from "../Components/Containers";
 import SearchVenue from '../Components/Venues/SearchVenue';
 import '../Styles/Venues.scss';
 

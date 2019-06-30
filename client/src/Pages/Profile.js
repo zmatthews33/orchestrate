@@ -1,5 +1,5 @@
 import React from 'react'
-import {Page} from '../Components/Containers/LayoutsElements'
+import { Page } from "../Components/Containers";
 
 function Profile() {
   return (
