@@ -3,14 +3,12 @@ const session = require("express-session");
 const path = require("path");
 const PORT = process.env.PORT || 3001;
 const app = express();
-const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 require("dotenv").config();
 const morgan = require("morgan");
 const passport = require("passport");
 // Middleware
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json({ extended: false }));
 
 //sessions
 app.use(
