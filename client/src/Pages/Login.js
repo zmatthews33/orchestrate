@@ -2,36 +2,58 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Page } from "../Components/Containers";
 import "../Styles/Login.scss";
-const style = {
-  border: "solid black 2px",
-  padding: "1rem",
-  width: "400px",
-  height: "400px",
-  margin: "0 auto",
-  position: "relative",
-  top: "35vh",
-  display: "flex",
-  flexDirection: "column"
-};
-function Login({ login }) {
-  const [input, setInput] = useState("");
+import { loginUser } from '../Utils/authActions';
+
+function Login() {
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const submitLogin = () => {
-    // add axios api call...
-    console.log("submitted...");
+  const handleChange = event => {
+    const { name, value } = event;
+    // console.log(name, value);
+
+    if (name === "email") {
+      setEmail(value);
+    } else if (name === "password") {
+      setPassword(value);
+    } else {
+      return;
+    }
+  };
+
+  const handleSubmit = e => {
+		e.preventDefault();
+		const { email, password } = e.target;
+		const loginData = {
+      email: email.value,
+      password: password.value
+    };
+		
+		loginUser(loginData)
   };
 
   return (
     <Page>
-      <form className="login-form">
+      <form onSubmit={e => handleSubmit(e)} className="login-form">
         <div className="login-form-group">
-          <label for="email">Email:</label>
-          <input type="text" placeholder="johndoe@ie.com" name="email" />
+          <label htmlFor="email">Email:</label>
+          <input
+            onChange={e => handleChange(e.target)}
+            type="text"
+            placeholder="johndoe@ie.com"
+            name="email"
+            value={email}
+          />
         </div>
         <div className="login-form-group">
-          <label for="password">Password:</label>
-          <input type="password" placeholder="Enter Password" name="password" />
+          <label htmlFor="password">Password:</label>
+          <input
+            onChange={e => handleChange(e.target)}
+            type="password"
+            placeholder="Enter Password"
+            name="password"
+            value={password}
+          />
         </div>
 
         <div className="login-form-action">

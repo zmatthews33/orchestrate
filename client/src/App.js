@@ -37,8 +37,6 @@ function App() {
     return 'contentContainer'
   }
 
-  console.log(smallScreen)
-
   return (
     <div className="appContainer">
       <Router>
@@ -61,7 +59,7 @@ function App() {
               <Route path="/login" exact component={Login} />
               <Route path="/signup" exact component={SignUp} />
               <Route path="/" exact component={Home} />
-              <Route render={props => <Redirect to="/" />} />
+              <Route render={props => <Redirect to="/login" />} />
             </Switch>
           )}
         </div>

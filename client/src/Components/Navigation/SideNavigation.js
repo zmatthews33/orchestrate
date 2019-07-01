@@ -64,7 +64,7 @@ function SideNavigation({ loggedIn, smallScreen, setNavToggled }) {
       ) : (
         <ul className="navLinks">
           <li>
-            <NavLink to="/login">Log In</NavLink>
+            <NavLink to="/login"><span>Log In</span></NavLink>
           </li>
         </ul>
       )}
