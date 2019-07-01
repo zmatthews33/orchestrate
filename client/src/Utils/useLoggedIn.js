@@ -1,18 +1,31 @@
-import { useEffect } from "react";
-import axios from "axios";
-function useLoggedIn(userObj) {
-    // this is where we'll make an axios call to get logged in status via passport
-    axios
-        .post("/user/login", userObj)
-        .then(res => {
-            console.log(res, "logged in");
-            if (res.status === 200) {
-                return true;
-            }
-        })
-        .catch(err => console.log(err));
+import { useState, useEffect } from "react";
+import jwt_decode from "jwt-decode";
 
-    return false;
+function useLoggedIn() {
+	const [LoggedIn, setLoggedIn] = useState(false);
+	
+	useEffect(() => {
+		if (localStorage.jwtToken) {
+			const token = localStorage.jwtToken;
+			//setAuthToken(token);
+	
+			const decoded = jwt_decode(token);
+	
+			// Check for expired token
+			const currentTime = Date.now() / 1000; // to get in milliseconds
+	
+			if (decoded.exp < currentTime) {
+				localStorage.clear();
+				setLoggedIn(false);
+				window.location.href = "./login";
+			} else {
+				setLoggedIn(true);
+			}
+		}
+	}, [])
+
+
+  return LoggedIn;
 }
 
 export default useLoggedIn;

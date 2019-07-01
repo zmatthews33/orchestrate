@@ -16,14 +16,13 @@ export const loginUser = loginData => {
     .then(res => {
       const { token } = res.data;
       localStorage.setItem('jwtToken', token);
-      //setAuthToken(token);
-      const decoded = jwt_decode(token);
-      console.log(decoded)
+      window.location.href = "/";
     })
     .catch(err => console.log(err))
 }
 
 export const logoutUser = () => {
-  //
+  localStorage.removeItem("jwtToken");
+  window.location.href = "/login";
 }
 

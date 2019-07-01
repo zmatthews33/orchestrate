@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import { Logo } from "../../Assets/Logo";
+import { logoutUser } from "../../Utils/authActions"
 
 import "./TopNav.scss";
 
@@ -38,9 +39,9 @@ const TopNavigation = ({
     ) : (
       <div className="navContainer">
         {loggedIn ? (
-          <NavLink className="loginLink" to="/login">
+          <div className="loginLink" onClick={() => logoutUser()}>
             Log Out
-          </NavLink>
+          </div>
         ) : (
           <NavLink className="loginLink" to="/login">
             Log In
