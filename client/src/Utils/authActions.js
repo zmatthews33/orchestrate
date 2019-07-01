@@ -2,10 +2,12 @@ import axios from 'axios'
 import setAuthToken from './setAuthToken'
 import jwt_decode from "jwt-decode";
 
-export const registerUser = (userData, history) => {
+export const registerUser = (userData) => {
   axios
     .post("/register", userData)
-    .then(res => history.push("/login"))
+    .then(res => {
+      window.location.href = "/login";
+    })
     .catch(err => console.log(err))
 }
 

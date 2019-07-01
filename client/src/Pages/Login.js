@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Page } from "../Components/Containers";
 import "../Styles/Login.scss";
 import { loginUser } from "../Utils/authActions";
 import { Logo } from "../Assets/Logo";
@@ -40,17 +39,17 @@ function Login() {
 
         <form onSubmit={e => handleSubmit(e)} className="loginForm">
           <div className="loginFormGroup">
-            <label htmlFor="email"><h3>Email:</h3></label>
+            <label htmlFor="email"><h3>Email</h3></label>
             <input
               onChange={e => handleChange(e.target)}
               type="text"
-              placeholder="johndoe@ie.com"
+              placeholder="Enter Your Email"
               name="email"
               value={email}
             />
           </div>
           <div className="loginFormGroup">
-            <label htmlFor="password"><h3>Password:</h3></label>
+            <label htmlFor="password"><h3>Password</h3></label>
             <input
               onChange={e => handleChange(e.target)}
               type="password"
