@@ -1,4 +1,4 @@
-import React, { useState, useReducer } from "react";
+import React, { useReducer } from "react";
 import "./AddContact.scss";
 export default function AddContact({
     name,

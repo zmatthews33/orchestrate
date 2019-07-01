@@ -1,12 +1,12 @@
 import React from "react";
 import { Calendar, Views, momentLocalizer } from "react-big-calendar";
-import withDragAndDrop from 'react-big-calendar/lib/addons/dragAndDrop'
+//import withDragAndDrop from 'react-big-calendar/lib/addons/dragAndDrop'
 import moment from "moment";
 
 import './CalendarStyles/styles.scss';
 
 const localizer = momentLocalizer(moment);
-const allViews = Object.keys(Views).map(k => Views[k])
+//const allViews = Object.keys(Views).map(k => Views[k])
 
 const events = [
   {
