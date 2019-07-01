@@ -3,7 +3,11 @@ import React, { useState, useReducer, useEffect } from "react";
 export default function AddArtist({
   artist_type,
   name,
-  band_members,
+  band_member1,
+  band_member2,
+  band_member3,
+  band_member4,
+  band_member5,
   email,
   phone,
   genre,
@@ -18,7 +22,11 @@ export default function AddArtist({
     {
       artist_type: "",
       name: "",
-      band_members: "",
+      band_member1: "",
+      band_member2: "",
+      band_member3: "",
+      band_member4: "",
+      band_member5: "",
       email: "",
       phone: "",
       genre: "",
@@ -37,7 +45,11 @@ export default function AddArtist({
     console.log(
       userInput.name,
       userInput.email,
-      userInput.band_members,
+      userInput.band_member1,
+      userInput.band_member2,
+      userInput.band_member3,
+      userInput.band_member4,
+      userInput.band_member5,
       userInput.email,
       userInput.bio,
       userInput.photos,
@@ -86,41 +98,41 @@ export default function AddArtist({
           <input
             type="text"
             placeholder="Add a Member"
-            name="band_members"
+            name="band_member1"
             onChange={e => handleInputChange(e.target)}
-            value={userInput.band_members}
+            value={userInput.band_member1}
           />
           <br />
           <input
             type="text"
             placeholder="Add a Member"
-            name="band_members"
+            name="band_member2"
             onChange={e => handleInputChange(e.target)}
-            value={userInput.band_members}
+            value={userInput.band_member2}
           />
           <br />
           <input
             type="text"
             placeholder="Add a Member"
-            name="band_members"
+            name="band_member3"
             onChange={e => handleInputChange(e.target)}
-            value={userInput.band_members}
+            value={userInput.band_member3}
           />
           <br />
           <input
             type="text"
             placeholder="Add a Member"
-            name="band_members"
+            name="band_member4"
             onChange={e => handleInputChange(e.target)}
-            value={userInput.band_members}
+            value={userInput.band_member4}
           />
           <br />
           <input
             type="text"
             placeholder="Add a Member"
-            name="band_members"
+            name="band_member5"
             onChange={e => handleInputChange(e.target)}
-            value={userInput.band_members}
+            value={userInput.band_member5}
           />
           <br />
         </div>
