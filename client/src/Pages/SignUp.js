@@ -1,6 +1,8 @@
+
 import React, { useReducer } from "react";
 import {registerUser} from '../Utils/authActions';
 import { Logo } from "../Assets/Logo";
+
 
 function SignUp() {
   const [userInput, setUserInput] = useReducer(
@@ -33,6 +35,7 @@ function SignUp() {
   const handleSubmit = e => {
     e.preventDefault();
     const { first_name, last_name, email, password, password2 } = e.target;
+
 
     const newUser = {
       first_name: first_name.value,
@@ -72,7 +75,6 @@ function SignUp() {
             onChange={e => handleChange(e.target)}
           />
         </div>
-
         <div className="loginFormGroup">
           <label htmlFor="email"><h3>Email</h3></label>
           <input
@@ -85,6 +87,7 @@ function SignUp() {
         </div>
         <div className="loginFormGroup">
           <label htmlFor="password"><h3>Password</h3></label>
+
           <input
             type="password"
             placeholder="Enter Password"
@@ -104,6 +107,7 @@ function SignUp() {
           />
         </div>
         <div className="loginFormAction">
+
           <button className="btn-submit" type="submit">
             Sign Up
           </button>

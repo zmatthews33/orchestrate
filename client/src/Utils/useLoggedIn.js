@@ -24,7 +24,6 @@ function useLoggedIn() {
 		}
 	}, [])
 
-
   return LoggedIn;
 }
 
