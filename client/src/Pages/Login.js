@@ -38,7 +38,7 @@ function Login() {
         </div>
 
         <form onSubmit={e => handleSubmit(e)} className="loginForm">
-          <div className="loginFormGroup">
+          <div className="formGroup">
             <label htmlFor="email"><h3>Email</h3></label>
             <input
               onChange={e => handleChange(e.target)}
@@ -48,7 +48,7 @@ function Login() {
               value={email}
             />
           </div>
-          <div className="loginFormGroup">
+          <div className="formGroup">
             <label htmlFor="password"><h3>Password</h3></label>
             <input
               onChange={e => handleChange(e.target)}
@@ -59,7 +59,7 @@ function Login() {
             />
           </div>
 
-          <div className="loginFormAction">
+          <div className="formAction">
             <button className="btn-submit" type="submit">
               Sign in
             </button>
