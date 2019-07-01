@@ -2,15 +2,11 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Page } from "../Components/Containers";
 import "../Styles/Login.scss";
+import { loginUser } from '../Utils/authActions';
 
-function Login({ login }) {
+function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  const submitLogin = () => {
-    // add axios api call...
-    console.log("submitted...");
-  };
 
   const handleChange = event => {
     const { name, value } = event;
@@ -26,21 +22,19 @@ function Login({ login }) {
   };
 
   const handleSubmit = e => {
-    e.preventDefault();
-    const { email, password } = e.target;
-
-    const logUser = {
+		e.preventDefault();
+		const { email, password } = e.target;
+		const loginData = {
       email: email.value,
       password: password.value
     };
-
-    console.log(logUser);
-    // API CALL POST USER OBJECT
+		
+		loginUser(loginData)
   };
 
   return (
     <Page>
-      <form onSubmit={() => handleSubmit} className="login-form">
+      <form onSubmit={e => handleSubmit(e)} className="login-form">
         <div className="login-form-group">
           <label htmlFor="email">Email:</label>
           <input

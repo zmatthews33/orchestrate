@@ -9,16 +9,21 @@ export const registerUser = (userData, history) => {
     .catch(err => console.log(err))
 }
 
-export const loginUser = userData => {
+export const loginUser = loginData => {
+
   axios
-    .post('/login', userData)
+    .post('/login', loginData)
     .then(res => {
       const { token } = res.data;
       localStorage.setItem('jwtToken', token);
-      setAuthToken(token);
+      //setAuthToken(token);
       const decoded = jwt_decode(token);
       console.log(decoded)
     })
     .catch(err => console.log(err))
+}
+
+export const logoutUser = () => {
+  //
 }
 
