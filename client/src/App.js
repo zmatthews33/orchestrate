@@ -40,9 +40,9 @@ function App() {
   return (
     <div className="appContainer">
       <Router>
-        <SideNavigation loggedIn={loggedIn} smallScreen={smallScreen} setNavToggled={setNavToggled} />
+        {loggedIn && <SideNavigation loggedIn={loggedIn} smallScreen={smallScreen} setNavToggled={setNavToggled} /> }
         <div className={contentContainerClass()}>
-          <TopNavigation loggedIn={loggedIn} smallScreen={smallScreen} navToggled={NavToggled} setNavToggled={setNavToggled} />
+        {loggedIn &&<TopNavigation loggedIn={loggedIn} smallScreen={smallScreen} navToggled={NavToggled} setNavToggled={setNavToggled} /> }
           {loggedIn ? (
             <Switch>
               <Route path="/bands" component={Bands} />
@@ -56,10 +56,8 @@ function App() {
             </Switch>
           ) : (
             <Switch>
-              <Route path="/login" exact component={Login} />
               <Route path="/signup" exact component={SignUp} />
-              <Route path="/" exact component={Home} />
-              <Route render={props => <Redirect to="/login" />} />
+              <Route path="/" component={Login} />
             </Switch>
           )}
         </div>
