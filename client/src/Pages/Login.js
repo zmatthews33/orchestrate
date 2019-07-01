@@ -1,56 +1,76 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Page } from "../Components/Containers/LayoutsElements";
 import "../Styles/Login.scss";
-const style = {
-    border: "solid black 2px",
-    padding: "1rem",
-    width: "400px",
-    height: "400px",
-    margin: "0 auto",
-    position: "relative",
-    top: "35vh",
-    display: "flex",
-    flexDirection: "column"
-};
-function Login({ login }) {
-    const [input, setInput] = useState("");
-    const [password, setPassword] = useState("");
+import { loginUser } from "../Utils/authActions";
+import { Logo } from "../Assets/Logo";
 
-    const submitLogin = () => {
-        // add axios api call...
-        console.log("submitted...");
+function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleChange = event => {
+    const { name, value } = event;
+    if (name === "email") {
+      setEmail(value);
+    } else if (name === "password") {
+      setPassword(value);
+    } else {
+      return;
+    }
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    const { email, password } = e.target;
+    const loginData = {
+      email: email.value,
+      password: password.value
     };
 
-    return (
-        <Page>
-            <form className="login-form">
-                <div className="login-form-group">
-                    <label for="email">Email:</label>
-                    <input
-                        type="text"
-                        placeholder="johndoe@ie.com"
-                        name="email"
-                    />
-                </div>
-                <div className="login-form-group">
-                    <label for="password">Password:</label>
-                    <input
-                        type="password"
-                        placeholder="Enter Password"
-                        name="password"
-                    />
-                </div>
+    loginUser(loginData);
+  };
 
-                <div className="login-form-action">
-                    <button className="btn-submit" type="submit">
-                        Sign in
-                    </button>
-                    <Link className="signup-now" to="/signup">Sign up for an account</Link>
-                </div>
-            </form>
-        </Page>
-    );
+  return (
+    <div className="loginPage">
+      <div className="loginFormContainer">
+        <div className="logoContainer">
+          <Logo />
+        </div>
+
+        <form onSubmit={e => handleSubmit(e)} className="loginForm">
+          <div className="loginFormGroup">
+            <label htmlFor="email"><h3>Email</h3></label>
+            <input
+              onChange={e => handleChange(e.target)}
+              type="text"
+              placeholder="Enter Your Email"
+              name="email"
+              value={email}
+            />
+          </div>
+          <div className="loginFormGroup">
+            <label htmlFor="password"><h3>Password</h3></label>
+            <input
+              onChange={e => handleChange(e.target)}
+              type="password"
+              placeholder="Enter Password"
+              name="password"
+              value={password}
+            />
+          </div>
+
+          <div className="loginFormAction">
+            <button className="btn-submit" type="submit">
+              Sign in
+            </button>
+            <Link className="signup-now" to="/signup">
+              Sign up for an account.
+            </Link>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
 }
 
 export default Login;

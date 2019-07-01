@@ -1,22 +1,52 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import { Logo } from "../../Assets/Logo";
+import { logoutUser } from "../../Utils/authActions"
+
 import "./TopNav.scss";
 
-const TopNavigation = ({ loggedIn, userType }) => (
-  <nav className="topNav">
-    <h1>
-      <NavLink to="/">Orchestra</NavLink>
-    </h1>
-    {loggedIn ? (
-      <div className="navLinks">
-        <NavLink to="/events">Events</NavLink>
-        <NavLink to="/bands">Bands</NavLink>
-        <NavLink to="/calendar">Calendar</NavLink>
-        <NavLink to="/login">Log Out</NavLink>
+const TopNavigation = ({
+  loggedIn,
+  smallScreen,
+  navToggled,
+  setNavToggled
+}) => (
+  <nav className={smallScreen ? `topNav smallScreen` : `topNav`}>
+    {smallScreen ? (
+      <div className="navContainer">
+        <div onClick={() => setNavToggled(!navToggled)} className="hamburguesa">
+          <div className="hamb">
+            <span className="hambLine"></span>
+            <span className="hambLine"></span>
+            <span className="hambLine"></span>
+          </div>
+        </div>
+        <div className="logo">
+          <Link to="/">
+            <Logo />
+          </Link>
+        </div>
+        {loggedIn ? (
+          <NavLink className="loginLink" to="/login">
+            Log Out
+          </NavLink>
+        ) : (
+          <NavLink className="loginLink" to="/login">
+            Log In
+          </NavLink>
+        )}
       </div>
     ) : (
-      <div className="navLinks">
-        <NavLink to="/login">Log In</NavLink>
+      <div className="navContainer">
+        {loggedIn ? (
+          <div className="loginLink" onClick={() => logoutUser()}>
+            Log Out
+          </div>
+        ) : (
+          <NavLink className="loginLink" to="/login">
+            Log In
+          </NavLink>
+        )}
       </div>
     )}
   </nav>

@@ -1,5 +1,8 @@
-import React, { useState, useReducer } from "react";
-import { Page } from "../Components/Containers/LayoutsElements";
+
+import React, { useReducer } from "react";
+import {registerUser} from '../Utils/authActions';
+import { Logo } from "../Assets/Logo";
+
 
 function SignUp() {
   const [userInput, setUserInput] = useReducer(
@@ -9,35 +12,51 @@ function SignUp() {
       last_name: "",
       nickname: "",
       email: "",
-      password: ""
+			password: "",
+			password2: ""
     }
   );
 
   const handleChange = event => {
     const name = event.name;
     const newValue = event.value;
-
     setUserInput({ [name]: newValue });
-  };
+	};
+	
+  const checkExist = (input, arr) => {
+    const exists = Object.keys(arr).some(k => arr[k] === input.value);
+
+    // evaluate if an email doesn't already exists
+    exists
+      ? console.log(`this ${input.name} is already being used`)
+      : console.log(`this ${input.name} is available to use`);
+	};
+	
   const handleSubmit = e => {
     e.preventDefault();
-    const { first_name, last_name, nickname, email, password } = e.target;
+    const { first_name, last_name, email, password, password2 } = e.target;
+
 
     const newUser = {
       first_name: first_name.value,
       last_name: last_name.value,
-      nickname: nickname.value,
       email: email.value,
-      password: password.value
-    };
-    console.log(newUser);
-    // submit new user to api call and add to user model
+			password: password.value,
+			password2: password2.value
+		};
+		
+		registerUser(newUser);
+   
   };
   return (
-    <Page>
-      <form onSubmit={handleSubmit} className="signup-form">
-        <div className="signup-form-group">
-          <label for="first_name">First Name:</label>
+		<div className="loginPage">
+		<div className="loginFormContainer">
+		<div className="logoContainer">
+		<Logo />
+	</div>
+      <form onSubmit={handleSubmit} className="loginForm">
+        <div className="loginFormGroup">
+          <label htmlFor="first_name"><h3>First Name</h3></label>
           <input
             type="text"
             placeholder="First Name"
@@ -46,8 +65,8 @@ function SignUp() {
             onChange={e => handleChange(e.target)}
           />
         </div>
-        <div className="signup-form-group">
-          <label for="last_name">Last Name:</label>
+        <div className="loginFormGroup">
+          <label htmlFor="last_name"><h3>Last Name</h3></label>
           <input
             type="text"
             placeholder="Last Name"
@@ -56,19 +75,8 @@ function SignUp() {
             onChange={e => handleChange(e.target)}
           />
         </div>
-        <div className="signup-form-group">
-          <label for="nickname">Nickname:</label>
-          <input
-            type="text"
-            placeholder="Last Name"
-            name="nickname"
-            value={userInput.nickname}
-            onChange={e => handleChange(e.target)}
-          />
-        </div>
-
-        <div className="signup-form-group">
-          <label for="email">Email:</label>
+        <div className="loginFormGroup">
+          <label htmlFor="email"><h3>Email</h3></label>
           <input
             type="text"
             placeholder="johndoe@ie.com"
@@ -77,8 +85,9 @@ function SignUp() {
             onChange={e => handleChange(e.target)}
           />
         </div>
-        <div className="signup-form-group">
-          <label for="password">Password:</label>
+        <div className="loginFormGroup">
+          <label htmlFor="password"><h3>Password</h3></label>
+
           <input
             type="password"
             placeholder="Enter Password"
@@ -86,14 +95,26 @@ function SignUp() {
             value={userInput.password}
             onChange={e => handleChange(e.target)}
           />
+				</div>
+				<div className="loginFormGroup">
+          <label htmlFor="password">Confirm Password</label>
+          <input
+            type="password"
+            placeholder="Enter Password"
+            name="password2"
+            value={userInput.password2}
+            onChange={e => handleChange(e.target)}
+          />
         </div>
-        <div className="signup-form-action">
+        <div className="loginFormAction">
+
           <button className="btn-submit" type="submit">
             Sign Up
           </button>
         </div>
-      </form>
-    </Page>
+			</form>
+			</div>
+    </div>
   );
 }
 

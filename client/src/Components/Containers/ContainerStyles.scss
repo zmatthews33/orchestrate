@@ -1,0 +1,17 @@
+@import '../../Styles/variables';
+
+.pageContainer {
+  flex: 1;
+  padding: 20px 50px;
+  flex-direction: column;
+}
+
+
+.cardView {
+  flex: 1;
+  border-radius: 20px;
+  padding: 40px 20px;
+  background: darken($darkPrimary, 5);
+  display: flex;
+  justify-content: center;
+}
