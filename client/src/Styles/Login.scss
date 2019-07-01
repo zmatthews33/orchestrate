@@ -1,46 +1,118 @@
-.login-form {
-    border: solid orange 2px;
-    padding: 1rem;
-    height: 25rem;
-    width: 20rem;
-    // center element
-    position: absolute;
-    transform: translate(-50%, -50%);
-    top: 45%;
-    left: 55%;
+@import "./_variables";
 
-    &-group {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
+.loginPage {
+  display: flex;
+  background-image: url("../Assets/login-background.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100vw;
+  min-height: 100vh;
+	justify-content: center;
+	align-items: center;
+  padding: 40px;
+}
 
-        label {
-            padding: 1rem;
-            width: 100px;
-        }
+.loginFormContainer {
+	flex: 1;
+  background: rgba($darkPrimary, 0.6);
+	border-radius: 16px;
+	overflow: hidden;
+	max-width: 600px;
+	
+	.logoContainer {
+		background: $darkPrimary;
+		height: 120px;
+		text-align: center;
+		padding: 20px;
 
-        input {
-            padding: 0.5rem;
-            border-radius: 50px;
-            width: 65%;
-        }
+		svg {
+			height: 80px;
+		}
+	}
+
+}
+
+.loginForm {
+	padding: 20px;
+	display: flex;
+	flex-direction: column;
+
+  &Group {
+		display: flex;
+		align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+
+    label {
+			flex: 1;
+			width: 80%;
+			padding: 0 1em;
+			margin-top: 1.2em;
+			margin-bottom: .6em;
+			
+			h3 {
+				text-align: left;
+			}
     }
 
-    &-action {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        margin: 1rem;
-        text-align: center;
+    input {
+      padding: 0.8em 1em;
+      border-radius: 12px;
+			width: 80%;
+			border: none;
+			font-size: ms(0);
+			color: $darkPrimary;
+			font-weight: 400;
 
-        button {
-            margin: 0 auto;
-            padding: 5px;
-            width: 25%;
-        }
-
-        .signup-now {
-            margin: 1rem;
-        }
+			&:focus {
+				outline: none;
+				background: lighten(#588DDB, 20);
+			}
     }
+  }
+
+  &Action {
+    display: flex;
+    flex-direction: column;
+		justify-content: center;
+		padding-top: 1.2em;
+    text-align: center;
+
+    button {
+			margin: 0 auto;
+			border-radius: 12px;
+			font-size: ms(1);
+			background: $bright;
+			border: none;
+			color: white;
+      padding: .6em 1.4em;
+			width: auto;
+			cursor: pointer;
+			box-shadow: 1px 0 10px $darkPrimary;
+
+			&:hover {
+				box-shadow: 6px 0 20px darken($darkPrimary, 10);
+				background: lighten($bright, 4);
+			}
+
+			&:active {
+				box-shadow: 0px 0 5px $darkPrimary;
+				background: $darkPrimary;
+				color: white;
+			}
+
+			&:focus {
+				outline: none;
+			}
+    }
+
+    .signup-now {
+			margin: 1.6em;
+			color: white;
+
+			&:hover {
+				text-decoration: underline;
+			}
+    }
+  }
 }
