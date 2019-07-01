@@ -1,4 +1,4 @@
-import React, { useState, useReducer } from "react";
+import React, { useState, useReducer, useEffect } from "react";
 
 export default function AddArtist({
   artist_type,
@@ -27,44 +27,56 @@ export default function AddArtist({
       photos: ""
     }
   );
+  useEffect(() => {
+    console.log(name);
+  }, [name]);
 
-  const handleInputChange = e => {
-    const { value, name } = e.target;
+  const handleInputChange = event => {
+    const { value, name } = event;
     setUserInput({ [name]: value });
+    console.log(
+      userInput.name,
+      userInput.email,
+      userInput.band_members,
+      userInput.email,
+      userInput.bio,
+      userInput.photos,
+      userInput.phone
+    );
   };
   return (
     <div id="add-new-artist">
-      <h1>Add Artist</h1>
-      <div className="radio">
-        <label>
-          <input
-            type="radio"
-            name="artist_type"
-            value="Artist"
-            onChange={handleInputChange}
-          />
-          Solo Artist
-        </label>
-      </div>
-      <div className="radio">
-        <label>
-          <input
-            type="radio"
-            name="artist_type"
-            value="Band"
-            onChange={handleInputChange}
-          />
-          Band
-        </label>
-      </div>
       <form className="artist-form">
+        <h1>Add Artist</h1>
+        <div className="radio">
+          <label>
+            <input
+              type="radio"
+              name="artist_type"
+              value={userInput.artist_type}
+              onChange={e => handleInputChange(e.target)}
+            />
+            Solo Artist
+          </label>
+        </div>
+        <div className="radio">
+          <label>
+            <input
+              type="radio"
+              name="artist_type"
+              value={userInput.artist_type}
+              onChange={e => handleInputChange(e.target)}
+            />
+            Band
+          </label>
+        </div>
         <div className="artist-form-group">
           <label>Name:</label>
           <input
             type="text"
             placeholder="Name"
             name="name"
-            onChange={handleInputChange}
+            onChange={e => handleInputChange(e.target)}
             value={userInput.name}
           />
         </div>
@@ -75,7 +87,7 @@ export default function AddArtist({
             type="text"
             placeholder="Add a Member"
             name="band_members"
-            onChange={handleInputChange}
+            onChange={e => handleInputChange(e.target)}
             value={userInput.band_members}
           />
           <br />
@@ -83,7 +95,7 @@ export default function AddArtist({
             type="text"
             placeholder="Add a Member"
             name="band_members"
-            onChange={handleInputChange}
+            onChange={e => handleInputChange(e.target)}
             value={userInput.band_members}
           />
           <br />
@@ -91,7 +103,7 @@ export default function AddArtist({
             type="text"
             placeholder="Add a Member"
             name="band_members"
-            onChange={handleInputChange}
+            onChange={e => handleInputChange(e.target)}
             value={userInput.band_members}
           />
           <br />
@@ -99,7 +111,7 @@ export default function AddArtist({
             type="text"
             placeholder="Add a Member"
             name="band_members"
-            onChange={handleInputChange}
+            onChange={e => handleInputChange(e.target)}
             value={userInput.band_members}
           />
           <br />
@@ -107,7 +119,7 @@ export default function AddArtist({
             type="text"
             placeholder="Add a Member"
             name="band_members"
-            onChange={handleInputChange}
+            onChange={e => handleInputChange(e.target)}
             value={userInput.band_members}
           />
           <br />
@@ -118,7 +130,7 @@ export default function AddArtist({
             type="email"
             placeholder="johndoe@ie.com"
             name="email"
-            onChange={handleInputChange}
+            onChange={e => handleInputChange(e.target)}
             value={userInput.email}
           />
         </div>
@@ -128,7 +140,7 @@ export default function AddArtist({
             name="phone"
             type="text"
             placeholder="555-555-5555"
-            onChange={handleInputChange}
+            onChange={e => handleInputChange(e.target)}
             value={userInput.phone}
           />
         </div>
@@ -138,7 +150,7 @@ export default function AddArtist({
             name="address"
             type="text"
             placeholder="123 Sesame St."
-            onChange={handleInputChange}
+            onChange={e => handleInputChange(e.target)}
             value={userInput.address}
           />
         </div>
@@ -148,7 +160,7 @@ export default function AddArtist({
             type="text"
             placeholder="Genre"
             name="genre"
-            onChange={handleInputChange}
+            onChange={e => handleInputChange(e.target)}
             value={userInput.genre}
           />
         </div>
@@ -158,7 +170,7 @@ export default function AddArtist({
             type="text"
             placeholder="Bio"
             name="bio"
-            onChange={handleInputChange}
+            onChange={e => handleInputChange(e.target)}
             value={userInput.bio}
           />
         </div>
@@ -169,7 +181,7 @@ export default function AddArtist({
             type="url"
             placeholder="Facebook"
             name="socials"
-            onChange={handleInputChange}
+            onChange={e => handleInputChange(e.target)}
             value={userInput.socials}
           />{" "}
           <br />
@@ -177,7 +189,7 @@ export default function AddArtist({
             type="url"
             placeholder="Twitter"
             name="socials"
-            onChange={handleInputChange}
+            onChange={e => handleInputChange(e.target)}
             value={userInput.socials}
           />
           <br />
@@ -185,7 +197,7 @@ export default function AddArtist({
             type="url"
             placeholder="Instagram"
             name="socials"
-            onChange={handleInputChange}
+            onChange={e => handleInputChange(e.target)}
             value={userInput.socials}
           />
         </div>
@@ -195,7 +207,7 @@ export default function AddArtist({
             type="file"
             placeholder="photos"
             name="photos"
-            onChange={handleInputChange}
+            onChange={e => handleInputChange(e.target)}
             value={userInput.photos}
           />
         </div>
