@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import moment from "moment";
 import "./Styles/index.scss";
+import CalendarNavigation from "./Components/CalendarNavigation";
 
 function Calendar(props) {
   const [DateContext, setDateContext] = useState(moment());
   const [View, setView] = useState("month");
-  
+
   const Month = DateContext.format("MMMM");
-  const Year = DateContext.format("Y")
+  const Year = DateContext.format("Y");
   //const Weekdays = moment.weekdays();
   const WeekdaysShort = moment.weekdaysShort();
   const DaysInMonth = DateContext.daysInMonth();
@@ -84,20 +85,12 @@ function Calendar(props) {
 
   return (
     <div className="calendar">
-      <div className="calendarNavigation">
-        <div>
-          <button onClick={() => updateMonth("dec")}>Previous</button>
-          <button onClick={() => updateMonth("cur")}>Current</button>
-          <button onClick={() => updateMonth("inc")}>Next</button>
-        </div>
-        <h2>{Month} {Year}</h2>
-        <div>
-          <button onClick={() => setView('month')}>Month</button>
-          <button onClick={() => setView('week')}>Week</button>
-          <button onClick={() => setView('day')}>Day</button>
-        </div>
-      </div>
-
+      <CalendarNavigation
+        month={Month}
+        year={Year}
+        updateMonth={updateMonth}
+        setView={setView}
+      />
       <div className="calendarHeader">
         {WeekdaysShort.map(day => (
           <div key={day} className="weekDays">
