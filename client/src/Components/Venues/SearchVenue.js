@@ -79,14 +79,22 @@ export default function SearchVenue() {
             country: metroArea.country.displayName,
             capacity: capacity
         };
-        console.log(response[index]);
-        console.log(newVenue);
+        // console.log(response[index]);
+        // console.log(newVenue);
 
-        axios
-            .post("api/venue/", newVenue)
-            .then(response => setVenueList([response.data, ...venueList]));
+        // Evaluate if that address doesn't already exists
+        const allStreets = venueList.map(venue => venue.street);
+        if (allStreets.indexOf(street) === -1) {
+            // api call to post venues to our database models and update the state of our application
+            axios
+                .post("api/venue/", newVenue)
+                .then(response => setVenueList([response.data, ...venueList]));
 
-        setSearch("");
+            setSearch("");
+        }
+        else {
+            alert("You've already added " + displayName)
+        }
     };
 
     const deleteVenue = value => {
