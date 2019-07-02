@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import moment from "moment";
 import "./Styles/index.scss";
-import CalendarNavigation from "./Components/CalendarNavigation";
+import CalendarNavigation from "./Components/CalenderNav/CalendarNavigation";
+import CalendarHeader from './Components/CalendarHeaders/WeekDayHeaders'
 
 function Calendar(props) {
   const [DateContext, setDateContext] = useState(moment());
@@ -91,13 +92,7 @@ function Calendar(props) {
         updateMonth={updateMonth}
         setView={setView}
       />
-      <div className="calendarHeader">
-        {WeekdaysShort.map(day => (
-          <div key={day} className="weekDays">
-            {day}
-          </div>
-        ))}
-      </div>
+      <CalendarHeader headers={WeekdaysShort} />
       <div className="calendarDays">{rowDivs}</div>
     </div>
   );
