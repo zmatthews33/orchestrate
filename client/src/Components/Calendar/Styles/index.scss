@@ -1,3 +1,5 @@
+@import '../../../Styles/variables';
+
 .calendar {
   width: 100%;
   height: 100%;
@@ -42,15 +44,23 @@
       flex: 1;
       padding: 8px;
       border-left: solid 1px rgba(white, 0.2);
+      font-weight: 500;
 
       &:first-child {
         border-left: none;
       }
 
       &.currentDay {
-        background: blue;
+        background: $bright;
+        color: $darkPrimary;
+        font-weight: bold;
       }
     
+    }
+
+    .empty {
+      color: rgba(white, 0.2);
+      font-weight: 300;
     }
 
   }

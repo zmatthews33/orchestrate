@@ -10,7 +10,7 @@ function Events() {
       <CardView>
         <div
           style={{
-            height: "50vh",
+            height: "70vh",
             minHeight: "400px",
             width: "70vw",
           }}

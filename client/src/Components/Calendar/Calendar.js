@@ -13,6 +13,10 @@ function Calendar(props) {
   //const Weekdays = moment.weekdays();
   const WeekdaysShort = moment.weekdaysShort();
   const DaysInMonth = DateContext.daysInMonth();
+  const PrevMonth = moment(DateContext).subtract(1, 'month')
+  const PrevMonthDays = PrevMonth.daysInMonth();
+  const NextMonth = moment(DateContext).add(1, 'month')
+  const NextMonthDays = NextMonth.daysInMonth();
   const CurrentDate = DateContext.get("date");
   // const currentDay = DateContext.format("D");
 
@@ -33,7 +37,7 @@ function Calendar(props) {
 
   const blanks = [];
   for (let i = 0; i < firstDayOfTheMonth; i++) {
-    blanks.push(<div key={`blank${i}`} className="empty" />);
+    blanks.push(<div key={`blank${i}`} className="empty">{PrevMonthDays - i}</div>);
   }
 
   const calendarDays = [];
@@ -72,7 +76,7 @@ function Calendar(props) {
       const blanksToFill = 7 - cells.length;
 
       for (let i = 0; i < blanksToFill; i++) {
-        cells.push(<div key={`blankEnd${i}`} className="empty" />);
+        cells.push(<div key={`blankEnd${i}`} className="empty">{i + 1}</div>);
       }
 
       let insertRow = cells.slice();
