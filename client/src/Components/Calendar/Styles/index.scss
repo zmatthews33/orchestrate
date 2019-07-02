@@ -12,11 +12,6 @@
   text-align: right;
 }
 
-.calendarNavigation {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
 
 .calendarHeader {
   flex: 0;
@@ -46,6 +41,11 @@
       padding: 8px;
       border-left: solid 1px rgba(white, 0.2);
       font-weight: 500;
+      cursor: pointer;
+      
+      &:hover {
+        background: rgba($bright, 0.3);
+      }
 
       &:first-child {
         border-left: none;

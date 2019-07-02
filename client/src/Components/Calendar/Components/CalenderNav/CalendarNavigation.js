@@ -1,20 +1,28 @@
 import React from "react";
 
-function CalendarNavigation({ month, year, updateMonth, setView}) {
+import "./CalendarNav.scss";
+
+function CalendarNavigation({ month, year, updateMonth, setView }) {
   return (
     <div className="calendarNavigation">
-      <div>
-        <button onClick={() => updateMonth("dec")}>Previous</button>
-        <button onClick={() => updateMonth("cur")}>Current</button>
-        <button onClick={() => updateMonth("inc")}>Next</button>
+      <div className="calendarNavButtons">
+        <button className="firstButton" onClick={() => updateMonth("dec")}>
+          <i className="fas fa-angle-left" />
+        </button>
+        <button onClick={() => updateMonth("cur")}>
+          <i className="far fa-circle" />
+        </button>
+        <button className="lastButton" onClick={() => updateMonth("inc")}>
+          <i className="fas fa-angle-right" />
+        </button>
       </div>
       <h2>
         {month} {year}
       </h2>
-      <div>
-        <button onClick={() => setView("month")}>Month</button>
+      <div className="calendarViews">
+        <button className="firstButton" onClick={() => setView("month")}>Month</button>
         <button onClick={() => setView("week")}>Week</button>
-        <button onClick={() => setView("day")}>Day</button>
+        <button className="lastButton" onClick={() => setView("day")}>Day</button>
       </div>
     </div>
   );
