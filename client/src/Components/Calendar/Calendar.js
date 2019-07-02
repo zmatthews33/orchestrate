@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import moment from "moment";
 import "./Styles/index.scss";
 import CalendarNavigation from "./Components/CalenderNav/CalendarNavigation";
-import CalendarHeader from './Components/CalendarHeaders/WeekDayHeaders'
+import CalendarHeader from "./Components/CalendarHeaders/WeekDayHeaders";
 
 function Calendar(props) {
   const [DateContext, setDateContext] = useState(moment());
@@ -38,7 +38,11 @@ function Calendar(props) {
 
   const calendarDays = [];
   for (let d = 1; d <= DaysInMonth; d++) {
-    let myClass = d === CurrentDate ? "day currentDay" : "day";
+    let myClass =
+      moment().format("MM YY") === DateContext.format("MM YY") &&
+      d === CurrentDate
+        ? "day currentDay"
+        : "day";
     calendarDays.push(
       <div key={d} className={myClass}>
         <span>{d}</span>
