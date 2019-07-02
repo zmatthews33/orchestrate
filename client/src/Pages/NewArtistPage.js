@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Page } from "../Components/Containers/LayoutsElements";
+import { Page } from "../Components/Containers";
 import NewArtist from "../Components/AddArtist/NewArtist";
 
 function NewArtistPage() {
