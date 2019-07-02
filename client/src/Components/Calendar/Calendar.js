@@ -2,26 +2,39 @@ import React, { useState, useEffect } from "react";
 import moment from "moment";
 import "./Styles/index.scss";
 
-function Calendar({ width }) {
-  const [Width, setWidth] = useState(width || "350px");
+function Calendar(props) {
+  const [DateContext, setDateContext] = useState(moment());
   const [CurrentMonth, setCurrentMonth] = useState(moment().month());
-
-  const dateContext = moment();
-  const today = moment();
-  const showMonthPopup = false;
-  const showYearPopup = false;
-
-  const weekdays = moment.weekdays();
+  const [View, setView] = useState("month");
+  const [Rows, setRows] = useState([]);
+  //const today = moment();
+  //const weekdays = moment.weekdays();
   const weekdaysShort = moment.weekdaysShort();
-  const months = moment().month();
+  // const months = DateContext.month(6).format("MMMM");
+  // const year = DateContext.format("Y");
+  const month = DateContext.format("MMMM");
+  const daysInMonth = DateContext.daysInMonth();
+  const currentDate = DateContext.get("date");
+  // const currentDay = DateContext.format("D");
 
-  const year = dateContext.format("Y");
-  const month = dateContext.format("MMMM");
-  const daysInMonth = dateContext.daysInMonth();
-  const currentDate = dateContext.get("date");
-  const currentDay = dateContext.format("D");
 
-  const firstDayOfTheMonth = moment(dateContext)
+  const updateMonth = dir => {
+    if (dir === "inc") {
+      console.log(CurrentMonth + 1)
+      setCurrentMonth(CurrentMonth + 1);
+      setDateContext(moment(DateContext).set("month", CurrentMonth + 1))
+    } else if (dir === 'dec') {
+      setCurrentMonth(CurrentMonth - 1);
+      setDateContext(moment(DateContext).set("month", CurrentMonth - 1))
+    } else {
+      setCurrentMonth(moment().month());
+      setDateContext(moment())
+    }
+  };
+
+
+
+  const firstDayOfTheMonth = moment(DateContext)
     .startOf("month")
     .format("d");
 
@@ -32,7 +45,7 @@ function Calendar({ width }) {
 
   const calendarDays = [];
   for (let d = 1; d <= daysInMonth; d++) {
-    let myClass = (d === currentDate )? "day currentDay" : "day";
+    let myClass = d === currentDate ? "day currentDay" : "day";
     calendarDays.push(
       <div key={d} className={myClass}>
         <span>{d}</span>
@@ -44,9 +57,8 @@ function Calendar({ width }) {
   let rows = [];
   let cells = [];
 
-
   totalSlots.forEach((row, i) => {
-    if ((i === 0) || (i % 7 !== 0)) {
+    if (i === 0 || i % 7 !== 0) {
       // if it's not the 7th, add to cells array
       cells.push(row);
     } else {
@@ -71,8 +83,6 @@ function Calendar({ width }) {
     }
   });
 
-  console.log(rows)
-
   let rowDivs = rows.map((d, i) => {
     return (
       <div key={i * 100} className="calendarRow">
@@ -81,8 +91,23 @@ function Calendar({ width }) {
     );
   });
 
+
   return (
     <div className="calendar">
+      <div className="calendarNavigation">
+        <div>
+          <button onClick={() => updateMonth("dec")}>Previous</button>
+          <button onClick={() => updateMonth("cur")}>Current</button>
+          <button onClick={() => updateMonth("inc")}>Next</button>
+        </div>
+        <h2>{DateContext.month(CurrentMonth).format("MMMM")}</h2>
+        <div>
+          <button>Month</button>
+          <button>Week</button>
+          <button>Day</button>
+        </div>
+      </div>
+
       <div className="calendarHeader">
         {weekdaysShort.map(day => (
           <div key={day} className="weekDays">
@@ -90,9 +115,7 @@ function Calendar({ width }) {
           </div>
         ))}
       </div>
-      <div className="calendarDays">
-        {rowDivs}
-      </div>
+      <div className="calendarDays">{rowDivs}</div>
     </div>
   );
 }
