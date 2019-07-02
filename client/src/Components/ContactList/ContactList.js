@@ -19,21 +19,32 @@ function ContactList() {
 
     const handleContactSubmit = e => {
         e.preventDefault();
-        const { name, phone, venue, address, email, note } = e.target;
+        console.log(e.target);
+        const {
+            first_name,
+            last_name,
+            phone,
+            venue,
+            address,
+            email,
+            note
+        } = e.target;
 
         const newContact = {
-            id: Math.random() + 1,
-            name: name.value,
+            first_name: first_name.value,
+            last_name: last_name.value,
             phone: phone.value,
             venue: venue.value,
             address: address.value,
             email: email.value,
             note: note.value
         };
-        // console.log(newContact);
+        console.log(newContact);
         // setContacts([newContact, ...contacts]);
         // insert api call to add a new contact to personal list
-        // ask in class how to handle a form submit collecting all the data in react
+        axios
+            .post("api/people", newContact)
+            .then(response => setContacts([response.data,...contacts]));
     };
 
     // console.log("All contacts", contacts);

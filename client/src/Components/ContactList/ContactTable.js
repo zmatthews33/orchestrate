@@ -17,10 +17,10 @@ export default function ContactTable({ contacts }) {
                 {contacts.map((contact, index) => (
                     <ContactRow
                         key={index}
-                        name={contact.first_name}
+                        name={contact.first_name + " " +contact.last_name}
                         phone={contact.phone}
                         venue={contact.venue}
-                        address={contact.address.street}
+                        address={contact.address}
                         email={contact.email}
                         note={contact.note}
                     />

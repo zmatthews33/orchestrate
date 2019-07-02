@@ -6,14 +6,15 @@ const personSchema = new Schema({
     last_name: String,
     phone: String,
     venue: String,
-    address: {
-        street: String,
-        city: String,
-        state: String,
-        zip_code: String
-    },
+    address: String,
     email: String,
     note: String
+            // address: {
+            //     street: String,
+            //     city: String,
+            //     state: String,
+            //     zip_code: String
+            // },
     // email: [
     //     {
     //         email_type: String,
