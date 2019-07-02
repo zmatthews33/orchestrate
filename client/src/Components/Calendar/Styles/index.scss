@@ -1,0 +1,56 @@
+.calendar {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  justify-items: stretch;
+  align-content: stretch;
+  align-items: stretch;
+  text-align: right;
+}
+
+.calendarHeader {
+  flex: 0;
+  display: flex;
+
+  .weekDays {
+    flex: 1;
+    padding: 8px;
+  }
+}
+
+.calendarDays {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+
+  .calendarRow {
+    border-top: solid 1px white;
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+  
+    .day, .empty {
+      flex: 1;
+      padding: 8px;
+      border-left: solid 1px rgba(white, 0.2);
+
+      &:first-child {
+        border-left: none;
+      }
+
+      &.currentDay {
+        background: blue;
+      }
+    
+    }
+
+
+
+    
+
+
+  }
+}
+

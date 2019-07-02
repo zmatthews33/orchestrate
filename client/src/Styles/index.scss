@@ -16,6 +16,124 @@ html {
   height: 100%;
 }
 
+h1,
+h2,
+h3,
+h4 {
+  font-family: $headerFontFamily;
+}
+
+body {
+  font-family: $bodyFontFamily;
+  background: $darkPrimary;
+  color: $white;
+  font-size: ms(0);
+}
+
+h1 {
+  font-size: ms(3);
+}
+
+h2 {
+  font-size: ms(2);
+}
+
+h3,
+h4 {
+  font-size: ms(1);
+}
+
+// links
+a {
+  text-decoration: none;
+  color: $primary;
+
+  &:hover {
+    color: $lightPrimary;
+  }
+
+  &:active {
+    color: $darkPrimary;
+  }
+}
+
+// forms
+form {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+
+  .formGroup {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  label {
+    flex: 1;
+    width: 100%;
+    //padding: 0 1em;
+    margin-top: 1.2em;
+    margin-bottom: 0.6em;
+  }
+
+  input {
+    flex: 1;
+    width: 100%;
+    padding: 0.8em 1em;
+    border-radius: 12px;
+    border: none;
+    font-size: ms(0);
+    color: $darkPrimary;
+    font-weight: 400;
+
+    &:focus {
+      outline: none;
+      background: complement(lighten(#588ddb, 30));
+    }
+  }
+
+  .formAction {
+    display: flex;
+    flex-direction: column;
+		justify-content: center;
+		padding: 2em 0;
+    text-align: center;
+
+    button {
+			margin: 0 auto;
+			border-radius: 12px;
+			font-size: ms(1);
+			background: $bright;
+			border: none;
+			color: white;
+      padding: .4em 1.4em;
+			width: auto;
+			cursor: pointer;
+			box-shadow: 1px 0 10px $darkPrimary;
+
+			&:hover {
+				box-shadow: 6px 0 20px darken($darkPrimary, 10);
+				background: lighten($bright, 4);
+			}
+
+			&:active {
+				box-shadow: 0px 0 5px $darkPrimary;
+				background: $darkPrimary;
+				color: white;
+			}
+
+			&:focus {
+				outline: none;
+			}
+    }
+
+  }
+
+}
+
+
 
 .appContainer {
   display: flex;
@@ -43,6 +161,8 @@ html {
   }
  
 }
+
+
 
 
 

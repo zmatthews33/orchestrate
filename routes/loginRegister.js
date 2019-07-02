@@ -55,11 +55,7 @@ router.post("/login", (req, res) => {
       return res.status(404).json({ emailnotfound: "Email not found" });
     }
 
-    console.log(password);
-    console.log(user.password)
-
     bcrypt.compare(password, user.password).then(isMatch => {
-      console.log(isMatch)
       if (isMatch) {
         const payload = {
           id: user.id,

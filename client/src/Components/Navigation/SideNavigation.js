@@ -6,10 +6,6 @@ import "./SideNav.scss";
 
 function SideNavigation({ loggedIn, smallScreen, setNavToggled }) {
 
-  useEffect(() => {
-    console.log('small screen', smallScreen)
-  }, [smallScreen])
-
   const NavClass = () => {
     if (smallScreen) {
       return "sideNav smallScreen";

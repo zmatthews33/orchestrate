@@ -1,7 +1,8 @@
 import React from "react";
-import CalendarLarge from "../Components/Calendar/CalendarLarge";
+//import CalendarLarge from "../Components/Calendar/CalendarLarge";
 import { Page } from "../Components/Containers";
 import { CardView } from "../Components/Containers";
+import Calendar from '../Components/Calendar/Calendar'
 
 function Events() {
   return (
@@ -9,15 +10,12 @@ function Events() {
       <CardView>
         <div
           style={{
-            height: "60vh",
+            height: "50vh",
             minHeight: "400px",
             width: "70vw",
-            position: "relative",
-            display: "flex",
-            alignContent: "stretch"
           }}
         >
-          <CalendarLarge />
+          <Calendar />
         </div>
       </CardView>
     </Page>
