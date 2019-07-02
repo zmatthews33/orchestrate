@@ -6,15 +6,13 @@ const venueSchema = new Schema(
         name: { type: String, required: true },
         phone: { type: String, required: false },
         website: { type: String, required: false },
-        address: {
-            street: { type: String, required: true },
-            // address_line2: { type: String, required: true },
-            city: { type: String, required: true },
-            state: { type: String, required: true },
-            zip_code: { type: String, required: true },
-            country: { type: String, require: true }
-        },
-        capacity: { type: Number, required: false }
+        street: { type: String, required: true },
+        // address_line2: { type: String, required: true },
+        city: { type: String, required: true },
+        state: { type: String, required: true },
+        zip_code: { type: String, required: true },
+        country: { type: String, require: true },
+        capacity: { type: String, required: false }
     },
     { autoCreate: true }
 );
