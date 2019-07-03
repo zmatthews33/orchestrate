@@ -12,7 +12,7 @@ function NewArtist() {
     const handleArtistSubmit = e => {
         e.preventDefault();
         console.log(e.target.artist_type);
-        
+
         // const {
         //     artist_type,
         //     name,
