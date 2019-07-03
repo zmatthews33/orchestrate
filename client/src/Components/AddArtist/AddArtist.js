@@ -35,31 +35,53 @@ export default function AddArtist({
       photos: ""
     }
   );
-//   useEffect(() => {
-//     console.log(name);
-//   }, [name]);
+  useEffect(() => {
+    console.log(name);
+  }, [name]);
 
   const handleInputChange = event => {
     const { value, name } = event;
     setUserInput({ [name]: value });
-    // console.log(
-    //   userInput.name,
-    //   userInput.email,
-    //   userInput.band_member1,
-    //   userInput.band_member2,
-    //   userInput.band_member3,
-    //   userInput.band_member4,
-    //   userInput.band_member5,
-    //   userInput.email,
-    //   userInput.bio,
-    //   userInput.photos,
-    //   userInput.phone
-    // );
+    console.log(
+      userInput.name,
+      userInput.email,
+      userInput.band_member1,
+      userInput.band_member2,
+      userInput.band_member3,
+      userInput.band_member4,
+      userInput.band_member5,
+      userInput.email,
+      userInput.bio,
+      userInput.photos,
+      userInput.phone
+    );
   };
   return (
     <div id="add-new-artist">
-      <form onSubmit={handleArtistSubmit} className="artist-form">
+      <form className="artist-form">
         <h1>Add Artist</h1>
+        <div className="radio">
+          <label>
+            <input
+              type="radio"
+              name="artist_type"
+              value={userInput.artist_type}
+              onChange={e => handleInputChange(e.target)}
+            />
+            Solo Artist
+          </label>
+        </div>
+        <div className="radio">
+          <label>
+            <input
+              type="radio"
+              name="artist_type"
+              value={userInput.artist_type}
+              onChange={e => handleInputChange(e.target)}
+            />
+            Band
+          </label>
+        </div>
         <div className="artist-form-group">
           <label>Name:</label>
           <input
