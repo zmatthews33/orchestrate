@@ -1,7 +1,6 @@
-import React, { useState, useReducer, useEffect } from "react";
+import React, { useReducer } from "react";
 
-export default function AddArtist({ artist, handleSubmit }) {
-    console.log(artist, handleSubmit);
+export default function Form({ handleSubmit }) {
     const [userInput, setUserInput] = useReducer(
         (state, newState) => ({ ...state, ...newState }),
         {
@@ -14,12 +13,11 @@ export default function AddArtist({ artist, handleSubmit }) {
             band_member5: "",
             email: "",
             bio: "",
-            socials: {
-                facebook: "",
-                instagram: "",
-                website: ""
-            },
-            photos: ""
+            profile_img: "",
+            facebook_link: "",
+            instagram_link: "",
+            website_link: "",
+            streaming_link: ""
         }
     );
 
@@ -28,7 +26,7 @@ export default function AddArtist({ artist, handleSubmit }) {
         setUserInput({ [name]: value });
     };
     return (
-        <div id="add-new-artist">
+        <div id="artist_form">
             <form onSubmit={handleSubmit} className="artist-form">
                 <h1>Add Artist</h1>
                 <div className="artist-form-group">
@@ -137,7 +135,7 @@ export default function AddArtist({ artist, handleSubmit }) {
                         placeholder="url_profile_img"
                         name="facebook_link"
                         onChange={e => handleInputChange(e.target)}
-                        value={userInput.socials.facebook}
+                        value={userInput.facebook_link}
                     />
                 </div>
                 <div className="artist-form-group">
@@ -147,7 +145,7 @@ export default function AddArtist({ artist, handleSubmit }) {
                         placeholder="url_profile_img"
                         name="instagram_link"
                         onChange={e => handleInputChange(e.target)}
-                        value={userInput.socials.instagram}
+                        value={userInput.instagram_link}
                     />
                 </div>
                 <div className="artist-form-group">
@@ -157,7 +155,17 @@ export default function AddArtist({ artist, handleSubmit }) {
                         placeholder="url_profile_img"
                         name="website_link"
                         onChange={e => handleInputChange(e.target)}
-                        value={userInput.socials.website}
+                        value={userInput.website_link}
+                    />
+                </div>
+                <div className="artist-form-group">
+                    <label>Streaming:</label>
+                    <input
+                        type="text"
+                        placeholder="spotify link"
+                        name="streaming_link"
+                        onChange={e => handleInputChange(e.target)}
+                        value={userInput.streaming_link}
                     />
                 </div>
                 <div className="artist-form-action">
