@@ -8,13 +8,14 @@ const personSchema = new Schema({
     venue: String,
     address: String,
     email: String,
-    note: String
-            // address: {
-            //     street: String,
-            //     city: String,
-            //     state: String,
-            //     zip_code: String
-            // },
+    note: String,
+    created_by: { type: Schema.Types.ObjectId, ref: "User" }
+    // address: {
+    //     street: String,
+    //     city: String,
+    //     state: String,
+    //     zip_code: String
+    // },
     // email: [
     //     {
     //         email_type: String,

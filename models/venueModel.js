@@ -12,7 +12,8 @@ const venueSchema = new Schema(
         state: { type: String, required: true },
         zip_code: { type: String, required: true },
         country: { type: String, require: true },
-        capacity: { type: String, required: false }
+        capacity: { type: String, required: false },
+        created_by: { type: Schema.Types.ObjectId, ref: "User" }
     },
     { autoCreate: true }
 );
