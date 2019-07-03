@@ -1,28 +1,22 @@
-import React, { Component } from "react";
 import "./BandList.scss";
-export class BandList extends Component {
-  state = {
-    bands: []
-  };
-  componentDidMount() {
-    this.setState({
-      bands: [
-        { id: 1, name: "Echo Pilot" },
-        { id: 2, name: "Fresh Hats Tight Beats" },
-        { id: 3, name: "Macdennis" }
-      ]
-    });
-  }
-  render() {
-    const { bands } = this.state;
-    return (
-      <ul id="bandList">
-        {bands.map(band => (
-          <li key={band.id}>{band.name}</li>
-        ))}
-      </ul>
-    );
-  }
-}
+import React, { useState, useEffect } from "react";
+import useAPI from "../../Utils/useAPI";
+export default function BandList() {
+    const [bands, setBands] = useState([]);
 
-export default BandList;
+    const getBands = useAPI("get", "/api/artist");
+
+    useEffect(() => {
+        if (getBands) setBands(getBands);
+    }, [getBands]);
+
+    return (
+        <div id="bandList">
+            {bands.map(band => (
+                <div className="band_">
+                    <div className="band_name">{band.name}</div>
+                </div>
+            ))}
+        </div>
+    );
+}

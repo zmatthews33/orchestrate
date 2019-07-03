@@ -12,12 +12,13 @@ export default function AddContact({
 }) {
   const [userInput, setUserInput] = useReducer(
     (state, newState) => ({ ...state, ...newState }),
-    {
-      name: "",
+    {  
+      first_name: "",
+      last_name: "",
       phone: "",
       venue: "",
-      address: "",
       email: "",
+      address: "",
       note: ""
     }
   );
@@ -35,14 +36,24 @@ export default function AddContact({
   return (
     <div id="add-new-contact">
       <form onSubmit={handleContactSubmit}>
-        <div className="name-container">
-          <label>Name:</label>
+        <div className="firstname-container">
+          <label>First Name:</label>
           <input
-            name="name"
+            name="first_name"
             type="text"
-            placeholder="Sherlock Holmes"
+            placeholder="Sherlock"
             onChange={handleInputChange}
-            value={userInput.name}
+            value={userInput.first_name}
+          />
+        </div>
+        <div className="lastname-container">
+          <label>Last Name:</label>
+          <input
+            name="last_name"
+            type="text"
+            placeholder="Holmes"
+            onChange={handleInputChange}
+            value={userInput.last_name}
           />
         </div>
         <div className="phone-container">
