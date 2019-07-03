@@ -1,7 +1,7 @@
 import React from "react";
 
 const TodoItem = ({ values, markCompleted }) => {
-  const style = values.completed ? { textDecoration: "line-through" } : {};
+  const style = values.isCompleted ? { textDecoration: "line-through" } : {};
 
   return (
     <li style={style} className="toDoItem">
