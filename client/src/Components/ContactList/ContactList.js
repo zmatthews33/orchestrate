@@ -1,14 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 // ADD NEW CONTACT COMPONENT
 import AddContact from "./AddContact";
 // LOAD TABLE
 import ContactTable from "./ContactTable";
 import "./ContactList.scss";
+import { AppContext } from "../../App";
 
 function ContactList() {
     // initial state
     const [contacts, setContacts] = useState([]);
+
+    const { userId } = useContext(AppContext);
 
     useEffect(() => {
         axios
@@ -37,14 +40,15 @@ function ContactList() {
             venue: venue.value,
             address: address.value,
             email: email.value,
-            note: note.value
+            note: note.value,
+            created_by: userId
         };
         console.log(newContact);
         // setContacts([newContact, ...contacts]);
         // insert api call to add a new contact to personal list
         axios
             .post("api/people", newContact)
-            .then(response => setContacts([response.data,...contacts]));
+            .then(response => setContacts([response.data, ...contacts]));
     };
 
     // console.log("All contacts", contacts);
