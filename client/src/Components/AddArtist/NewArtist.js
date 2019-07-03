@@ -8,8 +8,6 @@ import axios from "axios";
 function NewArtist() {
     const { userId } = useContext(AppContext);
 
-    const [artist, setArtist] = useState([]);
-
     const handleSubmit = event => {
         event.preventDefault();
         console.log(event.target);
