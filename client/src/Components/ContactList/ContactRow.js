@@ -6,8 +6,7 @@ export default function ContactRow({
   venue,
   address,
   email,
-  note,
-  handleClickRemove
+  note
 }) {
   return (
     <tr>
@@ -18,6 +17,5 @@ export default function ContactRow({
       <td>{email}</td>
       <td>{note}</td>
     </tr>
-
   );
 }

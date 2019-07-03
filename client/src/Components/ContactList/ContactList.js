@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState } from "react";
+
 // ADD NEW CONTACT COMPONENT
 import AddContact from "./AddContact";
 // LOAD TABLE
@@ -8,31 +8,43 @@ import "./ContactList.scss";
 
 function ContactList() {
     // initial state
-    const [contacts, setContacts] = useState([]);
-
-    useEffect(() => {
-        axios
-            .get("/api/people")
-            .then(response => setContacts(response.data))
-            .catch(err => console.log(err));
-    }, []);
+    const [contacts, setContacts] = useState([
+        {
+            key: 1,
+            name: "Jane Doe",
+            phone: "615-321-3340",
+            venue: "Exit/In",
+            address: "2208 Elliston Pl, Nashville, TN 37203",
+            email: "janedoe@gmail.com",
+            note: "She's cool"
+        },
+        {
+            key: 2,
+            name: "Tom",
+            phone: "347-559-6031",
+            venue: "The East Room",
+            address: "2412 Gallatin Ave, Nashville, TN 37206",
+            email: "tom@gmail.com",
+            note: "Tom has a bday the night before our show"
+        },
+        {
+            key: 3,
+            name: "Sherlock",
+            phone: "212-232-3234",
+            venue: "n/a",
+            address: "Everywhere",
+            email: "holmes@sherlock.com",
+            note: "pretty smart"
+        }
+    ]);
 
     const handleContactSubmit = e => {
         e.preventDefault();
-        console.log(e.target);
-        const {
-            first_name,
-            last_name,
-            phone,
-            venue,
-            address,
-            email,
-            note
-        } = e.target;
+        const { name, phone, venue, address, email, note } = e.target;
 
         const newContact = {
-            first_name: first_name.value,
-            last_name: last_name.value,
+            id: Math.random() + 1,
+            name: name.value,
             phone: phone.value,
             venue: venue.value,
             address: address.value,
@@ -40,14 +52,12 @@ function ContactList() {
             note: note.value
         };
         console.log(newContact);
-        // setContacts([newContact, ...contacts]);
+        setContacts([newContact, ...contacts]);
         // insert api call to add a new contact to personal list
-        axios
-            .post("api/people", newContact)
-            .then(response => setContacts([response.data,...contacts]));
+        // ask in class how to handle a form submit collecting all the data in react
     };
 
-    // console.log("All contacts", contacts);
+    console.log("All contacts", contacts);
     return (
         <div className="contact-list">
             {/* adding new contacts */}

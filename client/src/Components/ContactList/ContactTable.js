@@ -14,10 +14,10 @@ export default function ContactTable({ contacts }) {
                 </tr>
             </thead>
             <tbody>
-                {contacts.map((contact, index) => (
+                {contacts.map(contact => (
                     <ContactRow
-                        key={index}
-                        name={contact.first_name + " " +contact.last_name}
+                        key={contact.key}
+                        name={contact.name}
                         phone={contact.phone}
                         venue={contact.venue}
                         address={contact.address}

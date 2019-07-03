@@ -11,11 +11,8 @@ export default function SearchVenue() {
     const [venueList, setVenueList] = useState([]);
 
     useEffect(() => {
-        axios
-            .get("/api/venue")
-            .then(res => setVenueList(res.data))
-            .catch();
-    }, []);
+        console.log(venueList);
+    }, [venueList]);
 
     const sendRequest = useCallback(async query => {
         await axios
@@ -54,7 +51,7 @@ export default function SearchVenue() {
     };
 
     const addVenue = index => {
-        // destructing the object from the response state
+        // remember to insert our api call to the database
         const {
             id,
             displayName,
@@ -63,55 +60,27 @@ export default function SearchVenue() {
             metroArea,
             phone,
             street,
-            zip,
-            capacity
+            zip
         } = response[index];
 
-        // creating a new object with those values
-        const newVenue = {
+        const newVenueObj = {
+            id: id.toString(),
             name: displayName,
+            address: `${street}, ${city.displayName}, ${zip}, ${
+                metroArea.country.displayName
+            }`,
             phone: phone,
-            website: website,
-            street: street,
-            city: city.displayName,
-            state: metroArea.state.displayName,
-            zip_code: zip,
-            country: metroArea.country.displayName,
-            capacity: capacity
+            website: website
         };
-        // console.log(response[index]);
-        // console.log(newVenue);
-
-        // Evaluate if that address doesn't already exists
-        const allStreets = venueList.map(venue => venue.street);
-        if (allStreets.indexOf(street) === -1) {
-            // api call to post venues to our database models and update the state of our application
-            axios
-                .post("api/venue/", newVenue)
-                .then(response => setVenueList([response.data, ...venueList]));
-
-            setSearch("");
-        }
-        else {
-            alert("You've already added " + displayName)
-        }
+        // add validation for when user tries to add multiple venues
+        setVenueList([newVenueObj, ...venueList]);
+        setSearch("");
+        // setResponse([]);
     };
 
     const deleteVenue = value => {
         console.log("deleting this venue", value);
-
-        // delete from database only if that value is truthy
-        if (venueList) {
-            axios
-                .delete("api/venue/" + value)
-                .then(response =>
-                    setVenueList([
-                        ...venueList.filter(
-                            venue => venue._id !== response.data._id
-                        )
-                    ])
-                );
-        }
+        setVenueList([...venueList.filter(venue => venue.id !== value)]);
     };
 
     return [
@@ -166,9 +135,10 @@ export default function SearchVenue() {
                 {venueList.map((venue, index) => (
                     <VenueList
                         key={index}
+                        id={venue.id}
                         venue={venue}
                         btnType="Delete"
-                        handleClick={() => deleteVenue(venue._id)}
+                        handleClick={e => deleteVenue(e.target.value)}
                     />
                 ))}
             </div>
