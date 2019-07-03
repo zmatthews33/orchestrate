@@ -7,9 +7,10 @@ function useLoggedIn() {
 	useEffect(() => {
 		if (localStorage.jwtToken) {
 			const token = localStorage.jwtToken;
-			//setAuthToken(token);
 	
 			const decoded = jwt_decode(token);
+
+			console.log(decoded)
 	
 			// Check for expired token
 			const currentTime = Date.now() / 1000; // to get in milliseconds

@@ -12,7 +12,6 @@ export const registerUser = (userData) => {
 }
 
 export const loginUser = loginData => {
-
   axios
     .post('/login', loginData)
     .then(res => {
