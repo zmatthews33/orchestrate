@@ -1,0 +1,47 @@
+@import '../../Styles/variables';
+
+.modalBackground {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba($darkPrimary, 0.8);
+  z-index: 10000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: darken($darkPrimary, 8);
+
+  .modalWindow {
+    margin: 10vh 0;
+    padding: 4vmin;
+    width: 60vw;
+    max-width: 800px;
+    height: 80vh;
+    background: rgba(white, .9);
+    border-radius: 16px;
+    position: relative;
+    box-shadow: 1px 0 8px rgba(darken($darkPrimary, 8), 0.3);
+
+    .closeModal {
+      position: absolute;
+      right: -1vmin;
+      top: -1vmin;
+      width: 5vmin;
+      height: 5vmin;
+      background: white;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 1px 0 4px rgba(darken($darkPrimary, 8), 0.3);
+      cursor: pointer;
+
+      &:hover {
+        color: $bright;
+      }
+    }
+  }
+
+}

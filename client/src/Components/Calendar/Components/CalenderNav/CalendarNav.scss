@@ -38,8 +38,10 @@
     border-left: none;
   }
 
+  
   .calendarNavButtons, .calendarViews {
-    width: 20%;
+    flex: 1;
+    min-width: 20%;
   }
 
   .calendarNavButtons {

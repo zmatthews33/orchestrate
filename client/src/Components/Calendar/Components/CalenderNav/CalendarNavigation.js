@@ -19,11 +19,11 @@ function CalendarNavigation({ month, year, updateMonth, setView }) {
       <h2>
         {month} {year}
       </h2>
-      <div className="calendarViews">
+      {/*<div className="calendarViews">
         <button className="firstButton" onClick={() => setView("month")}>Month</button>
         <button onClick={() => setView("week")}>Week</button>
         <button className="lastButton" onClick={() => setView("day")}>Day</button>
-      </div>
+  </div>*/}
     </div>
   );
 }
