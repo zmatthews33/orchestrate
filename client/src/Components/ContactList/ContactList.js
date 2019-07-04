@@ -15,7 +15,7 @@ function ContactList() {
 
     useEffect(() => {
         axios
-            .get("/api/people")
+            .get("/api/people?created_by=" + userId)
             .then(response => setContacts(response.data))
             .catch(err => console.log(err));
     }, []);

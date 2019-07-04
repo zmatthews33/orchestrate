@@ -1,26 +1,35 @@
 import "./Todos.scss";
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import TodoItem from "./TodoItem";
 import axios from "axios";
+import { AppContext } from "../../App";
 
 function TodoList() {
     const [todos, setTodos] = useState([]);
     const [userInput, setUserInput] = useState("");
+    const { userId } = useContext(AppContext);
+    console.log(userId);
+    useEffect(() => {
+        axios
+            .get("api/todo?created_by=" + userId)
+            .then(response => setTodos(response.data))
+            .catch(err => console.log(err));
+    }, []);
 
     const addTodo = e => {
         e.preventDefault();
 
         const newTodo = {
             value: userInput,
-            isCompleted: false
+            isCompleted: false,
+            created_by: userId
         };
 
-        setUserInput("");
-        setTodos([newTodo, ...todos]);
         // send to API
-        axios
-            .post("api/todo", newTodo)
-            .then(response => console.log(response.data));
+        axios.post("api/todo", newTodo).then(response => {
+            setTodos([response.data, ...todos]);
+            setUserInput("");
+        });
     };
 
     const markCompleted = id => {
@@ -34,6 +43,17 @@ function TodoList() {
         );
 
         // send to API
+    };
+    const deleteCompleted = values => {
+        console.log("deleting this todo", values._id);
+        axios
+            .delete(`/api/todo/${values._id}?created_by=${userId}`)
+            .then(response => {
+                setTodos([
+                    ...todos.filter(todo => todo._id !== response.data._id)
+                ]);
+            })
+            .catch(err => console.log(err));
     };
 
     return (
@@ -57,6 +77,7 @@ function TodoList() {
                         key={todo.id}
                         values={todo}
                         markCompleted={markCompleted}
+                        deleteCompleted={deleteCompleted}
                     />
                 ))}
             </ul>
