@@ -3,8 +3,26 @@ import moment from "moment";
 import "./Styles/index.scss";
 import CalendarNavigation from "./Components/CalenderNav/CalendarNavigation";
 import CalendarHeader from "./Components/CalendarHeaders/WeekDayHeaders";
+import DaySlot from './Components/DaySlot/DaySlot'
+
+
+
 
 function Calendar(props) {
+  const [Events, setEvents] = useState([
+    {
+      start_date: '20190704T0930',
+      title: 'USA Party',
+      description: "Yeah, it's a party",
+      created_by: "5d192694fdc1f13c2001bde0"
+    },
+    {
+      start_date: '20190601T2000',
+      title: 'First',
+      created_by: "5d192694fdc1f13c2001bde0"
+    }
+  ])
+
   const [DateContext, setDateContext] = useState(moment());
   const [View, setView] = useState("month");
 
@@ -16,7 +34,6 @@ function Calendar(props) {
   const PrevMonth = moment(DateContext).subtract(1, 'month')
   const PrevMonthDays = PrevMonth.daysInMonth();
   const NextMonth = moment(DateContext).add(1, 'month')
-  const NextMonthDays = NextMonth.daysInMonth();
   const CurrentDate = DateContext.get("date");
   // const currentDay = DateContext.format("D");
 
@@ -37,8 +54,9 @@ function Calendar(props) {
 
   const blanks = [];
   for (let i = 0; i < firstDayOfTheMonth; i++) {
-    blanks.push(<div key={`blank${i}`} className="empty">{PrevMonthDays - i}</div>);
+    blanks.push(<DaySlot key={`blank${i}`} classToUse="empty" data={PrevMonthDays - i} />);
   }
+ 
 
   const calendarDays = [];
   for (let d = 1; d <= DaysInMonth; d++) {
@@ -47,10 +65,24 @@ function Calendar(props) {
       d === CurrentDate
         ? "day currentDay"
         : "day";
+
+    const DayEvents = Events.filter(ev => {
+      if (moment(ev.start_date).format('YYYYMM') === DateContext.format('YYYYMM')) {
+        if (parseInt(moment(ev.start_date).format('D')) === d) {
+          return ev;
+        }
+      }
+    })
+    
     calendarDays.push(
-      <div key={d} className={myClass}>
-        <span>{d}</span>
-      </div>
+      <DaySlot key={d} classToUse={myClass} data={d}>
+        {DayEvents.map(event => (
+          <div key={event.start_date} className="eventThumb">
+            <h2>{event.title}</h2>
+            <span className="time">{moment(event.start_date).format('h:mm')}</span>
+          </div>
+        ))}
+      </DaySlot>
     );
   }
 
@@ -60,23 +92,17 @@ function Calendar(props) {
 
   totalSlots.forEach((row, i) => {
     if (i === 0 || i % 7 !== 0) {
-      // if it's not the 7th, add to cells array
       cells.push(row);
     } else {
-      // if it's the seventh, create a newRow from the current cells
-      // and push it to rows
       let newRow = cells.slice();
       rows.push(newRow);
-      // clear out cells & add this cell to the next row
       cells = [];
       cells.push(row);
     }
     if (i === totalSlots.length - 1) {
-      // if it's the last row, check to see if there are empty spots left
       const blanksToFill = 7 - cells.length;
-
       for (let i = 0; i < blanksToFill; i++) {
-        cells.push(<div key={`blankEnd${i}`} className="empty">{i + 1}</div>);
+        cells.push(<DaySlot key={`blankEnd${i}`} classToUse="empty" data={i + 1} />);
       }
 
       let insertRow = cells.slice();
