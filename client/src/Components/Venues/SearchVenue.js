@@ -13,10 +13,11 @@ export default function SearchVenue() {
     const [venueList, setVenueList] = useState([]);
 
     const { userId } = useContext(AppContext);
+    console.log(userId);
 
     useEffect(() => {
         axios
-            .get("/api/venue")
+            .get("/api/venue?created_by=" + userId)
             .then(res => setVenueList(res.data))
             .catch();
     }, []);
