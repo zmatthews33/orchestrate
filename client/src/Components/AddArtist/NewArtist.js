@@ -1,54 +1,65 @@
-import React, { useState, useEffect } from "react";
-
-import "./NewArtist.scss";
-import AddArtist from "./AddArtist";
+import React, { useState, useContext } from "react";
+import { Redirect } from "react-router-dom";
+import Form from "./Form";
+import { AppContext } from "../../App";
+import axios from "axios";
 //import BandList from "../BandList/BandList";
 
 function NewArtist() {
-    const [artist, setArtist] = useState([]);
-    useEffect(() => {
-        console.log(artist);
-    }, [artist]);
-    const handleArtistSubmit = e => {
-        e.preventDefault();
-        console.log(e.target.artist_type);
-        
-        // const {
-        //     artist_type,
-        //     name,
-        //     band_members,
-        //     email,
-        //     phone,
-        //     address,
-        //     genre,
-        //     bio,
-        //     socials,
-        //     photos
-        // } = e.target;
+    const { userId } = useContext(AppContext);
 
-        // const newArtist = {
-        //     id: Math.random() + 1,
-        //     artist_type: artist_type.value,
-        //     name: name.value,
-        //     band_members: band_members.value,
-        //     email: email.value,
-        //     phone: phone.value,
-        //     address: address.value,
-        //     genre: genre.value,
-        //     bio: bio.value,
-        //     socials: socials.value,
-        //     photos: photos.value
-        // };
-        // console.log(newArtist);
-        // setArtist([newArtist, ...artist]);
-        // insert api call to add a new artist to artist list
+    const handleSubmit = event => {
+        event.preventDefault();
+        console.log(event.target);
+        const {
+            name,
+            genre,
+            band_member1,
+            band_member2,
+            band_member3,
+            band_member4,
+            band_member5,
+            email,
+            bio,
+            profile_img,
+            facebook_link,
+            instagram_link,
+            website_link,
+            streaming_link
+        } = event.target;
+
+        const newArtist = {
+            name: name.value,
+            members: [
+                band_member1.value,
+                band_member2.value,
+                band_member3.value,
+                band_member4.value,
+                band_member5.value
+            ],
+            genres: genre.value,
+            bio: bio.value,
+            email: email.value,
+            links: [
+                facebook_link.value,
+                instagram_link.value,
+                website_link.value,
+                streaming_link.value,
+                profile_img.value
+            ],
+
+            created_by: userId
+        };
+
+        axios
+            .post("/api/artist", newArtist)
+            .then(response => (window.location = "/bands"));
     };
 
-    console.log("", artist);
     return (
         <div className="artist-list">
             {/* adding new artist */}
-            <AddArtist handleArtistSubmit={handleArtistSubmit} />
+            <Form handleSubmit={e => handleSubmit(e)} />
             {/* Reading from state */}
         </div>
     );

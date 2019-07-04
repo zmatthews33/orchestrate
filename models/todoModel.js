@@ -5,6 +5,7 @@ const todoSchema = new Schema(
     {
         value: { type: String, required: true },
         isCompleted: { type: Boolean, require: true, default: false },
+        created_by: { type: String, required: true }
     },
     { autoCreate: true }
 );

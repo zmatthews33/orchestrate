@@ -1,4 +1,6 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback, useEffect, useContext } from "react";
+
+import { AppContext } from "../../App";
 
 // import SongKickAPI from "./SongKickAPI";
 import axios from "axios";
@@ -10,9 +12,12 @@ export default function SearchVenue() {
     const [search, setSearch] = useState("");
     const [venueList, setVenueList] = useState([]);
 
+    const { userId } = useContext(AppContext);
+    console.log(userId);
+
     useEffect(() => {
         axios
-            .get("/api/venue")
+            .get("/api/venue?created_by=" + userId)
             .then(res => setVenueList(res.data))
             .catch();
     }, []);
@@ -77,7 +82,8 @@ export default function SearchVenue() {
             state: metroArea.state.displayName,
             zip_code: zip,
             country: metroArea.country.displayName,
-            capacity: capacity
+            capacity: capacity,
+            created_by: userId
         };
         // console.log(response[index]);
         // console.log(newVenue);
@@ -91,9 +97,8 @@ export default function SearchVenue() {
                 .then(response => setVenueList([response.data, ...venueList]));
 
             setSearch("");
-        }
-        else {
-            alert("You've already added " + displayName)
+        } else {
+            alert("You've already added " + displayName);
         }
     };
 
