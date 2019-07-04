@@ -1,8 +1,8 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { Page } from "../Components/Containers";
 import { CardView } from "../Components/Containers";
-import Calendar from '../Components/Calendar/Calendar'
-import Modal from '../Components/Modal/Modal'
+import Calendar from "../Components/Calendar/Calendar";
+import Modal from "../Components/Modal/Modal";
 
 function Events({ match }) {
   const [events, setEvents] = useState([
@@ -24,14 +24,14 @@ function Events({ match }) {
   const [ModalOpen, setModalOpen] = useState(false);
 
   const toggleModal = () => {
-    setModalOpen(!ModalOpen)
-  }
-  
+    setModalOpen(!ModalOpen);
+  };
+
   useEffect(() => {
     if (match.params.eventId) {
-      setModalOpen(true)
+      setModalOpen(true);
     }
-  }, [match])
+  }, [match]);
 
   return (
     <Page>
@@ -40,7 +40,7 @@ function Events({ match }) {
           style={{
             height: "70vh",
             minHeight: "400px",
-            width: "70vw",
+            width: "70vw"
           }}
         >
           <Calendar events={events} />
@@ -49,13 +49,21 @@ function Events({ match }) {
       {ModalOpen && (
         <Modal closeModal={toggleModal}>
           {match.params.eventId ? (
-            <span>
-              <h1>Event here...</h1>
-            </span>
+            events.map(event => {
+              if (event._id === match.params.eventId) {
+                return (
+                  <div key={event._id}>
+                    <h1>{event.title}</h1>
+                    <p>{event.description}</p>
+                  </div>
+                );
+              }
+            })
           ) : (
             <h1>Form...</h1>
           )}
-        </Modal>)}
+        </Modal>
+      )}
     </Page>
   );
 }
