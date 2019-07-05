@@ -1,7 +1,7 @@
-import React, { useReducer } from "react";
+import React, { useReducer, useEffect } from "react";
 import axios from "axios";
 
-export default function AddArtist() {
+export default function AddArtist({userId}) {
 
   const InitState = {
     name: "",
@@ -10,7 +10,8 @@ export default function AddArtist() {
     email: "",
     bio: "",
     links: [""],
-    profile_img: ""
+    profile_img: "",
+    created_by: ""
   };
 
   const reducer = (state, newState) => {
@@ -18,6 +19,10 @@ export default function AddArtist() {
   };
 
   const [State, setState] = useReducer(reducer, InitState);
+
+  useEffect(() => {
+    if (userId) setState({ created_by: userId})
+  }, [userId])
 
   const handleInputChange = event => {
     let { value, name } = event;
@@ -40,7 +45,8 @@ export default function AddArtist() {
     e.preventDefault();
     axios
       .post("/api/artist", State)
-      .then(response => (window.location = "/artists"));
+      .then(response => console.log(response))
+      .catch(err => console.log(err))
   };
 
   const addMember = () => {
@@ -93,7 +99,7 @@ export default function AddArtist() {
             onChange={e => handleInputChange(e.target)}
             value={mem}
           />))}
-          <div onClick={() => addMember()}>Add Member</div>
+          <div className="addMore" onClick={() => addMember()}><i className="fas fa-user-plus"></i> Add Member</div>
         </div>
 
         <div className="formGroup">
@@ -127,6 +133,7 @@ export default function AddArtist() {
           <label>Link(s):</label>
           {State.links.map((link, idx) => (
             <input
+            key={`links${idx}`}
             type="text"
             placeholder="URL"
             name={`links-${idx}`}
@@ -134,7 +141,7 @@ export default function AddArtist() {
             value={link}
           />
           ))}
-          <div onClick={() => addLink()}>Add Link</div>
+          <div className="addMore" onClick={() => addLink()}><i className="fas fa-plus-square"></i> Add Link</div>
         </div>
         <div className="formAction">
           <button className="btn-submit" type="submit">

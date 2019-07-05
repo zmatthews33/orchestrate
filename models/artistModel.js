@@ -4,15 +4,15 @@ const Schema = mongoose.Schema;
 const artistSchema = new Schema(
   {
     name: { type: String, required: true },
-    members: [],
-    genre: { type: String, required: false },
+    members: [{type: String }],
+    genre: { type: String },
     bio: { type: String },
     email: { type: String },
     links: [{ type: String }],
-    isActive: { type: Boolean, defaultValue: true, required: false },
+    isActive: { type: Boolean, defaultValue: true },
     profile_img: String,
     //team: [{ type: Schema.Types.ObjectId, ref: "Person" }],
-    created_by: { type: Schema.Types.ObjectId, ref: "User" }
+    created_by: { type: Schema.Types.ObjectId, ref: "User", required: true }
   },
   { autoCreate: true }
 );
