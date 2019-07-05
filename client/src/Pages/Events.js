@@ -60,7 +60,16 @@ function Events({ match }) {
               }
             })
           ) : (
-            <h1>Form...</h1>
+            <div>
+              <h1>Create An Event</h1>
+              <form>
+                <div className="formGroup">
+                  <label>Title</label>
+                  <input />
+                </div>
+              </form>
+            </div>
+            
           )}
         </Modal>
       )}
