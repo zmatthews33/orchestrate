@@ -1,15 +1,19 @@
 import React from "react";
 
-const TodoItem = ({ values, markCompleted, deleteCompleted }) => {
-  const style = values.isCompleted ? { textDecoration: "line-through" } : {};
-
-  return (
-    <li style={style} className="toDoItem">
-      <span>{values.value}</span>
-      <button onClick={() => markCompleted(values.id)}>O</button>
-      <button onClick={() => deleteCompleted(values)}>delete</button>
-    </li>
-  );
-};
+const TodoItem = ({ values, markCompleted, deleteCompleted }) => (
+  <li className="toDoItem">
+    <button onClick={() => markCompleted(values._id)}>
+      {values.isCompleted ? (
+        <i className="far fa-check-circle" />
+      ) : (
+        <i className="far fa-circle" />
+      )}
+    </button>
+    <span>{values.value}</span>
+    <button className="delete" onClick={() => deleteCompleted(values._id)}>
+      <i className="fas fa-times" />
+    </button>
+  </li>
+);
 
 export default TodoItem;
