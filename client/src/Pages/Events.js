@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useReducer, useContext } from "react";
 import { Page } from "../Components/Containers";
-import { CardView } from "../Components/Containers";
+import { Card } from "../Components/Containers";
 import Calendar from "../Components/Calendar/Calendar";
 import Modal from "../Components/Modal/Modal";
 import EventForm from "../Components/Calendar/Components/EventForm";
@@ -40,7 +40,12 @@ function Events({ match }) {
 
   return (
     <Page>
-      <CardView>
+      <div className="pageHeader">
+      <h1>Events</h1>
+      <button className="addItem" onClick={(() => toggleModal())}><i className="fas fa-plus"></i> Add Event</button>
+      </div>
+      
+      <Card>
         <div
           style={{
             height: "70vh",
@@ -50,7 +55,7 @@ function Events({ match }) {
         >
           <Calendar events={State.events} toggleModal={toggleModal} />
         </div>
-      </CardView>
+      </Card>
       {State.modalOpen && (
         <Modal closeModal={toggleModal} returnLink="events">
           {match.params.eventId ? (

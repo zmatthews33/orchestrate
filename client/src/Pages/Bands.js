@@ -44,9 +44,11 @@ function Bands() {
 
   return (
     <Page>
-      <h1>Artists</h1>
+      <div className="pageHeader">
+        <h1>Artists</h1>
+        <button className="addItem" onClick={() => toggleModal()}><i className="fas fa-plus"></i> Add an artist</button>
+      </div>
       <BandList bands={State.bands} deleteBand={deleteBand} />
-      <button onClick={() => toggleModal()}>Add an artist</button>
       {State.modalOpen && (
         <Modal closeModal={toggleModal} returnLink="artists">
           <AddArtist userId={userId} />
