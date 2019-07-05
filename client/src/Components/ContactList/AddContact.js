@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer } from "react";
+import React, { useReducer } from "react";
 import "./AddContact.scss";
 export default function AddContact({
   name,
@@ -12,7 +12,7 @@ export default function AddContact({
 }) {
   const [userInput, setUserInput] = useReducer(
     (state, newState) => ({ ...state, ...newState }),
-    {  
+    {
       first_name: "",
       last_name: "",
       phone: "",
