@@ -2,7 +2,7 @@ import React, { useState, useCallback } from "react";
 import axios from "axios";
 import SearchResultCard from "./SearchResultCard";
 
-export default function SearchVenue({ addVenue }) {
+export default function SearchVenue({ addVenue, existingVenues, deleteVenue }) {
   const [response, setResponse] = useState([]);
   const [search, setSearch] = useState("");
 
@@ -32,6 +32,15 @@ export default function SearchVenue({ addVenue }) {
     }
   };
 
+  const AddOrRemove = (exists, venue) => {
+    if (!exists) {
+      addVenue(venue)
+    } else {
+      const existing = existingVenues.find(ven => ven.street === venue.street);
+      deleteVenue(existing._id)
+    }
+  }
+
   return (
     <div className="venueSearchWrapper">
       <h3>Search for Venues</h3>
@@ -45,13 +54,20 @@ export default function SearchVenue({ addVenue }) {
         <button type="submit">Search</button>
       </form>
       <ul className="searchResults">
-        {response.map((venue, index) => (
-          <SearchResultCard
+        {response.map((venue, index) => {
+          const existing = existingVenues.find(ven => ven.street === venue.street);
+          const exists = (existing) ? true : false;
+          
+          return (
+            <SearchResultCard
             key={index}
             venue={venue}
-            handleClick={() => addVenue(venue)}
+            exists={exists}
+            addOrRemove={AddOrRemove}
           />
-        ))}
+          )
+        })}
+         
       </ul>
     </div>
   );
