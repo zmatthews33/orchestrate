@@ -17,8 +17,7 @@
     margin: 10vh 0;
     padding: 4vmin;
     width: 60vw;
-    max-width: 800px;
-    max-height: 80vh;
+    
     background: rgba(white, .9);
     border-radius: 16px;
     position: relative;
@@ -41,6 +40,14 @@
       &:hover {
         color: $bright;
       }
+    }
+
+    .modalContent {
+      max-width: 800px;
+      min-width: 440px;
+      min-height: 40vh;
+      max-height: 80vh;
+      overflow: scroll;
     }
   }
 

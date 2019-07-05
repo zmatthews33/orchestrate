@@ -1,47 +1,80 @@
-import React, { useReducer } from "react";
+import React, { useReducer, useContext } from "react";
+import axios from "axios";
+import { AppContext } from "../../../App";
 
-function EventForm() {
+function EventForm({toggleModal}) {
+  const { userId } = useContext(AppContext);
   const InitForm = {
-    title: null,
-    start_date: null,
-    end_data: null,
-    description: null,
-    artists: null,
-    event_type: null
+    title: "",
+    start_date: "",
+    end_date: "",
+    description: "",
+    artists: [],
+    event_type: "",
+    created_by: userId
   };
+
+  console.log(userId)
 
   const reducer = (state, newState) => {
     return { ...state, ...newState };
   };
 
-  const [FormState, setFormState] = useReducer(reducer, InitForm);
+  const [State, setState] = useReducer(reducer, InitForm);
+
+  const HandleChange = e => {
+    const keyVal = e.target.name;
+    const inputVal = e.target.value;
+    setState({ [keyVal]: inputVal });
+  };
 
   const SubmitForm = e => {
     e.preventDefault();
+    if (State.title && State.start_date) {
+      axios
+        .post("/api/event", JSON.stringify(State))
+        .then(res => toggleModal());
+    } else {
+      alert("Title and date must be provided.");
+    }
   };
 
   return (
     <div>
       <h2>Create Event</h2>
-      <form>
+      <form onSubmit={e => SubmitForm(e)}>
         <div className="formGroup">
           <label>Title</label>
-          <input type="text" name="title" />
+          <input
+            type="text"
+            name="title"
+            value={State.title}
+            onChange={e => HandleChange(e)}
+          />
         </div>
 
         <div className="formGroup">
           <label>Date</label>
-          <input type="date" name="start_date" />
+          <input
+            type="datetime-local"
+            name="start_date"
+            value={State.start_date}
+            onChange={e => HandleChange(e)}
+          />
         </div>
 
         <div className="formGroup">
           <label>Description</label>
-          <textarea name="description" />
+          <textarea
+            name="description"
+            value={State.description}
+            onChange={e => HandleChange(e)}
+          />
         </div>
 
         <div className="formAction">
           <button className="btn-submit" type="submit">
-            Sign in
+            Save
           </button>
         </div>
       </form>

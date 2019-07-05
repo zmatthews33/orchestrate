@@ -9,20 +9,20 @@ function Events({ match }) {
   const [events, setEvents] = useState([
     {
       _id: "1234",
-      start_date: "20190704T0930",
+      start_date: "2019-07-04T09:30",
       title: "USA Party",
       description: "Yeah, it's a party",
       created_by: "5d192694fdc1f13c2001bde0"
     },
     {
       _id: "4321",
-      start_date: "20190601T2000",
+      start_date: "2019-06-01T20:00",
       title: "First",
       created_by: "5d192694fdc1f13c2001bde0"
     }
   ]);
 
-  const [ModalOpen, setModalOpen] = useState(true);
+  const [ModalOpen, setModalOpen] = useState(false);
 
   const toggleModal = () => {
     setModalOpen(!ModalOpen);

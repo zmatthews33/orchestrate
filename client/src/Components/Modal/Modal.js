@@ -8,7 +8,9 @@ const Modal = ({ children, closeModal }) => (
       <Link to="/events/" onClick={() => closeModal()} className="closeModal">
         <i className="fas fa-times" />
       </Link>
-      <div className="modalContent">{children}</div>
+      <div className="modalContent">
+        {children}
+      </div>
     </div>
   </div>
 );
