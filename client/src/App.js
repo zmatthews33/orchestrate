@@ -60,8 +60,8 @@ function App() {
             )}
             {loggedIn.loggedIn ? (
               <Switch>
-                <Route path="/bands" component={Bands} />
-                <Route path="/band" component={Band} />
+                <Route path="/artists" component={Bands} />
+                <Route path="/artist" component={Band} />
                 <Route path="/addartist" component={NewArtistPage} />
                 <Route path="/events/:eventId?" component={Events} />
                 <Route path="/profile" component={Profile} />

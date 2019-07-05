@@ -37,13 +37,13 @@ function SideNavigation({ loggedIn, smallScreen, setNavToggled }) {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/bands" onClick={() => setNavToggled(false)}>
-              <span>Bands</span>
+            <NavLink to="/artists" onClick={() => setNavToggled(false)}>
+              <span>Artists</span>
             </NavLink>
           </li>
           <li>
             <NavLink to="/todos" onClick={() => setNavToggled(false)}>
-              <span>Todos</span>
+              <span>Reminders</span>
             </NavLink>
           </li>
           <li>

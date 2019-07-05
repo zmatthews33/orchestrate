@@ -52,7 +52,7 @@ function Events({ match }) {
         </div>
       </CardView>
       {State.modalOpen && (
-        <Modal closeModal={toggleModal}>
+        <Modal closeModal={toggleModal} returnLink="events">
           {match.params.eventId ? (
             State.events.map(event => {
               if (event._id === match.params.eventId) {

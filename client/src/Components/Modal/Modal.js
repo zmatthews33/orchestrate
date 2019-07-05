@@ -2,10 +2,10 @@ import React from "react";
 import "./Modal.scss";
 import {Link} from 'react-router-dom'
 
-const Modal = ({ children, closeModal }) => (
+const Modal = ({ children, closeModal, returnLink }) => (
   <div className="modalBackground">
     <div className="modalWindow">
-      <Link to="/events/" onClick={() => closeModal()} className="closeModal">
+      <Link to={`/${returnLink}`} onClick={() => closeModal()} className="closeModal">
         <i className="fas fa-times" />
       </Link>
       <div className="modalContent">
