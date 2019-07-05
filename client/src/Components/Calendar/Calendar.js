@@ -84,7 +84,7 @@ function Calendar({ events, toggleModal }) {
         {DayEvents.map(event => (
           <Link
             to={`/events/${event._id}`}
-            key={event.start_date}
+            key={event._id}
             className="eventThumb"
           >
             <h2>{event.title}</h2>

@@ -1,15 +1,15 @@
 import { useState, useEffect, useContext } from "react";
 import axios from "axios";
-import {AppContext} from '../App';
+import { AppContext } from "../App";
 
 // api call takes in the type, api url, and any data values to send
 const useAPI = (type, url, values) => {
-  const {userId} = useContext(AppContext);
   const [response, setResponse] = useState(null);
-
-  const NewValues = {...values, ...{created_by: userId}}
+  const {userId} = useContext(AppContext)
 
   useEffect(() => {
+    const NewValues = {...values, ...{created_by: userId}}
+    
     switch (type) {
       case "get":
         axios
@@ -42,7 +42,7 @@ const useAPI = (type, url, values) => {
       default:
         console.log("no type passed");
     }
-  }, [type, url, values, NewValues]);
+  }, [type, url, values, userId]);
 
   return response;
 };

@@ -1,36 +1,40 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useReducer, useContext } from "react";
 import { Page } from "../Components/Containers";
 import { CardView } from "../Components/Containers";
 import Calendar from "../Components/Calendar/Calendar";
 import Modal from "../Components/Modal/Modal";
-import EventForm from '../Components/Calendar/Components/EventForm';
+import EventForm from "../Components/Calendar/Components/EventForm";
+import useAPI from "../Utils/useAPI";
+import { AppContext } from "../App";
 
 function Events({ match }) {
-  const [events, setEvents] = useState([
-    {
-      _id: "1234",
-      start_date: "2019-07-04T09:30",
-      title: "USA Party",
-      description: "Yeah, it's a party",
-      created_by: "5d192694fdc1f13c2001bde0"
-    },
-    {
-      _id: "4321",
-      start_date: "2019-06-01T20:00",
-      title: "First",
-      created_by: "5d192694fdc1f13c2001bde0"
-    }
-  ]);
+  const { userId } = useContext(AppContext);
+  const EventData = useAPI("get", `/api/event?created_by=${userId}`);
 
-  const [ModalOpen, setModalOpen] = useState(false);
+  const InitState = {
+    events: [],
+    modalOpen: false
+  };
+
+  const reducer = (state, newState) => {
+    return { ...state, ...newState };
+  };
+
+  const [State, setState] = useReducer(reducer, InitState);
+
+  useEffect(() => {
+    if (EventData) {
+      setState({ events: EventData })
+    }
+  }, [EventData])
 
   const toggleModal = () => {
-    setModalOpen(!ModalOpen);
+    setState({ modalOpen: !State.modalOpen });
   };
 
   useEffect(() => {
     if (match.params.eventId) {
-      setModalOpen(true);
+      setState({ modalOpen: true });
     }
   }, [match]);
 
@@ -44,13 +48,13 @@ function Events({ match }) {
             width: "70vw"
           }}
         >
-          <Calendar events={events} toggleModal={toggleModal} />
+          <Calendar events={State.events} toggleModal={toggleModal} />
         </div>
       </CardView>
-      {ModalOpen && (
+      {State.modalOpen && (
         <Modal closeModal={toggleModal}>
           {match.params.eventId ? (
-            events.map(event => {
+            State.events.map(event => {
               if (event._id === match.params.eventId) {
                 return (
                   <div key={event._id}>
@@ -61,7 +65,7 @@ function Events({ match }) {
               }
             })
           ) : (
-            <EventForm />
+            <EventForm toggleModal={toggleModal} />
           )}
         </Modal>
       )}

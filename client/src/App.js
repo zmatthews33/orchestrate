@@ -37,8 +37,9 @@ function App() {
     return "contentContainer";
   };
 
+
   return (
-    <AppContext.Provider value={loggedIn}>
+    <AppContext.Provider value={{loggedIn: loggedIn.loggedIn, userId: loggedIn.userId}}>
       <div className="appContainer">
         <Router>
           {loggedIn.loggedIn && (

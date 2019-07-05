@@ -14,8 +14,6 @@ function EventForm({toggleModal}) {
     created_by: userId
   };
 
-  console.log(userId)
-
   const reducer = (state, newState) => {
     return { ...state, ...newState };
   };
@@ -32,7 +30,7 @@ function EventForm({toggleModal}) {
     e.preventDefault();
     if (State.title && State.start_date) {
       axios
-        .post("/api/event", JSON.stringify(State))
+        .post("/api/event", State)
         .then(res => toggleModal());
     } else {
       alert("Title and date must be provided.");
