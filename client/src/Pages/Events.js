@@ -28,6 +28,11 @@ function Events({ match }) {
     }
   }, [EventData])
 
+  const addEvent = event => {
+    const newEvents = [...State.events, event]
+    setState({events: newEvents, modalOpen: false})
+  }
+
   const toggleModal = () => {
     setState({ modalOpen: !State.modalOpen });
   };
@@ -70,7 +75,7 @@ function Events({ match }) {
               }
             })
           ) : (
-            <EventForm toggleModal={toggleModal} />
+            <EventForm toggleModal={toggleModal} addEvent={addEvent} />
           )}
         </Modal>
       )}
