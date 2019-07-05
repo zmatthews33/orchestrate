@@ -18,7 +18,6 @@ import Todos from "./Pages/Todos";
 import Profile from "./Pages/Profile";
 import Venues from "./Pages/Venues";
 import Contacts from "./Pages/Contacts";
-import NewArtistPage from "./Pages/NewArtistPage";
 import useWindow from "./Utils/useWindow";
 import "./Styles/index.scss";
 
@@ -60,9 +59,8 @@ function App() {
             )}
             {loggedIn.loggedIn ? (
               <Switch>
-                <Route path="/bands" component={Bands} />
-                <Route path="/band" component={Band} />
-                <Route path="/addartist" component={NewArtistPage} />
+                <Route path="/artists" component={Bands} />
+                <Route path="/artist" component={Band} />
                 <Route path="/events/:eventId?" component={Events} />
                 <Route path="/profile" component={Profile} />
                 <Route path="/todos" component={Todos} />

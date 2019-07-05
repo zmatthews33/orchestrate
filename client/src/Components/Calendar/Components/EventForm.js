@@ -2,7 +2,7 @@ import React, { useReducer, useContext } from "react";
 import axios from "axios";
 import { AppContext } from "../../../App";
 
-function EventForm({toggleModal}) {
+function EventForm({addEvent}) {
   const { userId } = useContext(AppContext);
   const InitForm = {
     title: "",
@@ -31,7 +31,7 @@ function EventForm({toggleModal}) {
     if (State.title && State.start_date) {
       axios
         .post("/api/event", State)
-        .then(res => toggleModal());
+        .then(res => addEvent(res.data));
     } else {
       alert("Title and date must be provided.");
     }

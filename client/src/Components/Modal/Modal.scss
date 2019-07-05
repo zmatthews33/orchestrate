@@ -14,14 +14,17 @@
   color: darken($darkPrimary, 8);
 
   .modalWindow {
-    margin: 10vh 0;
-    padding: 4vmin;
+    flex: 1;
+    margin: 4vmin;
+    padding: 4vmin 4vmin 0 4vmin;
     width: 60vw;
-    
+    max-width: 860px;
     background: rgba(white, .9);
     border-radius: 16px;
     position: relative;
     box-shadow: 1px 0 8px rgba(darken($darkPrimary, 8), 0.3);
+    display: flex;
+    justify-content: center;
 
     .closeModal {
       position: absolute;
@@ -43,7 +46,7 @@
     }
 
     .modalContent {
-      max-width: 800px;
+      flex: 1;
       min-width: 440px;
       min-height: 40vh;
       max-height: 80vh;
