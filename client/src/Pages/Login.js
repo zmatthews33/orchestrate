@@ -60,7 +60,7 @@ function Login() {
           </div>
 
           <div className="formAction">
-            <button className="btn-submit" type="submit">
+            <button className="blueButton" type="submit">
               Sign in
             </button>
             <Link className="signup-now" to="/signup">
