@@ -1,8 +1,6 @@
 import React from "react";
 
-export default function VenueList({ venue, btnType, handleClick }) {
-  return (
-    <div className="venueList_">
+const Venue = ({ venue }) => (
       <ul className="venueList_item">
         <li>{venue.name}</li>
         <li>
@@ -15,9 +13,12 @@ export default function VenueList({ venue, btnType, handleClick }) {
           </a>
         </li>
       </ul>
-      <button value={venue.id} onClick={handleClick}>
-        {btnType}
-      </button>
-    </div>
+     
   );
-}
+
+  export default Venue
+
+
+// <button value={venue.id} onClick={handleClick}>
+// {btnType}
+// </button>

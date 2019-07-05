@@ -7,7 +7,6 @@ const venueSchema = new Schema(
         phone: { type: String, required: false },
         website: { type: String, required: false },
         street: { type: String, required: true },
-        // address_line2: { type: String, required: true },
         city: { type: String, required: true },
         state: { type: String, required: true },
         zip_code: { type: String, required: true },
