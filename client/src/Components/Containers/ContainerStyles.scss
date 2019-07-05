@@ -36,7 +36,6 @@
 .bandCard {
   flex: 1;
   border-radius: 20px;
-  background: white;
   color: $darkPrimary;
   display: flex;
   flex-direction: column;
@@ -50,14 +49,17 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    background-color: rgba($white, 0.8);
   }
 
   .bandContent {
+    flex: 1;
     padding: 20px;
     display: flex;
     flex-direction: column;
     width: 100%;
     font-size: 1em;
+    background: white;
 
     h2 {
       font-size: 1.5em;

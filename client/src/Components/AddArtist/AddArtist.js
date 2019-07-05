@@ -1,7 +1,7 @@
 import React, { useReducer, useEffect } from "react";
 import axios from "axios";
 
-export default function AddArtist({userId}) {
+export default function AddArtist({userId, addArtist}) {
 
   const InitState = {
     name: "",
@@ -45,7 +45,7 @@ export default function AddArtist({userId}) {
     e.preventDefault();
     axios
       .post("/api/artist", State)
-      .then(response => console.log(response))
+      .then(response => addArtist(response.data))
       .catch(err => console.log(err))
   };
 

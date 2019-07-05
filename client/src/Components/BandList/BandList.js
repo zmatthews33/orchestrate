@@ -3,12 +3,12 @@ import { BandCard } from "../Containers/index";
 
 const BandList = ({ bands, deleteBand }) => {
   return (
-    <div class="bandList">
+    <div className="bandList">
       {bands.map(band => (
         <BandCard key={band._id}>
           <div
             className="bandHeader"
-            style={{ backgroundImage: `url(${band.profile_img})` }}
+            style={band.profile_img ? { backgroundImage: `url(${band.profile_img})` } : {}}
           />
           <div className="bandContent">
             <h2>{band.name}</h2>

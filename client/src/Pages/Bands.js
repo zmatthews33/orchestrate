@@ -33,25 +33,33 @@ function Bands() {
     setState({ modalOpen: !State.modalOpen });
   };
 
+  const addArtist = band => {
+    const newBands = [...State.bands, band]
+    setState({bands: newBands, modalOpen: false})
+  }
+
   const deleteBand = id => {
     axios
       .delete(`/api/artist/${id}`)
-      .then(res =>
-        setState({ bands: [...State.bands.filter(band => band._id !== id)] })
-      )
-      .catch(err => console.log(err));
+      .then(res => {
+        const UpdatedBands = State.bands.filter(band => band._id !== id);
+        setState({ bands: UpdatedBands });
+      })
+      .catch(err => console.log('error!'));
   };
 
   return (
     <Page>
       <div className="pageHeader">
         <h1>Artists</h1>
-        <button className="addItem" onClick={() => toggleModal()}><i className="fas fa-plus"></i> Add an artist</button>
+        <button className="addItem" onClick={() => toggleModal()}>
+          <i className="fas fa-plus" /> Add an artist
+        </button>
       </div>
       <BandList bands={State.bands} deleteBand={deleteBand} />
       {State.modalOpen && (
         <Modal closeModal={toggleModal} returnLink="artists">
-          <AddArtist userId={userId} />
+          <AddArtist userId={userId} addArtist={addArtist} />
         </Modal>
       )}
     </Page>
