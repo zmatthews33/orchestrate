@@ -27,12 +27,13 @@ export default function AddContact({
     const { value, name } = e.target;
     setUserInput({ [name]: value });
   };
-  const [response, setResponse] = useState([]);
-  const [search, setSearch] = useState("");
+  //const [response, setResponse] = useState([]);
+  //const [search, setSearch] = useState("");
 
-  useEffect(() => {
-    console.log(response);
-  }, [response]);
+  // useEffect(() => {
+  //   console.log(response);
+  // }, [response]);
+
   return (
     <div id="add-new-contact">
       <form onSubmit={handleContactSubmit}>

@@ -1,16 +1,13 @@
-import React, { useState, useContext } from "react";
-import { Redirect } from "react-router-dom";
+import React, { useContext } from "react";
 import Form from "./Form";
 import { AppContext } from "../../App";
 import axios from "axios";
-//import BandList from "../BandList/BandList";
 
 function NewArtist() {
     const { userId } = useContext(AppContext);
 
     const handleSubmit = event => {
         event.preventDefault();
-        console.log(event.target);
         const {
             name,
             genre,

@@ -9,10 +9,7 @@ function useLoggedIn() {
 		if (localStorage.jwtToken) {
 			const token = localStorage.jwtToken;
 	
-			const decoded = jwt_decode(token);
-
-			console.log(decoded)
-	
+			const decoded = jwt_decode(token)	
 			// Check for expired token
 			const currentTime = Date.now() / 1000; // to get in milliseconds
 	
