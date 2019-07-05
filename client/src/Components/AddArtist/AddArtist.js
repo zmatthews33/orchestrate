@@ -1,165 +1,142 @@
 import React, { useReducer } from "react";
+import axios from "axios";
 
-export default function AddArtist({ artist, handleSubmit }) {
-  const [userInput, setUserInput] = useReducer(
-    (state, newState) => ({ ...state, ...newState }),
-    {
-      name: "",
-      genre: "",
-      band_member1: "",
-      band_member2: "",
-      band_member3: "",
-      band_member4: "",
-      band_member5: "",
-      email: "",
-      bio: "",
-      socials: {
-        facebook: "",
-        instagram: "",
-        website: ""
-      },
-      photos: ""
-    }
-  );
+export default function AddArtist() {
+
+  const InitState = {
+    name: "",
+    genre: "",
+    members: [""],
+    email: "",
+    bio: "",
+    links: [""],
+    profile_img: ""
+  };
+
+  const reducer = (state, newState) => {
+    return { ...state, ...newState };
+  };
+
+  const [State, setState] = useReducer(reducer, InitState);
 
   const handleInputChange = event => {
-    const { value, name } = event;
-    setUserInput({ [name]: value });
+    let { value, name } = event;
+    if (name.includes("members")) {
+      let newMembers = [...State.members];
+      const idx = parseInt(name.charAt(name.length - 1));
+      newMembers[idx] = value;
+      setState({ members: newMembers });
+    } else if (name.includes("links")) {
+      let newLinks = [...State.links];
+      const idx = parseInt(name.charAt(name.length - 1));
+      newLinks[idx] = value;
+      setState({ links: newLinks });
+    } else {
+      setState({ [name]: value });
+    }
   };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    axios
+      .post("/api/artist", State)
+      .then(response => (window.location = "/artists"));
+  };
+
+  const addMember = () => {
+    const newMembers = [...State.members]
+    newMembers.push("")
+    setState({ members: newMembers})
+  }
+
+  const addLink = () => {
+    const newLinks = [...State.links]
+    newLinks.push("")
+    setState({ links: newLinks})
+  }
+
+
   return (
     <div id="add-new-artist">
-      <form onSubmit={handleSubmit} className="artist-form">
-        <h1>Add Artist</h1>
-        <div className="artist-form-group">
+      <form onSubmit={e => handleSubmit(e)} className="loginForm">
+        <h3>Add Artist</h3>
+        <div className="formGroup">
           <label>Name:</label>
           <input
             type="text"
             placeholder="Name"
             name="name"
             onChange={e => handleInputChange(e.target)}
-            value={userInput.name}
+            value={State.name}
           />
         </div>
 
-        <div className="artist-form-group">
-          <label>Genre(s):</label>
+        <div className="formGroup">
+          <label>Genre:</label>
           <input
             type="text"
             placeholder="Genre"
             name="genre"
             onChange={e => handleInputChange(e.target)}
-            value={userInput.genre}
+            value={State.genre}
           />
         </div>
 
-        <div className="artist-form-group">
-          <label>Band Members (if applicable):</label>
-          <br />
-          <input
+        <div className="formGroup">
+          <label>Member(s):</label>
+          {State.members.map((mem, idx) => (
+            <input
+            key={`members${idx}`}
             type="text"
             placeholder="Add a Member"
-            name="band_member1"
+            name={`members-${idx}`}
             onChange={e => handleInputChange(e.target)}
-            value={userInput.band_member1}
-          />
-          <br />
-          <input
-            type="text"
-            placeholder="Add a Member"
-            name="band_member2"
-            onChange={e => handleInputChange(e.target)}
-            value={userInput.band_member2}
-          />
-          <br />
-          <input
-            type="text"
-            placeholder="Add a Member"
-            name="band_member3"
-            onChange={e => handleInputChange(e.target)}
-            value={userInput.band_member3}
-          />
-          <br />
-          <input
-            type="text"
-            placeholder="Add a Member"
-            name="band_member4"
-            onChange={e => handleInputChange(e.target)}
-            value={userInput.band_member4}
-          />
-          <br />
-          <input
-            type="text"
-            placeholder="Add a Member"
-            name="band_member5"
-            onChange={e => handleInputChange(e.target)}
-            value={userInput.band_member5}
-          />
-          <br />
+            value={mem}
+          />))}
+          <div onClick={() => addMember()}>Add Member</div>
         </div>
 
-        <div className="artist-form-group">
-          <label>Email(s):</label>
+        <div className="formGroup">
+          <label>Artist Email:</label>
           <input
             type="email"
             placeholder="johndoe@ie.com"
             name="email"
             onChange={e => handleInputChange(e.target)}
-            value={userInput.email}
+            value={State.email}
           />
         </div>
 
-        <div className="artist-form-group">
+        <div className="formGroup">
           <label>Bio:</label>
-          <input
-            type="text"
-            placeholder="Bio"
-            name="bio"
-            onChange={e => handleInputChange(e.target)}
-            value={userInput.bio}
-          />
+          <textarea name="bio" onChange={e => handleInputChange(e.target)} />
         </div>
 
-        <div className="artist-form-group">
-          <label>Profile_img:</label>
+        <div className="formGroup">
+          <label>Profile Image:</label>
           <input
             type="text"
-            placeholder="url_profile_img"
+            placeholder="Profile Image URL"
             name="profile_img"
             onChange={e => handleInputChange(e.target)}
-            value={userInput.photos}
+            value={State.profile_img}
           />
         </div>
-        <div className="artist-form-group">
-          <label>Facebook:</label>
-          <input
+
+        <div className="formGroup">
+          <label>Link(s):</label>
+          {State.links.map((link, idx) => (
+            <input
             type="text"
-            placeholder="url_profile_img"
-            name="facebook_link"
+            placeholder="URL"
+            name={`links-${idx}`}
             onChange={e => handleInputChange(e.target)}
-            value={userInput.socials.facebook}
+            value={link}
           />
+          ))}
+          <div onClick={() => addLink()}>Add Link</div>
         </div>
-        <div className="artist-form-group">
-          <label>Instagram:</label>
-          <input
-            type="text"
-            placeholder="url_profile_img"
-            name="instagram_link"
-            onChange={e => handleInputChange(e.target)}
-            value={userInput.socials.instagram}
-          />
-        </div>
-        <div className="artist-form-group">
-          <label>Website:</label>
-          <input
-            type="text"
-            placeholder="url_profile_img"
-            name="website_link"
-            onChange={e => handleInputChange(e.target)}
-            value={userInput.socials.website}
-          />
-        </div>
-        <div className="artist-form-action">
+        <div className="formAction">
           <button className="btn-submit" type="submit">
             Add Artist
           </button>
