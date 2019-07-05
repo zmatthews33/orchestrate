@@ -8,7 +8,13 @@ const BandList = ({ bands, deleteBand }) => {
         <BandCard key={band._id}>
           <div
             className="bandHeader"
-            style={band.profile_img ? { backgroundImage: `url(${band.profile_img})` } : {}}
+            style={
+              band.profile_img
+                ? { backgroundImage: `url(${band.profile_img})` }
+                : {
+                    backgroundImage: `url(https://images.unsplash.com/photo-1527261834078-9b37d35a4a32?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2700&q=80)`
+                  }
+            }
           />
           <div className="bandContent">
             <h2>{band.name}</h2>
@@ -38,7 +44,12 @@ const BandList = ({ bands, deleteBand }) => {
                 </ul>
               </div>
             )}
-            <button className="deleteButton" onClick={() => deleteBand(band._id)}>
+          </div>
+          <div className="cardControls">
+            <button
+              className="deleteButton"
+              onClick={() => deleteBand(band._id)}
+            >
               <i className="fas fa-times" /> Delete Band
             </button>
           </div>

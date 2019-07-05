@@ -57,6 +57,41 @@ a {
   }
 }
 
+
+button {
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.addItem {
+  background: rgba($bright, 0.5);
+  color: white;
+  display: flex;
+  border-radius: 6px;
+  border: none;
+  align-items: stretch;
+  padding-right: 2em;
+  font-weight: 500;
+  font-size: 1em;
+
+  i {
+    width: 40px;
+    margin-right: .8em;
+  }
+
+  &:hover {
+    background: rgba($bright, 0.8);
+  }
+
+  &:hover {
+    background: rgba($bright, 1);
+  }
+
+}
+
 // forms
 form {
   padding: 20px;
@@ -152,12 +187,6 @@ form {
 
   }
 
-}
-
-button {
-  &:focus {
-    outline: none;
-  }
 }
 
 
