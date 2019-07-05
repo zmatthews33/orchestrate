@@ -6,7 +6,7 @@ import CalendarHeader from "./Components/CalendarHeaders/WeekDayHeaders";
 import DaySlot from "./Components/DaySlot/DaySlot";
 import { Link } from "react-router-dom";
 
-function Calendar({events}) {
+function Calendar({ events, toggleModal }) {
   const [DateContext, setDateContext] = useState(moment());
   const [View, setView] = useState("month");
 
@@ -36,10 +36,23 @@ function Calendar({events}) {
     .startOf("month")
     .format("d");
 
+  const AddEvent = dateData => {
+    toggleModal();
+  };
+
   const blanks = [];
   for (let i = 0; i < firstDayOfTheMonth; i++) {
     blanks.push(
-      <DaySlot key={`blank${i}`} classToUse="empty" data={PrevMonthDays - i} />
+      <DaySlot
+        key={`blank${i}`}
+        classToUse="empty"
+        data={{
+          month: moment(PrevMonth).format("MMMM"),
+          day: PrevMonthDays - i,
+          year: moment(PrevMonth).format("Y")
+        }}
+        addEvent={AddEvent}
+      />
     );
   }
 
@@ -62,9 +75,18 @@ function Calendar({events}) {
     });
 
     calendarDays.push(
-      <DaySlot key={d} classToUse={myClass} data={d}>
+      <DaySlot
+        key={d}
+        classToUse={myClass}
+        data={{ month: Month, day: d, year: Year }}
+        addEvent={AddEvent}
+      >
         {DayEvents.map(event => (
-          <Link to={`/events/${event._id}`} key={event.start_date} className="eventThumb">
+          <Link
+            to={`/events/${event._id}`}
+            key={event.start_date}
+            className="eventThumb"
+          >
             <h2>{event.title}</h2>
             <span className="time">
               {moment(event.start_date).format("h:mm")}
@@ -92,10 +114,18 @@ function Calendar({events}) {
       const blanksToFill = 7 - cells.length;
       for (let i = 0; i < blanksToFill; i++) {
         cells.push(
-          <DaySlot key={`blankEnd${i}`} classToUse="empty" data={i + 1} />
+          <DaySlot
+            key={`blankEnd${i}`}
+            classToUse="empty"
+            data={{
+              month: moment(NextMonth).format("MMMM"),
+              day: i + 1,
+              year: moment(NextMonth).format("Y")
+            }}
+            addEvent={AddEvent}
+          />
         );
       }
-
       let insertRow = cells.slice();
       rows.push(insertRow);
     }

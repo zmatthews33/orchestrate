@@ -3,6 +3,7 @@ import { Page } from "../Components/Containers";
 import { CardView } from "../Components/Containers";
 import Calendar from "../Components/Calendar/Calendar";
 import Modal from "../Components/Modal/Modal";
+import EventForm from '../Components/Calendar/Components/EventForm';
 
 function Events({ match }) {
   const [events, setEvents] = useState([
@@ -21,7 +22,7 @@ function Events({ match }) {
     }
   ]);
 
-  const [ModalOpen, setModalOpen] = useState(false);
+  const [ModalOpen, setModalOpen] = useState(true);
 
   const toggleModal = () => {
     setModalOpen(!ModalOpen);
@@ -43,7 +44,7 @@ function Events({ match }) {
             width: "70vw"
           }}
         >
-          <Calendar events={events} />
+          <Calendar events={events} toggleModal={toggleModal} />
         </div>
       </CardView>
       {ModalOpen && (
@@ -60,16 +61,7 @@ function Events({ match }) {
               }
             })
           ) : (
-            <div>
-              <h1>Create An Event</h1>
-              <form>
-                <div className="formGroup">
-                  <label>Title</label>
-                  <input />
-                </div>
-              </form>
-            </div>
-            
+            <EventForm />
           )}
         </Modal>
       )}

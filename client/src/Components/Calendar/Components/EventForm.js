@@ -1,5 +1,4 @@
-import React, { useReducer } from 'react'
-
+import React, { useReducer } from "react";
 
 function EventForm() {
   const InitForm = {
@@ -9,29 +8,45 @@ function EventForm() {
     description: null,
     artists: null,
     event_type: null
-  }
+  };
 
   const reducer = (state, newState) => {
     return { ...state, ...newState };
   };
 
-  const [FormState, setFormState] = useReducer(reducer, InitForm)
+  const [FormState, setFormState] = useReducer(reducer, InitForm);
 
   const SubmitForm = e => {
     e.preventDefault();
-  }
+  };
 
   return (
     <div>
+      <h2>Create Event</h2>
       <form>
-        <input type="text" name="title" />
-        <input type="date" name="start_date" />
-        <textarea name="description"></textarea>
+        <div className="formGroup">
+          <label>Title</label>
+          <input type="text" name="title" />
+        </div>
+
+        <div className="formGroup">
+          <label>Date</label>
+          <input type="date" name="start_date" />
+        </div>
+
+        <div className="formGroup">
+          <label>Description</label>
+          <textarea name="description" />
+        </div>
+
+        <div className="formAction">
+          <button className="btn-submit" type="submit">
+            Sign in
+          </button>
+        </div>
       </form>
     </div>
-  )
-  
-
+  );
 }
 
-export default EventForm
+export default EventForm;
