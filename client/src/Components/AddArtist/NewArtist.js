@@ -9,6 +9,7 @@ function NewArtist() {
   useEffect(() => {
     console.log(artist);
   }, [artist]);
+
   const handleArtistSubmit = e => {
     e.preventDefault();
     const {
@@ -37,7 +38,7 @@ function NewArtist() {
       socials: socials.value,
       photos: photos.value
     };
-    console.log(newArtist);
+
     setArtist([newArtist, ...artist]);
     // insert api call to add a new artist to artist list
   };
