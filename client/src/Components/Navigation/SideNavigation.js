@@ -1,14 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import { Logo } from "../../Assets/Logo";
 
 import "./SideNav.scss";
 
 function SideNavigation({ loggedIn, smallScreen, setNavToggled }) {
-
-  useEffect(() => {
-    console.log('small screen', smallScreen)
-  }, [smallScreen])
 
   const NavClass = () => {
     if (smallScreen) {

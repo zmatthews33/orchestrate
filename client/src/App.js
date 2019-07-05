@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Redirect
+  Route
 } from "react-router-dom";
 import useLoggedIn from "./Utils/useLoggedIn";
 
@@ -38,8 +37,9 @@ function App() {
     return "contentContainer";
   };
 
+
   return (
-    <AppContext.Provider value={loggedIn}>
+    <AppContext.Provider value={{loggedIn: loggedIn.loggedIn, userId: loggedIn.userId}}>
       <div className="appContainer">
         <Router>
           {loggedIn.loggedIn && (

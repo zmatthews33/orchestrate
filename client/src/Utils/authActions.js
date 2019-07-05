@@ -1,6 +1,6 @@
 import axios from 'axios'
-import setAuthToken from './setAuthToken'
-import jwt_decode from "jwt-decode";
+// import setAuthToken from './setAuthToken'
+// import jwt_decode from "jwt-decode";
 
 export const registerUser = (userData) => {
   axios
@@ -12,7 +12,6 @@ export const registerUser = (userData) => {
 }
 
 export const loginUser = loginData => {
-
   axios
     .post('/login', loginData)
     .then(res => {

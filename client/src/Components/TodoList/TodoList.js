@@ -8,13 +8,12 @@ function TodoList() {
     const [todos, setTodos] = useState([]);
     const [userInput, setUserInput] = useState("");
     const { userId } = useContext(AppContext);
-    console.log(userId);
     useEffect(() => {
         axios
             .get("api/todo?created_by=" + userId)
             .then(response => setTodos(response.data))
             .catch(err => console.log(err));
-    }, []);
+    }, [userId]);
 
     const addTodo = e => {
         e.preventDefault();
