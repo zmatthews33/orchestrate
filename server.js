@@ -10,6 +10,13 @@ const passport = require("passport");
 // Middleware
 app.use(express.json({ extended: false }));
 
+let database = "mongodb://localhost/orchestrate";
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+  database = process.env.MONGODB_URI || process.env.PROD_DB;
+}
+
 //sessions
 app.use(
     session({
@@ -27,9 +34,10 @@ app.use((req, res, next) => {
 morgan("tiny");
 
 // MongoDB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/orchestrate", {
+mongoose.connect(database, {
     useNewUrlParser: true
 });
+
 var db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
 db.once("open", function() {
