@@ -10,7 +10,7 @@ import Modal from "../Components/Modal/Modal";
 
 function Venues() {
   const { userId } = useContext(AppContext);
-  
+
   const InitState = {
     venues: [],
     modalOpen: false
@@ -23,8 +23,8 @@ function Venues() {
   const getVenues = useAPI("get", `/api/venue?created_by=${userId}`);
 
   useEffect(() => {
-    if (getVenues) setState({venues: getVenues})
-  }, [getVenues])
+    if (getVenues) setState({ venues: getVenues });
+  }, [getVenues]);
 
   const toggleModal = () => {
     setState({ modalOpen: !State.modalOpen });
@@ -47,17 +47,18 @@ function Venues() {
     axios
       .post(`/api/venue/`, newVenue)
       .then(res => {
-        setState({ venues: [...State.venues, newVenue] });
+        setState({ venues: [...State.venues, res.data] });
       })
       .catch(err => console.log(err));
   };
 
   const deleteVenue = id => {
+    const UpdatedVenues = State.venues.filter(venue => venue._id !== id)
+    
     axios
       .delete(`/api/venue/${id}`)
       .then(res => {
-        console.log(res);
-        // remove from state...
+        setState({venues: UpdatedVenues})
       })
       .catch(err => console.log(err));
   };
@@ -72,12 +73,16 @@ function Venues() {
       </div>
       <ul className="venueList">
         {State.venues.map((venue, idx) => (
-          <Venue key={idx} venue={venue} />
+          <Venue key={idx} venue={venue} deleteVenue={deleteVenue} />
         ))}
       </ul>
       {State.modalOpen && (
         <Modal closeModal={toggleModal} returnLink="venues">
-          <SearchVenue addVenue={addVenue} existingVenues={State.venues} deleteVenue={deleteVenue} />
+          <SearchVenue
+            addVenue={addVenue}
+            existingVenues={State.venues}
+            deleteVenue={deleteVenue}
+          />
         </Modal>
       )}
     </Page>
@@ -85,5 +90,3 @@ function Venues() {
 }
 
 export default Venues;
-
-//<SearchVenue />

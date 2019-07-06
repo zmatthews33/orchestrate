@@ -1,22 +1,20 @@
 import React from "react";
 
-const Venue = ({ venue }) => (
-  <ul className="venueList_item">
-    <li>{venue.name}</li>
-    <li>
-      {venue.street}, {venue.city}, {venue.state}, {venue.country}
-    </li>
-    <li>Phone: {venue.phone}</li>
-    <li>
-      <a target="_blank" rel="noopener noreferrer" href={venue.website}>
+const Venue = ({ venue, deleteVenue }) => (
+  <li className="venueListItem">
+    <div className="venueIcon"><i className="fas fa-building"></i></div>
+    <div className="venueContent">
+      <h3>{venue.name}</h3>
+      <p>
+        {venue.street}, {venue.city}, {venue.state}, {venue.country}
+      </p>
+      <p>{venue.phone}</p>
+      <p><a target="_blank" rel="noopener noreferrer" href={venue.website}>
         {venue.website}
-      </a>
-    </li>
-  </ul>
+      </a></p>
+      <button onClick={() => deleteVenue(venue._id)}>Delete</button>
+    </div>
+  </li>
 );
 
 export default Venue;
-
-// <button value={venue.id} onClick={handleClick}>
-// {btnType}
-// </button>

@@ -31,16 +31,6 @@ export default function SearchVenue({ addVenue, existingVenues, deleteVenue }) {
       setSearch("");
     }
   };
-
-  const AddOrRemove = (exists, venue) => {
-    if (!exists) {
-      addVenue(venue)
-    } else {
-      const existing = existingVenues.find(ven => ven.street === venue.street);
-      deleteVenue(existing._id)
-    }
-  }
-
   return (
     <div className="venueSearchWrapper">
       <h3>Search for Venues</h3>
@@ -56,14 +46,14 @@ export default function SearchVenue({ addVenue, existingVenues, deleteVenue }) {
       <ul className="searchResults">
         {response.map((venue, index) => {
           const existing = existingVenues.find(ven => ven.street === venue.street);
-          const exists = (existing) ? true : false;
+          const data = (existing) ? existing : venue
           
           return (
             <SearchResultCard
             key={index}
-            venue={venue}
-            exists={exists}
-            addOrRemove={AddOrRemove}
+            venue={data}
+            addVenue={addVenue}
+            deleteVenue={deleteVenue}
           />
           )
         })}
