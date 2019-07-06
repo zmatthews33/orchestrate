@@ -20,7 +20,7 @@ const BandList = ({ bands, deleteBand, dashboard }) => {
           <div className="bandContent">
             <h2>{band.name}</h2>
             <a href={`mailto:${band.email}`}>{band.email}</a>
-            <p>{band.bio}</p>
+            {!dashboard && <p>{band.bio}</p>}
             {(band.members.length && !dashboard) && (
               <div className="members">
                 <h4>Members</h4>

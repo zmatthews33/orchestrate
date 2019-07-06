@@ -47,6 +47,7 @@
     flex-direction: column;
     flex-wrap: wrap;
     max-width: calc((100% - 40px) / 3);
+    min-width: 300px;
     overflow: hidden;
     margin: 20px;
 
