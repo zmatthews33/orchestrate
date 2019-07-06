@@ -48,6 +48,10 @@ db.once("open", function() {
 const routes = require("./routes");
 app.use(routes);
 
+app.get('*', (req,res) =>{
+    res.sendFile(path.join(__dirname+'/client/build/index.html'));
+});
+
 app.post("/user", (req, res) => {
     console.log("user signup");
     req.session.username = req.body.username;
