@@ -67,12 +67,14 @@ function App() {
                 <Route path="/venues" component={Venues} />
                 <Route path="/contacts" component={Contacts} />
                 <Route path="/" component={Home} />
+                <Route path="*" component={Home} />
               </Switch>
             ) : (
               <Switch>
                 <Route path="/signup" exact component={SignUp} />
                 <Route path="/login" component={Login} />
                 <Route path="/" component={Login} />
+                <Route path="*" component={Home} />
               </Switch>
             )}
           </div>
