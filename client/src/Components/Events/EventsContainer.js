@@ -66,7 +66,7 @@ function EventsContainer({ match, dashboard }) {
 
   if (dashboard) {
     cardStyle = {
-      height: "40vh",
+      height: "36vh",
       minHeight: "300px",
       width: "98%"
     };
