@@ -13,7 +13,14 @@ router
     .put(eventController.update)
     .delete(eventController.remove);
 
+// Matches with "api/event/aritst/:artistID"
 router
     .route("/artist/:artistID")
     .get(eventController.findByArtist);
+
+// Matches with "api/event/user/:userID"
+router
+    .route("/user/:userID")
+    .get(eventController.findByUser);
+
 module.exports = router;

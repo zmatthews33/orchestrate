@@ -1,24 +1,25 @@
+@import '../../Styles//variables';
 #contacts {
-    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    font-family: $bodyFontFamily;
     border-collapse: collapse;
     width: 100%;
 }
 
 #contacts td,
 #contacts th {
-    border: 1px solid #ddd;
+    border: 1px solid $bright;
     padding: 8px;
 }
 
 #contacts tr:hover {
-    background-color: #ddd;
+    background-color: $secondary;
 }
 
 #contacts th {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
-    background-color: rgb(114, 114, 114);
+    background-color: $primary;
     color: white;
 }
 

@@ -1,116 +1,121 @@
-import React, { useReducer } from "react";
+import React, { useReducer, useEffect } from "react";
+import axios from "axios";
+
 import "./AddContact.scss";
-export default function AddContact({
-  name,
-  phone,
-  venue,
-  address,
-  email,
-  note,
-  handleContactSubmit,
-  ...props
-}) {
-  const [userInput, setUserInput] = useReducer(
-    (state, newState) => ({ ...state, ...newState }),
-    {
-      first_name: "",
-      last_name: "",
-      phone: "",
-      venue: "",
-      email: "",
-      address: "",
-      note: ""
-    }
-  );
+
+
+export default function AddContact({ userId, addContact }) {
+
+  const InitState = {
+    first_name: "",
+    last_name: "",
+    phone: "",
+    venue: "",
+    address: "",
+    email: "",
+    note: ""
+  };
+
+  const reducer = (state, newState) => {
+    return { ...state, ...newState };
+  };
+
+  const [State, setState] = useReducer(reducer, InitState);
+
+  useEffect(() => {
+    if (userId) setState({ created_by: userId })
+  }, [userId])
 
   const handleInputChange = e => {
-    const { value, name } = e.target;
-    setUserInput({ [name]: value });
+    const keyVal = e.target.name;
+    const inputVal = e.target.value;
+    setState({ [keyVal]: inputVal });
   };
-  //const [response, setResponse] = useState([]);
-  //const [search, setSearch] = useState("");
 
-  // useEffect(() => {
-  //   console.log(response);
-  // }, [response]);
+  const handleSubmit = e => {
+    e.preventDefault();
+    addContact(State)
+  };
 
   return (
     <div id="add-new-contact">
-      <form onSubmit={handleContactSubmit}>
-        <div className="firstname-container">
+      <form onSubmit={e => handleSubmit(e)}>
+        <h3>Add Contact</h3>
+        <div className="formGroup">
           <label>First Name:</label>
           <input
+            placeholder="Sherlock"
             name="first_name"
             type="text"
-            placeholder="Sherlock"
-            onChange={handleInputChange}
-            value={userInput.first_name}
+            onChange={e => handleInputChange(e)}
+            value={State.first_name}
           />
         </div>
-        <div className="lastname-container">
+        <div className="formGroup">
           <label>Last Name:</label>
           <input
+            placeholder="Holmes"
             name="last_name"
             type="text"
-            placeholder="Holmes"
-            onChange={handleInputChange}
-            value={userInput.last_name}
+            onChange={e => handleInputChange(e)}
+            value={State.last_name}
           />
         </div>
-        <div className="phone-container">
+        <div className="formGroup">
           <label>Phone:</label>
           <input
             name="phone"
             type="text"
             placeholder="###-###-####"
-            onChange={handleInputChange}
-            value={userInput.phone}
+            onChange={e => handleInputChange(e)}
+            value={State.phone}
           />
         </div>
-        <div className="venue-container">
+        <div className="formGroup">
           <label>Venue:</label>
           <input
             name="venue"
             type="text"
             placeholder="the showdown club"
-            onChange={handleInputChange}
-            value={userInput.venue}
+            onChange={e => handleInputChange(e)}
+            value={State.venue}
           />
         </div>
-        <div className="address-container">
+        <div className="formGroup">
           <label>Address:</label>
           <input
             name="address"
             type="text"
             placeholder="21 Baker Street"
-            onChange={handleInputChange}
-            value={userInput.address}
+            onChange={e => handleInputChange(e)}
+            value={State.address}
           />
         </div>
-        <div className="email-container">
+        <div className="formGroup">
           <label>Email:</label>
           <input
             name="email"
             type="email"
             placeholder="email@email.com"
-            onChange={handleInputChange}
-            value={userInput.email}
+            onChange={e => handleInputChange(e)}
+            value={State.email}
           />
         </div>
-        <div className="notes-container">
+        <div className="formGroup">
           <label>Notes:</label>
           <input
             name="note"
             type="text"
             placeholder="add a note"
-            onChange={handleInputChange}
-            value={userInput.note}
+            onChange={e => handleInputChange(e)}
+            value={State.note}
           />
         </div>
-        <div className="btn-container">
-          <button>Submit</button>
+        <div className="formAction">
+          <button className="btn-submit" type="submit">Submit</button>
         </div>
       </form>
     </div>
   );
-}
+
+};
