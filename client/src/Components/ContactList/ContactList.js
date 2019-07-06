@@ -5,18 +5,7 @@ import ContactTable from "./ContactTable";
 import "./ContactList.scss";
 import { AppContext } from "../../App";
 
-function ContactList() {
-  const [contacts, setContacts] = useState([]);
-
-  const { userId } = useContext(AppContext);
-
-  useEffect(() => {
-    axios
-      .get("/api/people?created_by=" + userId)
-      .then(response => setContacts(response.data))
-      .catch(err => console.log(err));
-  }, [userId]);
-
+function ContactList({ contacts, deleteContact }) {
   // const handleContactSubmit = e => {
   //   e.preventDefault();
   //   console.log(e.target);

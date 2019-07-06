@@ -25,7 +25,7 @@ function Contacts() {
   const getContacts = useAPI("get", `/api/people?created_by=${userId}`);
 
   useEffect(() => {
-    if (getContacts) setState({ bands: getContacts });
+    if (getContacts) setState({ contacts: getContacts });
   }, [getContacts]);
 
   const toggleModal = () => {
@@ -33,8 +33,12 @@ function Contacts() {
   };
 
   const addContact = contact => {
-    const newContacts = [...State.contacts, contact]
-    setState({ contacts: newContacts, modalOpen: false })
+    axios.post("/api/people", contact)
+      .then(res => {
+        const newContacts = [...State.contacts, res.data]
+        setState({ contacts: newContacts, modalOpen: false})
+      })
+      .catch(err => console.log(err))
   };
 
   const deleteContact = id => {
@@ -55,7 +59,7 @@ function Contacts() {
           <i className="fas fa-plus" />Add a contact
       </button>
       </div>
-      <ContactList contacts={State.contact} deleteContact={deleteContact} />
+      <ContactList contacts={State.contacts} deleteContact={deleteContact} />
       {State.modalOpen && (
         <Modal closeModal={toggleModal} returnLink="contacts">
           <AddContact userId={userId} addContact={addContact} />
