@@ -27,6 +27,7 @@ body {
   background: $darkPrimary;
   color: $white;
   font-size: ms(0);
+  line-height: 1em;
 }
 
 h1 {
@@ -214,6 +215,11 @@ form {
 }
 
 .dashboardPage {
+  h4 {
+    padding: 20px;
+    border-bottom: solid 1px rgba($bright, 0.4);
+  }
+
   .topFeature {
     overflow: hidden;
     padding-bottom: 20px;
@@ -223,6 +229,8 @@ form {
     display: flex;
     flex-wrap: wrap;
 
+   
+
     .lowerLeft {
       flex: 3;
       background-color: darken($darkPrimary, 4);
@@ -231,6 +239,17 @@ form {
     .lowerRight {
       flex: 2;
       background-color: darken($darkPrimary, 10);
+    }
+  }
+
+  .pageContainer {
+    .bandList {
+      justify-content: space-between;
+
+      .bandCard {
+        width: 19%;
+        min-width: 120px;
+      }
     }
   }
 }
