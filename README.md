@@ -2,11 +2,9 @@
 
 ## Description
 
-Orchestrate bridges the gap between booking managers and bands with a one shot managing tool.
+Orchestrate is a MERN stack application designed specifically for artist managers/agents (or artists) that makes many everyday tasks easier -all in a single place -your dashboard. 
 
-![Orchestrate](insert gif)
-
-## Live Preview
+## Live 
 
 -   [Orchestrate](Link to landing page)
 
@@ -19,18 +17,23 @@ Orchestrate bridges the gap between booking managers and bands with a one shot m
 
 ## Technologies Used
 -   React
--   Node
--   MongoDB
+-   NodeJS
 -   Express
+-   PassportJS
+-   Bcrypt
+-   JSONWebToken
+-   MomentJS
+-   Songkick API
+-   Bandsintown API
+-   SCSS
+
+-   Used React Hooks/Context API
 
 ### Database
 
 -   MongoDb
+-   Mongoose
 -   mLab
-
-## Mockups
-
-
 
 ### Deployment
 
