@@ -4,9 +4,7 @@ import EventsContainer from '../Components/Events/EventsContainer'
 
 function Events({ match }) {
   return (
-    <Page>
-      <EventsContainer match={match} dashboard={false} />
-    </Page>
+    <EventsContainer match={match} dashboard={false} />
   );
 }
 
