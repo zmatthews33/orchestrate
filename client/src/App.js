@@ -36,7 +36,6 @@ function App() {
     return "contentContainer";
   };
 
-
   return (
     <AppContext.Provider value={{loggedIn: loggedIn.loggedIn, userId: loggedIn.userId}}>
       <div className="appContainer">
@@ -67,14 +66,14 @@ function App() {
                 <Route path="/venues" component={Venues} />
                 <Route path="/contacts" component={Contacts} />
                 <Route path="/" component={Home} />
-                <Route path="*" component={Home} />
+                <Route component={Home} />
               </Switch>
             ) : (
               <Switch>
                 <Route path="/signup" exact component={SignUp} />
-                <Route path="/login" component={Login} />
+                <Route path="/login" exact component={Login} />
                 <Route path="/" component={Login} />
-                <Route path="*" component={Home} />
+                <Route component={Login} />
               </Switch>
             )}
           </div>
