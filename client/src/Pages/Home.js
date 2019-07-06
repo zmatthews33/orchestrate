@@ -1,23 +1,23 @@
 import React from "react";
-import {Page} from "../Components/Containers";
-import "../Styles/Home.scss";
 import TodoList from "../Components/TodoList/TodoList";
 import EventsContainer from '../Components/Events/EventsContainer'
-
+import ArtistsContainer from '../Components/Artists/ArtistsContainer'
 
 function Home({match}) {
   return (
-    <Page>
+    <div className="dashboardPage">
       <div className="topFeature">
         <EventsContainer match={match} dashboard={true} />
       </div>
       <div className="lowerFeatures">
-        <div className="lowerLeft"></div>
+        <div className="lowerLeft">
+          <ArtistsContainer dashboard={true} />
+        </div>
         <div className="lowerRight">
           <TodoList dashboard={true} />
         </div>
       </div>
-    </Page>
+    </div>
   );
 }
 

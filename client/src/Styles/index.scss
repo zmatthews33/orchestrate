@@ -217,6 +217,32 @@ form {
  
 }
 
+.dashboardPage {
+
+  .topFeature {
+    overflow: hidden;
+    padding-bottom: 20px;
+  }
+
+  .lowerFeatures {
+    display: flex;
+
+    .lowerLeft {
+      flex: 3;
+      background-color: darken($darkPrimary, 4);
+    }
+
+    .lowerRight {
+      flex: 1;
+      background-color: darken($darkPrimary, 10);
+
+    }
+
+  }
+
+}
+
+
 
 
 

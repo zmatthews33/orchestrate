@@ -17,7 +17,7 @@ function Calendar({ events, toggleModal }) {
   const PrevMonth = moment(DateContext).subtract(1, "month");
   const PrevMonthDays = PrevMonth.daysInMonth();
   const NextMonth = moment(DateContext).add(1, "month");
-  const CurrentDate = DateContext.get("date");
+  const CurrentDate = moment().get("date");
   // const currentDay = DateContext.format("D");
 
   const updateMonth = dir => {

@@ -10,6 +10,15 @@
     justify-content: space-between;
     margin-bottom: 40px;
   }
+
+  &.dashboard {
+    padding: 0;
+
+    .cardView {
+      border-radius: 0;
+      background: none;
+    }
+  }
 }
 
 .cardView {

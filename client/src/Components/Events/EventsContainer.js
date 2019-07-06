@@ -1,12 +1,13 @@
 import React, { useEffect, useReducer, useContext } from "react";
-import {Page, Card} from "../Containers"
+import { Page, Card } from "../Containers";
 import Calendar from "../Calendar/Calendar";
+import CalendarWeek from "../Calendar/CalendarWeek";
 import Modal from "../Modal/Modal";
 import EventForm from "../Calendar/Components/EventForm";
 import useAPI from "../../Utils/useAPI";
-import { AppContext } from '../../App'
+import { AppContext } from "../../App";
 
-function EventsContainer({ match }) {
+function EventsContainer({ match, dashboard }) {
   const { userId } = useContext(AppContext);
   const EventData = useAPI("get", `/api/event?created_by=${userId}`);
 
@@ -23,14 +24,14 @@ function EventsContainer({ match }) {
 
   useEffect(() => {
     if (EventData) {
-      setState({ events: EventData })
+      setState({ events: EventData });
     }
-  }, [EventData])
+  }, [EventData]);
 
   const addEvent = event => {
-    const newEvents = [...State.events, event]
-    setState({events: newEvents, modalOpen: false})
-  }
+    const newEvents = [...State.events, event];
+    setState({ events: newEvents, modalOpen: false });
+  };
 
   const toggleModal = () => {
     setState({ modalOpen: !State.modalOpen });
@@ -42,22 +43,46 @@ function EventsContainer({ match }) {
     }
   }, [match]);
 
+  let cardStyle = {
+    height: "60vh",
+    minHeight: "400px",
+    width: "70vw"
+  };
+
+  if (dashboard) {
+    cardStyle = {
+      height: "40vh",
+      minHeight: "300px",
+      width: "70vw"
+    };
+  }
+
   return (
-    <Page>
-      <div className="pageHeader">
-      <h1>Events</h1>
-      <button className="addItem" onClick={(() => toggleModal())}><i className="fas fa-plus"></i> Add Event</button>
-      </div>
-      
+    <Page dashboard={dashboard}>
+      {!dashboard && (
+        <div className="pageHeader">
+          <h1>Events</h1>
+          <button className="addItem" onClick={() => toggleModal()}>
+            <i className="fas fa-plus" /> Add Event
+          </button>
+        </div>
+      )}
+
       <Card>
-        <div
-          style={{
-            height: "70vh",
-            minHeight: "400px",
-            width: "70vw"
-          }}
-        >
-          <Calendar events={State.events} toggleModal={toggleModal} />
+        <div style={cardStyle}>
+          {!dashboard ? (
+            <Calendar
+              events={State.events}
+              toggleModal={toggleModal}
+              dashboard={dashboard}
+            />
+          ) : (
+            <CalendarWeek
+              events={State.events}
+              toggleModal={toggleModal}
+              dashboard={dashboard}
+            />
+          )}
         </div>
       </Card>
       {State.modalOpen && (
@@ -72,7 +97,7 @@ function EventsContainer({ match }) {
                   </div>
                 );
               } else {
-                return null
+                return null;
               }
             })
           ) : (
