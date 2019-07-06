@@ -6,6 +6,9 @@ import Modal from "../Modal/Modal";
 import EventForm from "../Calendar/Components/EventForm";
 import useAPI from "../../Utils/useAPI";
 import { AppContext } from "../../App";
+import axios from 'axios'
+import {Link} from 'react-router-dom'
+import moment from 'moment'
 
 import "./Events.scss";
 
@@ -34,6 +37,16 @@ function EventsContainer({ match, dashboard }) {
     const newEvents = [...State.events, event];
     setState({ events: newEvents, modalOpen: false });
   };
+
+  const deleteEvent = id => {
+    axios
+      .delete(`/api/event/${id}`)
+      .then(res => {
+        const newEvents = State.events.filter(ev => ev._id !== id)
+        setState({ events: newEvents, modalOpen: false })
+      })
+      .catch(err => console.log(err))
+  }
 
   const toggleModal = () => {
     setState({ modalOpen: !State.modalOpen });
@@ -96,11 +109,11 @@ function EventsContainer({ match, dashboard }) {
                   <div className="calendarPopup" key={event._id}>
                     <div className="calendarDeets">
                       <h2>{event.title}</h2>
-                      <h3>{event.start_date}</h3>
+                      <h3>{moment(event.start_date).format('MMMM D, YYYY')}</h3>
                       <p>{event.description}</p>
                     </div>
                     <div className="controls">
-                      <button>Delete</button>
+                      <Link to="/events/" className="deleteButton" onClick={() => deleteEvent(event._id)}>Delete</Link>
                     </div>
                   </div>
                 );

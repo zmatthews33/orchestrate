@@ -38,6 +38,7 @@ function Calendar({ events, toggleModal }) {
   const AddEvent = dateData => {
     toggleModal();
   };
+  
 
   const blanks = [];
   for (let i = 0; i < firstDayOfTheMonth; i++) {
