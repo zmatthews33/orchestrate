@@ -1,6 +1,5 @@
-@import './reset';
-@import './variables';
-
+@import "./reset";
+@import "./variables";
 
 * {
   box-sizing: border-box;
@@ -57,7 +56,6 @@ a {
   }
 }
 
-
 button {
   cursor: pointer;
 
@@ -79,7 +77,7 @@ button {
 
   i {
     width: 40px;
-    margin-right: .8em;
+    margin-right: 0.8em;
   }
 
   &:hover {
@@ -89,7 +87,6 @@ button {
   &:hover {
     background: rgba($bright, 1);
   }
-
 }
 
 // forms
@@ -98,7 +95,9 @@ form {
   display: flex;
   flex-direction: column;
 
-  h1, h2, h3 {
+  h1,
+  h2,
+  h3 {
     margin-bottom: 1em;
   }
 
@@ -113,11 +112,12 @@ form {
     flex: 1;
     width: 100%;
     //padding: 0 1em;
-    margin-top: .6em;
+    margin-top: 0.6em;
     margin-bottom: 0.6em;
   }
 
-  input, textarea {
+  input,
+  textarea {
     flex: 1;
     width: 100%;
     padding: 0.8em 1em;
@@ -126,7 +126,7 @@ form {
     font-size: ms(0);
     color: $darkPrimary;
     font-weight: 400;
-    margin-bottom: .6em;
+    margin-bottom: 0.6em;
 
     &:focus {
       outline: none;
@@ -136,59 +136,56 @@ form {
 
   .addMore {
     font-size: ms(-1);
-    background: rgba($darkPrimary, .2);
-    padding: .8em 1.2em;
+    background: rgba($darkPrimary, 0.2);
+    padding: 0.8em 1.2em;
     border-radius: 4px;
     cursor: pointer;
 
     &:hover {
-      background: rgba($darkPrimary, .3);
+      background: rgba($darkPrimary, 0.3);
     }
 
     &:active {
-      background: rgba($darkPrimary, .4);
+      background: rgba($darkPrimary, 0.4);
     }
   }
 
   .formAction {
     display: flex;
     flex-direction: column;
-		justify-content: center;
-		padding: 2em 0;
+    justify-content: center;
+    padding: 2em 0;
     text-align: center;
 
     button {
-			margin: 0 auto;
-			border-radius: 12px;
-			font-size: ms(1);
-			background: $bright;
-			border: none;
-			color: white;
-      padding: .4em 1.4em;
-			width: auto;
-			cursor: pointer;
-			box-shadow: 0px 2px 4px rgba($darkPrimary, 0.2);
+      margin: 0 auto;
+      border-radius: 12px;
+      font-size: ms(1);
+      background: $bright;
+      border: none;
+      color: white;
+      padding: 0.4em 1.4em;
+      width: auto;
+      cursor: pointer;
+      box-shadow: 0px 2px 4px rgba($darkPrimary, 0.2);
 
-			&:hover {
-				box-shadow: 0px 2px 8px rgba($darkPrimary, 0.8);
-				background: lighten($bright, 2);
-			}
+      &:hover {
+        box-shadow: 0px 2px 8px rgba($darkPrimary, 0.8);
+        background: lighten($bright, 2);
+      }
 
-			&:active {
-				box-shadow: 0px 0px 2px rgba($darkPrimary, 0.4);
-				background: darken($bright, 10);
-				color: white;
-			}
+      &:active {
+        box-shadow: 0px 0px 2px rgba($darkPrimary, 0.4);
+        background: darken($bright, 10);
+        color: white;
+      }
 
-			&:focus {
-				outline: none;
-			}
+      &:focus {
+        outline: none;
+      }
     }
-
   }
-
 }
-
 
 .appContainer {
   display: flex;
@@ -207,18 +204,16 @@ form {
     width: 100vw;
     position: relative;
     left: 0vw;
-    transition: left .25s ease-in-out;
+    transition: left 0.25s ease-in-out;
     box-shadow: 0px 0px 10px darken($darkPrimary, 8);
 
     &.navShown {
       left: 70vw;
     }
   }
- 
 }
 
 .dashboardPage {
-
   .topFeature {
     overflow: hidden;
     padding-bottom: 20px;
@@ -237,55 +232,39 @@ form {
       flex: 2;
       background-color: darken($darkPrimary, 10);
     }
-
   }
-
-  
-
 }
 
 @media only screen and (max-width: 600px) {
-  .dashboardPage {
-    .topFeature {
-      overflow: hidden;
-      padding-bottom: 10px;
-    }
-  
-    .lowerFeatures {
-      display: flex;
-      flex-direction: column;
-      flex-wrap: nowrap;
-  
-      .lowerLeft {
-        flex: 1;
-        background-color: darken($darkPrimary, 4);
+  .topFeature {
+    overflow: hidden;
+    padding-bottom: 10px;
+  }
 
-        .pageContainer {
-          .bandList {
-            .bandCard {
-              max-width: 100%;
-            }
-          }
-        }
+  .lowerFeatures {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+  }
 
+  .lowerLeft {
+    flex: 1;
+    background-color: darken($darkPrimary, 4);
+  }
+
+  .lowerRight {
+    min-height: 20vh;
+    flex: 1;
+    background-color: darken($darkPrimary, 10);
+  }
+
+  .pageContainer {
+    .bandList {
+      .bandCard {
+        max-width: 100%;
       }
-  
-      .lowerRight {
-        min-height: 20vh;
-        flex: 1;
-        background-color: darken($darkPrimary, 10);
-      }
-  
     }
-  
-    
-  
   }
 }
-
-
-
-
-
 
 // different types of containers...
