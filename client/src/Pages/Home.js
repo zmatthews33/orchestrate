@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React from "react";
 import {Page} from "../Components/Containers";
 import "../Styles/Home.scss";
 import TodoList from "../Components/TodoList/TodoList";

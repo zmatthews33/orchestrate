@@ -71,6 +71,8 @@ function EventsContainer({ match }) {
                     <p>{event.description}</p>
                   </div>
                 );
+              } else {
+                return null
               }
             })
           ) : (

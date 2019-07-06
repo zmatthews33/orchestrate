@@ -8,7 +8,6 @@ import { Link } from "react-router-dom";
 
 function Calendar({ events, toggleModal }) {
   const [DateContext, setDateContext] = useState(moment());
-  const [View, setView] = useState("month");
 
   const Month = DateContext.format("MMMM");
   const Year = DateContext.format("Y");
@@ -70,9 +69,11 @@ function Calendar({ events, toggleModal }) {
       ) {
         if (parseInt(moment(ev.start_date).format("D")) === d) {
           return ev;
+        } else {
+          return null;
         }
       } else {
-        return null
+        return null;
       }
     });
 
@@ -143,12 +144,7 @@ function Calendar({ events, toggleModal }) {
 
   return (
     <div className="calendar">
-      <CalendarNavigation
-        month={Month}
-        year={Year}
-        updateMonth={updateMonth}
-        setView={setView}
-      />
+      <CalendarNavigation month={Month} year={Year} updateMonth={updateMonth} />
       <CalendarHeader headers={WeekdaysShort} />
       <div className="calendarDays">{rowDivs}</div>
     </div>
