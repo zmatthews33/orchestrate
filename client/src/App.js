@@ -65,14 +65,12 @@ function App() {
                 <Route path="/todos" component={Todos} />
                 <Route path="/venues" component={Venues} />
                 <Route path="/contacts" component={Contacts} />
-                <Route path="/" component={Home} />
                 <Route component={Home} />
               </Switch>
             ) : (
               <Switch>
                 <Route path="/signup" exact component={SignUp} />
-                <Route path="/login" exact component={Login} />
-                <Route path="/" component={Login} />
+                <Route path="/log-in" exact component={Login} />
                 <Route component={Login} />
               </Switch>
             )}

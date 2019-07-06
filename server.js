@@ -7,6 +7,7 @@ const mongoose = require("mongoose");
 require("dotenv").config();
 const morgan = require("morgan");
 const passport = require("passport");
+const apiRoutes = require("./routes/api/index")
 // Middleware
 app.use(express.json({ extended: false }));
 
