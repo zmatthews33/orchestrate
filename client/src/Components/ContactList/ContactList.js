@@ -51,8 +51,6 @@ function ContactList() {
   // console.log("All contacts", contacts);
   return (
     <div className="contact-list">
-      {/* adding new contacts */}
-      <AddContact handleContactSubmit={handleContactSubmit} />
       {/* Reading from state */}
       <ContactTable contacts={contacts} />
     </div>
