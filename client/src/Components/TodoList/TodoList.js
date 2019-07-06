@@ -6,7 +6,7 @@ import { AppContext } from "../../App";
 import useAPI from "../../Utils/useAPI";
 import { Page } from "../Containers";
 
-function TodoList() {
+function TodoList({ dashboard }) {
   const { userId } = useContext(AppContext);
   const [todos, setTodos] = useState([]);
   const [viewCompleted, setViewCompleted] = useState(false);
@@ -64,29 +64,35 @@ function TodoList() {
 
   return (
     <Page>
-      <div className="todos">
-        <div className="pageHeader">
-          <h1>Reminders</h1>
-        </div>
-        <form className="todos-form">
-          <input
-            className="todos-input"
-            type="text"
-            placeholder="add todo..."
-            value={userInput}
-            onChange={e => setUserInput(e.target.value)}
-          />
-          <button className="todos-add" onClick={e => addTodo(e)}>
-            Add
+      <div className={!dashboard ? "todos" : "todos dashboard"}>
+        {!dashboard && (
+          <div className="pageHeader">
+            <h1>Reminders</h1>
+          </div>
+        )}
+        {!dashboard && (
+          <form className="todos-form">
+            <input
+              className="todos-input"
+              type="text"
+              placeholder="add todo..."
+              value={userInput}
+              onChange={e => setUserInput(e.target.value)}
+            />
+            <button className="todos-add" onClick={e => addTodo(e)}>
+              Add
+            </button>
+          </form>
+        )}
+        {!dashboard && (
+          <button
+            className="viewCompleted"
+            onClick={() => setViewCompleted(!viewCompleted)}
+          >
+            <i className="far fa-eye" />
+            {!viewCompleted ? " View Completed" : " Hide Completed"}
           </button>
-        </form>
-        <button
-          className="viewCompleted"
-          onClick={() => setViewCompleted(!viewCompleted)}
-        >
-          <i className="far fa-eye" />
-          {!viewCompleted ? " View Completed" : " Hide Completed"}
-        </button>
+        )}
         <ul className="todos-list-group">
           {todos.map(todo => {
             if (!viewCompleted) {

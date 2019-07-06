@@ -1,6 +1,6 @@
 import React, { useContext, useReducer, useEffect } from "react";
 import BandList from "../BandList/BandList";
-import '../../Styles/Bands.scss';
+import "../../Styles/Bands.scss";
 import { Page } from "../Containers";
 import Modal from "../Modal/Modal";
 import AddArtist from "../AddArtist/AddArtist";
@@ -9,7 +9,7 @@ import axios from "axios";
 
 import { AppContext } from "../../App";
 
-function Bands() {
+function Bands({ dashboard }) {
   const { userId } = useContext(AppContext);
 
   const InitState = {
@@ -34,9 +34,9 @@ function Bands() {
   };
 
   const addArtist = band => {
-    const newBands = [...State.bands, band]
-    setState({bands: newBands, modalOpen: false})
-  }
+    const newBands = [...State.bands, band];
+    setState({ bands: newBands, modalOpen: false });
+  };
 
   const deleteBand = id => {
     axios
@@ -45,18 +45,20 @@ function Bands() {
         const UpdatedBands = State.bands.filter(band => band._id !== id);
         setState({ bands: UpdatedBands });
       })
-      .catch(err => console.log('error!'));
+      .catch(err => console.log("error!"));
   };
 
   return (
     <Page>
-      <div className="pageHeader">
-        <h1>Artists</h1>
-        <button className="addItem" onClick={() => toggleModal()}>
-          <i className="fas fa-plus" /> Add an artist
-        </button>
-      </div>
-      <BandList bands={State.bands} deleteBand={deleteBand} />
+      {!dashboard && (
+        <div className="pageHeader">
+          <h1>Artists</h1>
+          <button className="addItem" onClick={() => toggleModal()}>
+            <i className="fas fa-plus" /> Add an artist
+          </button>
+        </div>
+      )}
+      <BandList bands={State.bands} deleteBand={deleteBand} dashboard={dashboard} />
       {State.modalOpen && (
         <Modal closeModal={toggleModal} returnLink="artists">
           <AddArtist userId={userId} addArtist={addArtist} />
