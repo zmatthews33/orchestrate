@@ -1,20 +1,37 @@
-import React from "react";
-export default function SearchResultCard({ venue, btnType, handleClick }) {
+import React, { useState, useEffect } from "react";
+
+const SearchResultCard = ({ venue, addVenue, deleteVenue }) => {
+  if (venue._id) {
     return (
-        <div
-            style={{ display: venue ? "block" : "none" }}
-            key={venue.id}
-            className="searchResult_"
-        >
-            <ul className="searchResult_list">
-                <li className="searchResult_list_item">{venue.name}</li>
-                <li className="searchResult_list_item">{venue.address}</li>
-                <li className="searchResult_list_item">{venue.phone}</li>
-                <li className="searchResult_list_item">{venue.website}</li>
-            </ul>
-            <button value={venue.id} onClick={handleClick}>
-                {btnType}
-            </button>
-        </div>
+      <li className="searchResult">
+        <h3>{venue.name}</h3>
+        <p>
+          {venue.street}, {venue.city},{" "}
+          {venue.state} {venue.zip}
+        </p>
+        <p>{venue.phone}</p>
+        <a href="{venue.website}" target="_blank">
+          {venue.website}
+        </a>
+        <button onClick={() => deleteVenue(venue._id)}>Remove</button>
+      </li>
     );
-}
+  } else {
+    return (
+      <li className="searchResult">
+        <h3>{venue.displayName}</h3>
+        <p>
+          {venue.street}, {venue.city.displayName},{" "}
+          {venue.city.state.displayName} {venue.zip}
+        </p>
+        <p>{venue.phone}</p>
+        <a href="{venue.website}" target="_blank">
+          {venue.website}
+        </a>
+        <button onClick={() => addVenue(venue)}>Add</button>
+      </li>
+    );
+  }
+};
+
+export default SearchResultCard;
