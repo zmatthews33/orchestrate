@@ -1,10 +1,12 @@
 # Orchestrate
 
+![Orchestrate](orchestrate_demo.gif)
+
 ## Description
 
-Orchestrate is a MERN stack application designed specifically for artist managers/agents (or artists) that makes many everyday tasks easier -all in a single place -your dashboard. 
+Orchestrate is a MERN stack application designed specifically for artist managers/agents (or artists) that makes many everyday tasks easier -all in a single place -your dashboard.
 
-## Live 
+## Live
 
 -   [Orchestrate](Link to landing page)
 
@@ -16,6 +18,7 @@ Orchestrate is a MERN stack application designed specifically for artist manager
 -   [Weslley Braga](https://github.com/wesbragagt)
 
 ## Technologies Used
+
 -   React
 -   NodeJS
 -   Express
@@ -39,7 +42,7 @@ Orchestrate is a MERN stack application designed specifically for artist manager
 
 -   Heroku
 
------------------------
+---
 
 ## License & Copyright
 
