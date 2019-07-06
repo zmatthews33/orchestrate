@@ -1,6 +1,7 @@
 import React from "react";
 import ContactRow from "./ContactRow";
-export default function ContactTable({ contacts }) {
+
+const ContactTable = ({ contacts }) => {
     return (
         <table id="contacts">
             <thead>
@@ -14,10 +15,10 @@ export default function ContactTable({ contacts }) {
                 </tr>
             </thead>
             <tbody>
-                {contacts.map((contact, index) => (
+                {contacts.map(contact => (
                     <ContactRow
-                        key={index}
-                        name={contact.first_name + " " +contact.last_name}
+                        key={contact._id}
+                        name={contact.first_name + " " + contact.last_name}
                         phone={contact.phone}
                         venue={contact.venue}
                         address={contact.address}
@@ -29,3 +30,5 @@ export default function ContactTable({ contacts }) {
         </table>
     );
 }
+
+export default ContactTable;

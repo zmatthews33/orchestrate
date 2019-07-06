@@ -25,4 +25,4 @@ const FormView = ({ color, formSubmit, children }) => (
   </form>
 );
 
-export {Page, WidgetContainer, Card, BandCard, ListView, FormView}
+export { Page, WidgetContainer, Card, BandCard, ListView, FormView }

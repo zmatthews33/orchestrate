@@ -3,7 +3,7 @@ import axios from "axios";
 
 import "./AddContact.scss";
 
-export default function AddContact({ userId, addArtist }) {
+export default function AddContact({ userId, addContact }) {
 
   const InitState = {
     name: "",
@@ -32,7 +32,7 @@ export default function AddContact({ userId, addArtist }) {
   const handleSubmit = e => {
     e.preventDefault();
     axios.post("/api/people", State)
-      .then(response => AddContact(response.data))
+      .then(response => addContact(response.data))
       .catch(err => console.log(err))
   };
 
@@ -111,7 +111,7 @@ export default function AddContact({ userId, addArtist }) {
           />
         </div>
         <div className="formAction">
-          <button>Submit</button>
+          <button className="btn-submit" type="submit">Submit</button>
         </div>
       </form>
     </div >
