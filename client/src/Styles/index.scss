@@ -226,6 +226,7 @@ form {
 
   .lowerFeatures {
     display: flex;
+    flex-wrap: wrap;
 
     .lowerLeft {
       flex: 3;
@@ -235,11 +236,51 @@ form {
     .lowerRight {
       flex: 2;
       background-color: darken($darkPrimary, 10);
-
     }
 
   }
 
+  
+
+}
+
+@media only screen and (max-width: 600px) {
+  .dashboardPage {
+    .topFeature {
+      overflow: hidden;
+      padding-bottom: 10px;
+    }
+  
+    .lowerFeatures {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+  
+      .lowerLeft {
+        flex: 1;
+        background-color: darken($darkPrimary, 4);
+
+        .pageContainer {
+          .bandList {
+            .bandCard {
+              max-width: 100%;
+            }
+          }
+        }
+
+      }
+  
+      .lowerRight {
+        min-height: 20vh;
+        flex: 1;
+        background-color: darken($darkPrimary, 10);
+      }
+  
+    }
+  
+    
+  
+  }
 }
 
 
