@@ -1,7 +1,7 @@
 import React from "react";
 import './ContainerStyles.scss';
 
-const Page = ({ children }) => <div className="pageContainer">{children}</div>;
+const Page = ({ children, dashboard }) => <div className={!dashboard ? `pageContainer` : `pageContainer dashboard`}>{children}</div>;
 
 const WidgetContainer = ({ color, children }) => (
   <div className="widgetContainer">{children}</div>

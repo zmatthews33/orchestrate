@@ -1,22 +1,24 @@
 import React from "react";
-import {Page} from "../Components/Containers";
-// import TodoList from "../Components/TodoList/TodoList";
-// import UpcomingEvents from "../Components/UpcomingEvents/UpcomingEvents";
-// import Finances from "../Components/Finances/Finances";
-import "../Styles/Home.scss";
+import TodoList from "../Components/TodoList/TodoList";
+import EventsContainer from '../Components/Events/EventsContainer'
+import ArtistsContainer from '../Components/Artists/ArtistsContainer'
 
-function Home() {
+function Home({match}) {
   return (
-    <Page>
-      
-    </Page>
+    <div className="dashboardPage">
+      <div className="topFeature">
+        <EventsContainer match={match} dashboard={true} />
+      </div>
+      <div className="lowerFeatures">
+        <div className="lowerLeft">
+          <ArtistsContainer dashboard={true} />
+        </div>
+        <div className="lowerRight">
+          <TodoList dashboard={true} />
+        </div>
+      </div>
+    </div>
   );
 }
 
 export default Home;
-
-// <div className="Feature">
-//         <UpcomingEvents />
-//       </div>
-//       <TodoList />
-//       <Finances />

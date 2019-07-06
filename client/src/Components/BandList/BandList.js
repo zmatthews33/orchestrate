@@ -1,9 +1,10 @@
 import React from "react";
 import { BandCard } from "../Containers/index";
+import { Link } from 'react-router-dom'
 
-const BandList = ({ bands, deleteBand }) => {
+const BandList = ({ bands, deleteBand, dashboard }) => {
   return (
-    <div className="bandList">
+    <div className={!dashboard ? `bandList` : `bandList dashboard`}>
       {bands.map(band => (
         <BandCard key={band._id}>
           <div
@@ -20,7 +21,7 @@ const BandList = ({ bands, deleteBand }) => {
             <h2>{band.name}</h2>
             <a href={`mailto:${band.email}`}>{band.email}</a>
             <p>{band.bio}</p>
-            {band.members.length && (
+            {(band.members.length && !dashboard) && (
               <div className="members">
                 <h4>Members</h4>
                 <ul>
@@ -30,7 +31,7 @@ const BandList = ({ bands, deleteBand }) => {
                 </ul>
               </div>
             )}
-            {band.links.length && (
+            {(band.links.length && !dashboard) && (
               <div className="links">
                 <h4>Links</h4>
                 <ul>
@@ -45,7 +46,8 @@ const BandList = ({ bands, deleteBand }) => {
               </div>
             )}
           </div>
-          <div className="cardControls">
+          {!dashboard && (
+            <div className="cardControls">
             <button
               className="deleteButton"
               onClick={() => deleteBand(band._id)}
@@ -53,6 +55,7 @@ const BandList = ({ bands, deleteBand }) => {
               <i className="fas fa-times" /> Delete Band
             </button>
           </div>
+          )}
         </BandCard>
       ))}
     </div>
@@ -60,3 +63,4 @@ const BandList = ({ bands, deleteBand }) => {
 };
 
 export default BandList;
+

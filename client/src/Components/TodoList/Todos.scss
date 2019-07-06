@@ -82,5 +82,40 @@
     }
 
   } 
+
+  &.dashboard {
+    .toDoItem {
+      border-radius: 12px;
+      margin-top: 15px;
+      overflow: hidden;
+      align-items: stretch;
+      background: rgba($bright, 0.2);
+  
+      button {
+        flex: 0;
+        border: none;
+        padding: .4em 1em;
+        background: rgba($bright, 0.8);
+        font-size: 1em;
+  
+        &:hover {
+          background: rgba($bright, 1);
+        }
+      }
+  
+      .delete {
+        font-size: 1em;
+      }
+  
+      span {
+        flex: 1;
+        display: flex;
+        padding: 1em 2em;
+        align-items: center;
+      }
+  
+    } 
+
+  }
   
 }
