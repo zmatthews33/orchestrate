@@ -46,7 +46,7 @@ db.once("open", function() {
 
 // Routes
 const routes = require("./routes");
-app.use("/", routes);
+app.use(routes);
 
 app.post("/user", (req, res) => {
     console.log("user signup");
