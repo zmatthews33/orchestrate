@@ -7,6 +7,8 @@ import EventForm from "../Calendar/Components/EventForm";
 import useAPI from "../../Utils/useAPI";
 import { AppContext } from "../../App";
 
+import "./Events.scss";
+
 function EventsContainer({ match, dashboard }) {
   const { userId } = useContext(AppContext);
   const EventData = useAPI("get", `/api/event?created_by=${userId}`);
@@ -91,9 +93,15 @@ function EventsContainer({ match, dashboard }) {
             State.events.map(event => {
               if (event._id === match.params.eventId) {
                 return (
-                  <div key={event._id}>
-                    <h1>{event.title}</h1>
-                    <p>{event.description}</p>
+                  <div className="calendarPopup" key={event._id}>
+                    <div className="calendarDeets">
+                      <h2>{event.title}</h2>
+                      <h3>{event.start_date}</h3>
+                      <p>{event.description}</p>
+                    </div>
+                    <div className="controls">
+                      <button>Delete</button>
+                    </div>
                   </div>
                 );
               } else {
