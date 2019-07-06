@@ -37,5 +37,10 @@ module.exports = {
         db.Event.find({ artists: { "$in": [req.params.artistID] } })
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
+    },
+    findByUser: function (req, res) {
+        db.Event.find({ created_by: req.query.userID })
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err));
     }
 };
