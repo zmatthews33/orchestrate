@@ -40,10 +40,9 @@ function CalendarWeek({ events, toggleModal }) {
     myClass = thisDate === CurrentDate ? "day currentDay" : myClass;
 
     const DayEvents = events.filter(ev => {
-      if (
-        moment(ev.start_date).format("YYYYMM") === DateContext.format("YYYYMM")
-      ) {
-        if (parseInt(moment(ev.start_date).format("D")) === thisDate) {
+      const utcDate = moment.utc(ev.start_date);
+      if (moment(utcDate).format("YYYYMM") === DateContext.format("YYYYMM")) {
+        if (parseInt(moment(utcDate).format("D")) === thisDate) {
           return ev;
         } else {
           return null;
@@ -52,6 +51,11 @@ function CalendarWeek({ events, toggleModal }) {
         return null;
       }
     });
+
+    const currentTime = date => {
+      const utcTime = moment.utc(date);
+      return moment(utcTime).format("h:mm a");
+    };
 
     calendarDays.push(
       <DaySlot
@@ -70,10 +74,8 @@ function CalendarWeek({ events, toggleModal }) {
             key={event._id}
             className="eventThumb"
           >
+            <span className="time">{currentTime(event.start_date)}</span>
             <h2>{event.title}</h2>
-            <span className="time">
-              {moment(event.start_date).format("h:mm")}
-            </span>
           </Link>
         ))}
       </DaySlot>

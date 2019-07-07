@@ -70,9 +70,8 @@
 
       .eventThumb {
         display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: space-between;
+        flex-direction: column;
+        align-items: flex-start;
         background: $bright;
         border-radius: 4px;
         padding: 8px;
@@ -81,13 +80,15 @@
         h2 {
           flex: 1;
           font-size: ms(-2);
-          padding: 4px;
           text-align: left;
+          line-height: 1.2em;
+
         }
         .time {
           flex: 1;
           font-size: ms(-2);
-          padding: 4px;
+          margin-bottom: .3em;
+          font-weight: bold;
         }
       }
 

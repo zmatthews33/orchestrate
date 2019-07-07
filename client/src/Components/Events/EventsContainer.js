@@ -105,11 +105,13 @@ function EventsContainer({ match, dashboard }) {
           {match.params.eventId ? (
             State.events.map(event => {
               if (event._id === match.params.eventId) {
+                const utcDate = moment.utc(event.start_date);
+
                 return (
                   <div className="calendarPopup" key={event._id}>
                     <div className="calendarDeets">
                       <h2>{event.title}</h2>
-                      <h3>{moment(event.start_date).format('MMMM D, YYYY')}</h3>
+                      <h3>{moment(utcDate).format('MMMM D, YYYY')} {'//'} {moment(utcDate).format('h:mm a')}</h3>
                       <p>{event.description}</p>
                     </div>
                     <div className="controls">

@@ -8,7 +8,6 @@ import { Link } from "react-router-dom";
 
 function Calendar({ events, toggleModal }) {
   const [DateContext, setDateContext] = useState(moment());
-
   const Month = DateContext.format("MMMM");
   const Year = DateContext.format("Y");
   //const Weekdays = moment.weekdays();
@@ -38,7 +37,6 @@ function Calendar({ events, toggleModal }) {
   const AddEvent = dateData => {
     toggleModal();
   };
-  
 
   const blanks = [];
   for (let i = 0; i < firstDayOfTheMonth; i++) {
@@ -65,10 +63,9 @@ function Calendar({ events, toggleModal }) {
         : "day";
 
     const DayEvents = events.filter(ev => {
-      if (
-        moment(ev.start_date).format("YYYYMM") === DateContext.format("YYYYMM")
-      ) {
-        if (parseInt(moment(ev.start_date).format("D")) === d) {
+      const utcDate = moment.utc(ev.start_date);
+      if (moment(utcDate).format("YYYYMM") === DateContext.format("YYYYMM")) {
+        if (parseInt(moment(utcDate).format("D")) === d) {
           return ev;
         } else {
           return null;
@@ -77,6 +74,11 @@ function Calendar({ events, toggleModal }) {
         return null;
       }
     });
+
+    const currentTime = date => {
+      const utcTime = moment.utc(date);
+      return moment(utcTime).format("h:mm a");
+    };
 
     calendarDays.push(
       <DaySlot
@@ -91,10 +93,8 @@ function Calendar({ events, toggleModal }) {
             key={event._id}
             className="eventThumb"
           >
+            <span className="time">{currentTime(event.start_date)}</span>
             <h2>{event.title}</h2>
-            <span className="time">
-              {moment(event.start_date).format("h:mm")}
-            </span>
           </Link>
         ))}
       </DaySlot>
