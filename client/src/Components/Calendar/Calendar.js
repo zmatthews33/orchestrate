@@ -8,7 +8,6 @@ import { Link } from "react-router-dom";
 
 function Calendar({ events, toggleModal }) {
   const [DateContext, setDateContext] = useState(moment());
-
   const Month = DateContext.format("MMMM");
   const Year = DateContext.format("Y");
   //const Weekdays = moment.weekdays();
@@ -65,10 +64,12 @@ function Calendar({ events, toggleModal }) {
         : "day";
 
     const DayEvents = events.filter(ev => {
+      const utcDate = moment.utc(ev.start_date);
+      const currDate = moment(utcDate).toDate();
       if (
-        moment(ev.start_date).format("YYYYMM") === DateContext.format("YYYYMM")
+        moment(currDate).format("YYYYMM") === DateContext.format("YYYYMM")
       ) {
-        if (parseInt(moment(ev.start_date).format("D")) === d) {
+        if (parseInt(moment(currDate).format("D")) === d) {
           return ev;
         } else {
           return null;
@@ -77,6 +78,12 @@ function Calendar({ events, toggleModal }) {
         return null;
       }
     });
+
+    const currentTime = date => {
+      const utcTime = moment.utc(date);
+      const localTime = moment(utcTime).toDate()
+      return moment(localTime).format("h:mm")
+    }
 
     calendarDays.push(
       <DaySlot
@@ -93,7 +100,7 @@ function Calendar({ events, toggleModal }) {
           >
             <h2>{event.title}</h2>
             <span className="time">
-              {moment(event.start_date).format("h:mm")}
+              {currentTime(event.start_date)}
             </span>
           </Link>
         ))}
