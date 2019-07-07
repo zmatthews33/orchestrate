@@ -41,11 +41,10 @@ function CalendarWeek({ events, toggleModal }) {
 
     const DayEvents = events.filter(ev => {
       const utcDate = moment.utc(ev.start_date)
-      const currDate = moment(utcDate).toDate()
       if (
-        moment(currDate).format("YYYYMM") === DateContext.format("YYYYMM")
+        moment(utcDate).format("YYYYMM") === DateContext.format("YYYYMM")
       ) {
-        if (parseInt(moment(currDate).format("D")) === thisDate) {
+        if (parseInt(moment(utcDate).format("D")) === thisDate) {
           return ev;
         } else {
           return null;
@@ -57,8 +56,7 @@ function CalendarWeek({ events, toggleModal }) {
 
     const currentTime = date => {
       const utcTime = moment.utc(date);
-      const localTime = moment(utcTime).toDate()
-      return moment(localTime).format("h:mm")
+      return moment(utcTime).format('hh:mm')
     }
 
 

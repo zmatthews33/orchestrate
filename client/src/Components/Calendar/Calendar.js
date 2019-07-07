@@ -65,11 +65,10 @@ function Calendar({ events, toggleModal }) {
 
     const DayEvents = events.filter(ev => {
       const utcDate = moment.utc(ev.start_date);
-      const currDate = moment(utcDate).toDate();
       if (
-        moment(currDate).format("YYYYMM") === DateContext.format("YYYYMM")
+        moment(utcDate).format("YYYYMM") === DateContext.format("YYYYMM")
       ) {
-        if (parseInt(moment(currDate).format("D")) === d) {
+        if (parseInt(moment(utcDate).format("D")) === d) {
           return ev;
         } else {
           return null;
@@ -81,8 +80,7 @@ function Calendar({ events, toggleModal }) {
 
     const currentTime = date => {
       const utcTime = moment.utc(date);
-      const localTime = moment(utcTime).toDate()
-      return moment(localTime).format("h:mm")
+      return moment(utcTime).format('hh:mm')
     }
 
     calendarDays.push(
