@@ -111,7 +111,7 @@ function EventsContainer({ match, dashboard }) {
                   <div className="calendarPopup" key={event._id}>
                     <div className="calendarDeets">
                       <h2>{event.title}</h2>
-                      <h3>{moment(utcDate).format('MMMM D, YYYY')} // {moment(utcDate).format('hh:mm a')}</h3>
+                      <h3>{moment(utcDate).format('MMMM D, YYYY')} {'//'} {moment(utcDate).format('h:mm a')}</h3>
                       <p>{event.description}</p>
                     </div>
                     <div className="controls">

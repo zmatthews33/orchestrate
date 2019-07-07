@@ -77,7 +77,7 @@ function Calendar({ events, toggleModal }) {
 
     const currentTime = date => {
       const utcTime = moment.utc(date);
-      return moment(utcTime).format("hh:mm a");
+      return moment(utcTime).format("h:mm a");
     };
 
     calendarDays.push(
