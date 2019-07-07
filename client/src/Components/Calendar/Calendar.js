@@ -37,7 +37,6 @@ function Calendar({ events, toggleModal }) {
   const AddEvent = dateData => {
     toggleModal();
   };
-  
 
   const blanks = [];
   for (let i = 0; i < firstDayOfTheMonth; i++) {
@@ -65,9 +64,7 @@ function Calendar({ events, toggleModal }) {
 
     const DayEvents = events.filter(ev => {
       const utcDate = moment.utc(ev.start_date);
-      if (
-        moment(utcDate).format("YYYYMM") === DateContext.format("YYYYMM")
-      ) {
+      if (moment(utcDate).format("YYYYMM") === DateContext.format("YYYYMM")) {
         if (parseInt(moment(utcDate).format("D")) === d) {
           return ev;
         } else {
@@ -80,8 +77,8 @@ function Calendar({ events, toggleModal }) {
 
     const currentTime = date => {
       const utcTime = moment.utc(date);
-      return moment(utcTime).format('hh:mm')
-    }
+      return moment(utcTime).format("hh:mm a");
+    };
 
     calendarDays.push(
       <DaySlot
@@ -96,10 +93,8 @@ function Calendar({ events, toggleModal }) {
             key={event._id}
             className="eventThumb"
           >
+            <span className="time">{currentTime(event.start_date)}</span>
             <h2>{event.title}</h2>
-            <span className="time">
-              {currentTime(event.start_date)}
-            </span>
           </Link>
         ))}
       </DaySlot>
