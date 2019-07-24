@@ -9,6 +9,8 @@ Orchestrate is a MERN stack application designed specifically for artist manager
 ## Live
 
 -   [Orchestrate](https://orchestrateapp.herokuapp.com/)
+- user: admin@admin.com 
+- password: 123456
 
 ## Author(s)
 -   [Zach Matthews](https://github.com/zmatthews33)
