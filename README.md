@@ -11,10 +11,9 @@ Orchestrate is a MERN stack application designed specifically for artist manager
 -   [Orchestrate](https://orchestrateapp.herokuapp.com/)
 
 ## Author(s)
-
+-   [Zach Matthews](https://github.com/zmatthews33)
 -   [Josh Stevens](https://github.com/jstevens79)
 -   [Luke Duran](https://github.com/lukeduran)
--   [Zach Matthews](https://github.com/zmatthews33)
 -   [Weslley Braga](https://github.com/wesbragagt)
 
 ## Technologies Used
