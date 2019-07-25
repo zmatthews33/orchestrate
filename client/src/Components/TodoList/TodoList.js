@@ -1,17 +1,17 @@
-import "./Todos.scss";
-import React, { useState, useEffect, useContext } from "react";
-import TodoItem from "./TodoItem";
-import axios from "axios";
-import { AppContext } from "../../App";
-import useAPI from "../../Utils/useAPI";
-import { Page } from "../Containers";
+import './Todos.scss';
+import React, { useState, useEffect, useContext } from 'react';
+import TodoItem from './TodoItem';
+import axios from 'axios';
+import { AppContext } from '../../App';
+import useAPI from '../../Utils/useAPI';
+import { Page } from '../Containers';
 
 function TodoList({ dashboard }) {
   const { userId } = useContext(AppContext);
   const [todos, setTodos] = useState([]);
   const [viewCompleted, setViewCompleted] = useState(false);
-  const [userInput, setUserInput] = useState("");
-  const getTodos = useAPI("get", `/api/todo?created_by=${userId}`);
+  const [userInput, setUserInput] = useState('');
+  const getTodos = useAPI('get', `/api/todo?created_by=${userId}`);
 
   useEffect(() => {
     if (getTodos) {
@@ -29,9 +29,9 @@ function TodoList({ dashboard }) {
     };
 
     // send to API
-    axios.post("api/todo", newTodo).then(response => {
+    axios.post('api/todo', newTodo).then(response => {
       setTodos([response.data, ...todos]);
-      setUserInput("");
+      setUserInput('');
     });
   };
 
@@ -64,7 +64,7 @@ function TodoList({ dashboard }) {
 
   return (
     <Page>
-      <div className={!dashboard ? "todos" : "todos dashboard"}>
+      <div className={!dashboard ? 'todos' : 'todos dashboard'}>
         {!dashboard && (
           <div className="pageHeader">
             <h1>Reminders</h1>
@@ -75,7 +75,7 @@ function TodoList({ dashboard }) {
             <input
               className="todos-input"
               type="text"
-              placeholder="add todo..."
+              placeholder="Add A Reminder..."
               value={userInput}
               onChange={e => setUserInput(e.target.value)}
             />
@@ -90,7 +90,7 @@ function TodoList({ dashboard }) {
             onClick={() => setViewCompleted(!viewCompleted)}
           >
             <i className="far fa-eye" />
-            {!viewCompleted ? " View Completed" : " Hide Completed"}
+            {!viewCompleted ? ' View Completed' : ' Hide Completed'}
           </button>
         )}
         <ul className="todos-list-group">
